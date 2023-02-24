@@ -1,0 +1,681 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Жизненные принципы</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="c665a6bb-6c0b-444f-8fa9-c78217f9c20b" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1617704716378-4022638c56e2?ixlib=rb-1.2.1&amp;q=80&amp;cs=tinysrgb&amp;fm=jpg&amp;crop=entropy" style="object-position:center 42.50000000000001%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="https://www.notion.so/icons/hourglass_gray.svg"/></div><h1 class="page-title">Жизненные принципы</h1></header><div class="page-body"><ul id="e559ee4a-b02d-436a-8ba2-89b09078368b" class="toggle"><li><details open=""><summary><strong>Содержание</strong></summary><nav id="8f75afec-621a-4e21-91c2-4e162e29b98d" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#80e5ed48-1dd2-418c-8e38-200d619ed646">📝 Личные тезисы</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#96cdfcf6-2dc1-402f-b0f4-e4737ad6ea18">📝 Жизненные принципы</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#75971006-d963-41bf-b273-18f0df999de7">📝 Мысли об отношениях</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#b8c8acaf-02cf-412a-95ec-36009c1005c4">📝 Мысли других людей о жизни</a></div></nav></details></li></ul><h1 id="80e5ed48-1dd2-418c-8e38-200d619ed646" class=""><details open=""><summary>📝 Личные тезисы</summary></details></h1><div class="indented"><ol type="1" id="51abfd32-dab0-4bda-af4e-7986df106fae" class="numbered-list" start="1"><li>В любом деле главное — <strong>начать</strong>. Пример: Собрать сумку перед походом в зал, это маленький но при этом важный первый шаг чтобы оказаться в зале. </li></ol><ol type="1" id="9b5cbe3a-cc02-44be-a0b1-a862eb42e833" class="numbered-list" start="2"><li><strong>Скромность </strong>— путь к бедности. Бездарные люди <strong>с высокими запросами</strong> <strong>получают большую</strong> зарплату, чем профессионалы, начинающие “трезво оценивать” свои навыки.
+Знайте, что за ваши услуги многие берут огромные деньги, будучи идиотами.</li></ol><ol type="1" id="7ce0a6bf-0b37-4ca1-8ee4-90af2e7caa03" class="numbered-list" start="3"><li><strong>Наглость </strong>— второе счастье. От жизни и других людей можно получить гораздо больше, пользуясь тем, что далеко не у каждого есть сильный характер, чтобы отказать. Каждый человек сам ставит себе ограничения и “потолки”, поэтому важно просить больше, чтобы получать больше. Пример: Откликаться на вакансию, которой ты не подходишь, требовать большую зп, когда торгуешься называть большую сумму.</li></ol><ol type="1" id="b94c389c-28da-4beb-84a8-8becf864e529" class="numbered-list" start="4"><li>Лучший способ <strong>организации информации</strong> зависит от её дальнейшего использования.</li></ol><ol type="1" id="37cb8fbb-9d64-444c-9758-c7c91201b12d" class="numbered-list" start="5"><li>Если что-то работает, <strong>не нужно это менять</strong>, можно сделать только хуже.</li></ol><ol type="1" id="b6ce1be0-58d8-4006-87f2-5bd82fd7456a" class="numbered-list" start="6"><li>Концентрироваться на <strong>задачах</strong>, а не инструменте (программе).</li></ol></div><h1 id="96cdfcf6-2dc1-402f-b0f4-e4737ad6ea18" class=""><details open=""><summary>📝 Жизненные принципы</summary></details></h1><div class="indented"><h3 id="7bb6523e-eaab-4685-893b-f7564eef7b4e" class="">Психология и общение</h3><ol type="1" id="e0a16031-a107-49c9-b7b6-b98235a5434c" class="numbered-list" start="1"><li>Чтобы заставить человека сделать что-либо, нужно чтобы он сам этого хотел, иначе от него будет сложно добиться результата. Создать желание, стремление, мотивацию. Узнать и избавиться от мешающих причин, страхов и переживаний.</li></ol><ol type="1" id="25cffe7b-c8a3-4886-9c1d-19484e19f9ec" class="numbered-list" start="2"><li>Если нужно что-то, то лучше обращаться к человеку, когда у него хорошее настроение или я сделал ему одолжение (В подходящий момент)</li></ol><ol type="1" id="c132e219-d490-4b21-b9c2-46e2178ac8ee" class="numbered-list" start="3"><li>В человеческом восприятии важную роль играет принцип контраста, который влияет на то, какой мы видим разницу между двумя вещами, представленными одна за другой. (Принцип сравнения)</li></ol><ol type="1" id="2c846f55-e4ac-498e-b6f2-94576c3cfe2d" class="numbered-list" start="4"><li>Не менять резко тему во время разговора, чтобы узнать всю информацию и сохранить внимание.</li></ol><ol type="1" id="f97583db-816a-4c73-908d-6a96ccb16726" class="numbered-list" start="5"><li>Приводить <strong>доводы </strong>и <strong>факты </strong>в спорах и дискуссиях, в защиту своей позиции</li></ol><h3 id="8f5b0431-a8f5-4552-ae98-27a8588598a4" class="block-color-gray_background">Зависимость восприятия от настроения</h3><p id="f64674af-9ad8-4625-9b6c-32b2b0212f13" class="">Восприятие зависит от настроения.
+При плохом настроении, все видится в тусклых и темных тонах, больше акцентируется внимание на плохом.
+При хорошем настроении, не обращал внимание на негатив.</p><h3 id="c8251ef9-cd24-4832-b04b-00cd3f0b132c" class="block-color-gray_background">Все познается в сравнении</h3><p id="8dc34eb5-726b-43f1-ac34-397c3b2dc47a" class="">Выйди из зоны комфорта, сравни себя с другими, теми кто лучше: умнее, веселее, с хорошей фигурой или более обеспеченный! Все зависит лишь от поставленной перед тобой цели.
+Если постоянно находиться в зоне комфорта, с места не сдвинешься, потому что все устраивает, а что не устраивает, с тем миришься.
+Находясь же в такой атмосфере, когда ты аутсайдер, когда нужно догонять, начинаешь стремиться стать таким же или еще лучше. Нужно создать вокруг себя враждебную атмосферу, проще говоря, она побудит к действию. Пусть вокруг будут образы, более успешных людей. Те кто лучше, тянут вверх, а те кто хуже, на дно. Человечество эволюционировало из-за того, что вокруг была враждебная среда и приходилось соперничать чтобы выжить. Именно это стало двигателем прогресса, вместе с желанием облегчить себе путь.</p><h3 id="1ba29340-9b7a-4f3a-84db-20b0f23ee817" class="block-color-gray_background">Необходимо отслеживать прогресс</h3><p id="88389866-b03c-47c1-bc66-92cefcddddff" class="">Необходимо отслеживать свой прогресс (цифры, графики), каким бы малым он ни был.
+Видеть прогресс, очень важно для понимания, что труды не напрасны, это хороший способ мотивировать себя.
+Порой верить в успех вовсе не нужно. Нужно не думать, а делать. Можно часами мусолить что-то, а можно просто начать. Первое ничего не даст, второе положит начало. Чаще всего люди планируют, но до дела так и не доходит. Так почему бы не начать с дела, а потом уже думать, если это вообще понадобится. Нужно также осознавать, что ничего не происходит в миг, так что придется набраться терпения.</p><h3 id="fb59bab7-1fc0-4f2c-a165-658e5377ff6c" class="block-color-gray_background">Поиск тем для разговора</h3><p id="95d663e2-6d35-4797-aefe-2d483534241e" class="">Если не находится тем для разговора: почитать новости, подборки с женских форумов и т.п.
+Обмениваться друг с другом мнением, тем самым побуждая мозг к новым обсуждениям и разговорам.</p><h3 id="01c49ada-c52d-4308-8f50-726de44f2543" class="block-color-gray_background">Человек делает для другого то, что желает для себя сам</h3><p id="c5688c0a-8da1-46e5-8676-81dba706165b" class="">Если замечаешь, что человек часто что-то делает для тебя, то можно предположить, что он подсознательно желает для себя того же от меня.</p></div><h1 id="75971006-d963-41bf-b273-18f0df999de7" class=""><details open=""><summary>📝 Мысли об отношениях</summary></details></h1><div class="indented"><h3 id="4e8ba31a-c48e-4c47-ae88-07813ab24829" class="block-color-gray_background"><strong>О девушках</strong></h3><ol type="1" id="bb6f9495-a26c-49da-8b02-e0915cf2bb60" class="numbered-list" start="1"><li>Живут <strong>эмоциями</strong>, а не разумом. (Все время какое-то состояние: сомнения, различные чувства, переживания).</li></ol><ol type="1" id="97f8639e-2bbb-4b69-86bd-465a7e9b4145" class="numbered-list" start="2"><li>Анализируют. (Читают ситуацию, наблюдают, запоминают).</li></ol><ol type="1" id="20b10378-fc2c-4393-b3f7-9910c65298d9" class="numbered-list" start="3"><li>Ревнивы и собственницы. (Ревность со стороны парня дает девушке почувствовать свою значимость и присутствие мысли &quot;боится потерять, значит ценит и любит&quot;).</li></ol><ol type="1" id="3b2d7cdb-7bb9-434f-b1d2-2ed96d7bd58f" class="numbered-list" start="4"><li>С трудом принимают решения. (Особенно если это касается собственных желаний или если вовлечен другой человек).</li></ol><ol type="1" id="d85d95a3-a257-4a2f-ad94-2a8862b5ed4b" class="numbered-list" start="5"><li>Любят комплименты и похвалу, частые выражения эмоций. (Любви, привязанности).</li></ol><ol type="1" id="5759f23e-4630-43f0-ace5-199cbef84a5d" class="numbered-list" start="6"><li>Любят <strong>неожиданные </strong>сюрпризы, приносящие <strong>эмоции </strong>и оставляющие приятные <strong>воспоминания</strong>.</li></ol><ol type="1" id="32ff584c-8975-4c50-bbf8-80288ae755c5" class="numbered-list" start="7"><li>Психологически приятно ощущать себя слабой женщиной в сильных руках мужчины (Властность и сила со стороны мужчины и нежность и податливость со стороны женщины).</li></ol><h3 id="d81cbabd-4bfd-40a7-9ddb-85a70f5049d1" class="block-color-gray_background"><strong>В отношениях, со стороны мужчины</strong></h3><ol type="1" id="edfa749e-d09e-4711-bcfd-e2146b192c4e" class="numbered-list" start="1"><li>Инициатива, решительность, смелость, действия.</li></ol><ol type="1" id="b71d974d-b240-43fb-8a79-0f17ef6ade35" class="numbered-list" start="2"><li>Защищать, показать что важна. (Провожать до дома, не оставлять в беде).</li></ol><ol type="1" id="1f24ce37-4323-4145-b319-4158e5c720f2" class="numbered-list" start="3"><li>Говорить о своих чувствах и показывать их чаще.
+(Никто не знает о чем ты думаешь или что чувствуешь, если это не выражать).</li></ol><ol type="1" id="85853c7b-b7fc-414a-858c-95a202b97e7c" class="numbered-list" start="4"><li>Хвалить и делать комплименты.
+(Говорить что любишь её и что она красивая, обращать внимание на её внешний вид)</li></ol><ol type="1" id="ad004aae-9aa3-4f54-907b-39232d88ed33" class="numbered-list" start="5"><li>Удивлять (Неожиданные встречи, подарки, цветы, стихи и другие сюрпризы)</li></ol><ol type="1" id="3df9eb58-4678-437a-8c56-2aac65c043d9" class="numbered-list" start="6"><li>Не оставлять девушку наедине со своими эмоциями и переживаниями.
+(Необходимо обсуждать возникшие проблемы и искать их решение сразу, чтобы девушка не надумывала и не накручивала себя).</li></ol><ol type="1" id="1899c829-cf03-4856-a90d-c96d2ac7d678" class="numbered-list" start="7"><li>Запоминать даты (Дни рождения, годовщины, важные события).</li></ol><ol type="1" id="aaf02f0b-75f7-4323-b0cd-d8abc0f2cb85" class="numbered-list" start="8"><li>Не сравнивать с другими девушками и не оценивать других!</li></ol><h3 id="4d2dd514-a3ee-4772-8937-658c1d6632af" class="block-color-gray_background">Мысли о спутнице в жизни</h3><p id="fa77ea32-848b-4cf0-be05-12aff5720079" class="">Мне всегда хотелось найти человека, с которым можно было бы пройти по жизни вместе.
+Тот, кто отлично меня понимает, разделяет мои интересы и взгляды на жизнь. Но при этом, обладает своей индивидуальностью и собственным мнением. Такого человека хочется оберегать и защищать. С ним хорошо и спокойно, а все переживания отходят на второй план. В таком человеке ты уверен и знаешь, что все вышесказанное обоюдно. Смысл отношений для меня, это поиск такого человека, так как лишь время покажет и расставит все на свои места, а отношения — некая связь, позволяющая оставаться с человеком и лучше его узнать. Дабы понять и осознать, правильный ли я сделал выбор.</p></div><h1 id="b8c8acaf-02cf-412a-95ec-36009c1005c4" class=""><details open=""><summary>📝 Мысли других людей о жизни</summary></details></h1><div class="indented"><ol type="1" id="ab0ddd44-80a8-4041-ba20-779365ee68d4" class="numbered-list" start="1"><li>Нужно иметь и уважать СВОИ желания. Не надо врать себе что хочешь учиться, хочешь работать — это тебе внушили родители! У тебя должна быть СВОЯ мечта — пускай даже самая дурацкая. Для начала, например, купить ящик шоколадок или мороженного и обожраться, кататься на аттракционах до одури, играть на компе 3 дня подряд, курить, пить — все, что родители не разрешали.</li></ol><ol type="1" id="af958fac-76ce-4310-910d-dad04b8628e0" class="numbered-list" start="2"><li>Уверен что в 17 лет тебя больше всего интересует секс. И это правильно! Смотреть порнуху и дрочить — это нормально. Все так делают, просто врут что это плохо. Снять телку и попробовать реальный секс — это еще лучше. И для этого не надо ждать большой и светлой любви. «До свадьбы нельзя» — это позапрошлый век.</li></ol><ol type="1" id="ad1163c7-d026-417b-8422-fd86c85f0dd7" class="numbered-list" start="3"><li>Заработал бабки — они твои! Именно в этом смысл: бабки тебе нужны для реализации своих желаний. Если ты отдаешь их кому-то то ты работаешь не получая удовольствия от жизни. Не жди что тебе кто-то что то даст: купи себе сам!</li></ol><ol type="1" id="6839a135-f37c-4a05-b42b-6f5ca6fe0f6d" class="numbered-list" start="4"><li>Удовольствие от работы не в том, что бы хорошо выполнять задания. Цели работодателя — это не твои цели! Не дай себя наебать! Твои цели — это реализация СВОИХ желаний и получение удовольствия от жизни (не от работы!). Работа — это только средство заработать бабки для этого.</li></ol><ol type="1" id="b5637f09-21a5-41d3-8212-2aef9570d2ba" class="numbered-list" start="5"><li>Работа не заменяет жизнь! Даже если ты нашел работу мечты — сниматься в порнухе и трахать весь день, то все равно лучше найти работу где платят больше и за деньги трахать кого хочешь и как хочешь, а не как прикажет режиссер.</li></ol><ol type="1" id="1541e6ea-d0dc-4a63-a78b-e16d25662060" class="numbered-list" start="6"><li>Надо уметь себя заставлять делать что надо и вьебывать. Но при этом понимать зачем ТЕБЕ это надо. Лучше заставить себя вьебывать в качалке, чем сидеть в овертайм на работе что бы понравиться начальнику.</li></ol><ol type="1" id="a9c1f5e7-f3d4-4b12-8c5f-bbae09b95848" class="numbered-list" start="7"><li>Нужно любить себя! Да — эгоизм, это не плохо (даже если родители учили обратному), плохо — это быть скромным и обделать себя в то время, как другой радуется за твой счет. Нужно любить свое тело — нужно поддерживать его здоровым и красивым на зависть другим. Нужно любить свой желудок — и не жрать дешевое говно.</li></ol><ol type="1" id="3afa1dd5-10e8-4736-87e2-fb9ea6fa4fd0" class="numbered-list" start="8"><li>Нужно быть жадным! В этом главный секрет — как только ты всем доволен наступает депрессия. Как только решил что у тебя все есть — так стало незачем жить дальше! Помни — всегда есть лучше! И всегда нужно хотеть лучше — даже если у тебя уже есть охуенно хорошее.</li></ol><ol type="1" id="851aec66-d08e-43e0-b7a3-60f3b6eddee0" class="numbered-list" start="9"><li>Нужно плевать на других! Да — плевать что скажут соседи, или родственники, или даже родители. Ты не для них живешь! А еще плевать на тех, кто выебывается перед тобой своим превосходством. Они хотят заставить тебя завидовать и чувствовать себя говном. Посылай их нахуй! Если у них есть то, чего нету у тебя то или оно тебе нахуй не нужно, или нужно и ты сам скоро этого добьешься.</li></ol><ol type="1" id="4745832d-d7a1-4c1a-836c-093bd832adea" class="numbered-list" start="10"><li>Нужно жить сегодня! Радость нельзя запасти впрок — она нужна каждый день. Поэтому жить хуево и копить в надежде на «потом» — это наебать себя. Но так же не имеет смысла все спустить в один день — удовольствие нужно уметь растягивать.</li></ol><ol type="1" id="2bc2f279-8260-4cf5-b8b0-9cff14d13b20" class="numbered-list" start="11"><li>Счастье — это мимолетное состояние души, а не что-то постоянное. Нельзя построить карьеру, дом, семью, детей и потом постоянно быть счастливым — это миф. Можно быть счастливым именно этим теплым вечером в течении 5 минут глядя на закат. И все — этот момент не растянуть и не повторить. Нужно искать новый! Счастье не нужно строить много лет, за ним не нужно гнаться или добиваться — нужно почувствовать и ловить моменты счастья как можно чаще.</li></ol><ol type="1" id="99747765-c861-4dfb-ab21-fa1bda03a234" class="numbered-list" start="12"><li>Все проходит — и плохое, и хорошее. Как бы ни было плохо — это пройдет и забудется. Как бы ни было хорошо — это то же пройдет, поэтому нужно успеть насладится и запомнить. Радостные моменты — вот из чего должна состоять наша память! Что бы в любой момент можно было найти приятное воспоминание.</li></ol></div></div></article></body></html>

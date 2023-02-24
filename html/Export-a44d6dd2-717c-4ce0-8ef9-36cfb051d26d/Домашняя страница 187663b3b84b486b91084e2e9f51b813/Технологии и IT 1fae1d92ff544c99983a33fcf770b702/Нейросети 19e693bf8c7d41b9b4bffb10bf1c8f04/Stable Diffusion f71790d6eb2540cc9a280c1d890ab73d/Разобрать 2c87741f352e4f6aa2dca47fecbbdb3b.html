@@ -1,0 +1,745 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Разобрать</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="2c87741f-352e-4f6a-a2dc-a47fecbbdb3b" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/inbox_red.svg"/></div><h1 class="page-title">Разобрать</h1></header><div class="page-body"><nav id="0b020876-ef26-4aff-b352-5b629356b149" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#bbad93c2-6723-4679-95e0-78930d3a85d0">Ссылки</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1d52d18c-b409-4644-b745-d21892bf4131">Что-то (возможно модель?) на артах популярного художника WLOP</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#811a0660-6fbc-4b14-941a-bec25598272e"><strong>Описание апскейлеров лица</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3b68267b-7b6c-48f3-a963-c89f87c069dc"><strong><strong>КАК ИСПРАВИТЬ ЛИЦО ПЕРСОНАЖА (ДОПОЛНИТЬ СООТВЕТСТВУЮЩИЙ РАЗДЕЛ)</strong></strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#620ddfb6-96ef-4ad6-b21e-f73b8612e202">Скрипты для SD</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#5bd5c59f-8d81-4338-8e2e-f87b0bcde66d">Бесконечный канвас</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#982e1776-af64-4953-9234-6fd4005e3c37">Как получить свой API в WebUI?</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#9ad6a693-66f8-43d5-87a1-1bebb4ae2c21"><strong>Выявление веса тегов, влияния стилей, различий методов выборки</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#882745a0-965c-4ce6-a6d3-ba602888738a"><strong>Количество необходимых шагов модели и стиль</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#f4c7bdc5-e508-4cdd-a8b2-f207bfcbef08"><strong>Как формировать запросы, параметры объединения моделей, список моделей</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#81e3f49d-6ee9-4015-8d72-da4cd9cf4040"><strong>Описание элементов интерфейса</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1bd64cf8-98fa-4749-8eff-57d618b27f23"><strong>Оценить скорость работы на компьютере</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#7b8d56a4-1a1b-493b-93c4-601c5fac5d2f"><strong>Параметры генерации</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#23555dba-f34d-4bbf-8397-36ec0a5ad383">Cписок разных параметров для генерации</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2a5e6152-c220-4dbc-bc14-91cbeb21c796">Метаданные PNG (PNG metadata)</a></div></nav><hr id="20aa55dc-0466-4d1e-b8f3-32db4affd879"/><figure class="callout" style="white-space:pre-wrap;display:flex" id="2a74fd42-3f83-4721-a27e-54cf84e8c1ab"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/info-alternate_gray.svg"/></div><div style="width:100%"><strong>РАЗОБРАТЬ В ПЕРВУЮ ОЧЕРЕДЬ!</strong><ul id="d8be06c8-5d20-48ae-8f02-c765079d1f37" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Видео на YouTube в смотреть позже</span></li></ul><ul id="c1d94b2b-a4a7-4a70-aea4-9d64d99827de" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Избранное в Telegram</span></li></ul><ul id="72dec10c-c092-42e3-bddd-1047b03822bb" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Папку в Chrome</span></li></ul><ul id="5c1fb35b-a03a-4a2f-bd26-49795fe47ed2" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Добавить интересные источники про нейросети, чтобы оставаться в курсе новостей.</span><ul id="99dd6496-bba9-4626-848c-1a4ec09fea18" class="bulleted-list"><li style="list-style-type:disc"><a href="https://pikabu.ru/tag/%D0%9D%D0%B5%D0%B9%D1%80%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5%20%D1%81%D0%B5%D1%82%D0%B8?r=4">Pikabu — Нейронные сети</a></li></ul><ul id="0557e7c0-587f-4024-afa9-36bac1d6e54d" class="bulleted-list"><li style="list-style-type:disc"><a href="https://pikabu.ru/community/artneuro/best">Pikabu — Сообщество “Арт-нейросети”</a></li></ul><ul id="52085690-3571-4191-b43f-3d25217bc993" class="bulleted-list"><li style="list-style-type:disc"><a href="https://dtf.ru/tag/stablediffusion/popular">DTF — #Stablediffusion</a></li></ul><ul id="33da3544-be83-420b-81f4-4098ed7da1df" class="bulleted-list"><li style="list-style-type:disc"><a href="https://joyreactor.cc/tag/%D0%BD%D0%B5%D0%B9%D1%80%D0%BE%D1%81%D0%B5%D1%82%D0%B8">JoyReactor — Нейросети</a></li></ul><ul id="f2fc9e2f-4ec1-4578-b207-305ec39d521f" class="bulleted-list"><li style="list-style-type:disc">Discord группы</li></ul><ul id="e6ff24d7-e477-4e2e-a190-975f30e6394e" class="bulleted-list"><li style="list-style-type:disc">Reddit сабредиты</li></ul><ul id="0d5ddd0f-8ee0-45f3-836e-41b7507a22e5" class="bulleted-list"><li style="list-style-type:disc">YouTube каналы</li></ul><ul id="c91755ee-fcb8-48ac-9ebe-bd3951f3850b" class="bulleted-list"><li style="list-style-type:disc">Telegram каналы</li></ul></li></ul></div></figure><hr id="c1b4d4e1-0165-4614-8abf-86387c3426c6"/><h3 id="bbad93c2-6723-4679-95e0-78930d3a85d0" class=""><details open=""><summary>Ссылки</summary></details></h3><div class="indented"><ol type="1" id="7db814a2-0fae-4ed9-ada2-7375ff84fed2" class="numbered-list" start="1"><li><a href="https://rentry.org/voldy">https://rentry.org/voldy</a></li></ol><ol type="1" id="55d8f073-a1e1-4bb8-b5f2-5d1c4503b30d" class="numbered-list" start="2"><li><a href="https://rentry.org/voldy#-novelai-setup-">https://rentry.org/voldy#-novelai-setup-</a></li></ol><ol type="1" id="a867938f-86c3-4aaa-8a53-061d92995c44" class="numbered-list" start="3"><li><a href="https://rentry.co/8vaaa">https://rentry.co/8vaaa</a></li></ol><ol type="1" id="b45e0eba-1016-4521-acf4-bbda4ab5e189" class="numbered-list" start="4"><li><a href="https://rentry.org/GUItard">https://rentry.org/GUItard</a></li></ol><ol type="1" id="3d15b3e4-f8d9-465a-8434-5fb4b65db205" class="numbered-list" start="5"><li><a href="https://rentry.org/sdgoldmine">https://rentry.org/sdgoldmine</a></li></ol><ol type="1" id="ad477a9b-0f2e-4799-aa4d-8411ce70bbf3" class="numbered-list" start="6"><li><a href="https://rentry.org/sdhassan#model">https://rentry.org/sdhassan#model</a></li></ol><ol type="1" id="b84dfd3f-7168-4858-99ad-2fa68cd49bbe" class="numbered-list" start="7"><li><a href="https://rentry.org/sdmodels">https://rentry.org/sdmodels</a></li></ol><ol type="1" id="14810eab-58b4-4c13-9e8e-2597b2e3b074" class="numbered-list" start="8"><li><a href="https://rentry.org/sd-nativeisekai">https://rentry.org/sd-nativeisekai</a></li></ol><ol type="1" id="7c2b9c10-543b-4077-aa5b-d97101a71521" class="numbered-list" start="9"><li><a href="https://rentry.org/lftbl#berrymix">https://rentry.org/lftbl#berrymix</a></li></ol><ol type="1" id="f1a6907c-f650-43e4-bc5f-d60b411f3ffa" class="numbered-list" start="10"><li><a href="https://rentry.org/nai-speedrun">https://rentry.org/nai-speedrun</a></li></ol><ol type="1" id="15a11dd1-c53d-4653-bffd-cdff96896a67" class="numbered-list" start="11"><li><a href="https://rentry.org/NAIwildcards">https://rentry.org/NAIwildcards</a></li></ol><ol type="1" id="310c2865-2f19-43fc-9b96-6fd69305cfd9" class="numbered-list" start="12"><li><a href="https://rentry.org/pyros-pov-model">https://rentry.org/pyros-pov-model</a></li></ol><ol type="1" id="3eaaaa9f-b4b0-4d5e-863d-27db2fe583dd" class="numbered-list" start="13"><li><a href="https://rentry.org/RentrySD">https://rentry.org/RentrySD</a></li></ol><ol type="1" id="82addf2c-90f2-43f7-9c60-aaf1a42ee6b2" class="numbered-list" start="14"><li><a href="https://rentry.org/scarlett_mix">https://rentry.org/scarlett_mix</a></li></ol><ol type="1" id="8a989ff0-f563-4a94-88a6-a42fdf888376" class="numbered-list" start="15"><li><a href="https://rentry.org/sdg_FAQ#naifu-novelai-model-backend-frontend">https://rentry.org/sdg_FAQ#naifu-novelai-model-backend-frontend</a></li></ol><ol type="1" id="442ec4cb-e9cd-4255-8f9e-bfea3993e52b" class="numbered-list" start="16"><li><a href="https://rentry.org/sdupdates">https://rentry.org/sdupdates</a></li></ol><ol type="1" id="ca450a2c-a142-435d-9cdf-b4fe43f0b077" class="numbered-list" start="17"><li><a href="https://rentry.org/sdupdates#hypernetworks">https://rentry.org/sdupdates#hypernetworks</a></li></ol><ol type="1" id="a077c753-1a86-46b9-abff-426d840a73b6" class="numbered-list" start="18"><li><a href="https://rentry.org/sdupdates2">https://rentry.org/sdupdates2</a></li></ol><ol type="1" id="fd1c6454-31af-4bf2-a575-52aac25ec167" class="numbered-list" start="19"><li><a href="https://rentry.org/sdupdates3">https://rentry.org/sdupdates3</a></li></ol><ol type="1" id="e508f308-b32e-41ce-9e20-a2655df7e4df" class="numbered-list" start="20"><li><a href="http://dev.kanotype.net:8003/deepdanbooru/">http://dev.kanotype.net:8003/deepdanbooru/</a></li></ol><ol type="1" id="ca365ff5-255b-441a-bbb5-92e46a5bd07c" class="numbered-list" start="21"><li><a href="https://2ch.hk/b/res/275902997.html">https://2ch.hk/b/res/275902997.html</a></li></ol><ol type="1" id="5eed24fc-b3d6-4cca-88d0-0dabd81a11a0" class="numbered-list" start="22"><li><a href="https://aidreamer.art/">https://aidreamer.art/</a></li></ol><ol type="1" id="fadb5ec6-ea4d-49bc-9310-81d711e74d3f" class="numbered-list" start="23"><li><a href="https://aliexpress.ru/checkout?orderFrom=main_shopcart&amp;shopcartIds=50006233145122&amp;availableProductShopcartIds=50006233145122&amp;splitOrder=false">https://aliexpress.ru/checkout?orderFrom=main_shopcart&amp;shopcartIds=50006233145122&amp;availableProductShopcartIds=50006233145122&amp;splitOrder=false</a></li></ol><ol type="1" id="48675d70-b42a-4d36-9da6-767f6303ac94" class="numbered-list" start="24"><li><a href="https://app.posemy.art/">https://app.posemy.art/</a></li></ol><ol type="1" id="0e704c47-86bf-4964-a35f-52c02fc6fb00" class="numbered-list" start="25"><li><a href="https://arc.tencent.com/en/ai-demos/faceRestoration">https://arc.tencent.com/en/ai-demos/faceRestoration</a></li></ol><ol type="1" id="22d1e2d6-a6d1-43a4-a11b-52845c7756c8" class="numbered-list" start="26"><li><a href="https://arhivach.ng/thread/830990/">https://arhivach.ng/thread/830990/</a></li></ol><ol type="1" id="874e9e55-160b-487e-bb6f-2ef1bce9b3c1" class="numbered-list" start="27"><li><a href="https://arhivach.ng/thread/831036/">https://arhivach.ng/thread/831036/</a></li></ol><ol type="1" id="7349314b-ebb9-480c-9515-f7a106f0ec20" class="numbered-list" start="28"><li><a href="https://arhivach.ng/thread/831179/">https://arhivach.ng/thread/831179/</a></li></ol><ol type="1" id="60d867d1-ed3a-48c5-8519-a796657177ad" class="numbered-list" start="29"><li><a href="https://arhivach.ng/thread/832102/">https://arhivach.ng/thread/832102/</a></li></ol><ol type="1" id="9d30cb3e-371b-4a17-8724-9cce247718fa" class="numbered-list" start="30"><li><a href="https://arstechnica.com/information-technology/2022/09/with-stable-diffusion-you-may-never-believe-what-you-see-online-again/">https://arstechnica.com/information-technology/2022/09/with-stable-diffusion-you-may-never-believe-what-you-see-online-again/</a></li></ol><ol type="1" id="2fa29e6b-701e-4d5c-9fc5-f112b4d0834c" class="numbered-list" start="31"><li><a href="https://beta.openai.com/tokenizer">https://beta.openai.com/tokenizer</a></li></ol><ol type="1" id="02f609d3-6b47-46c5-9c5b-23ea4c0ad94a" class="numbered-list" start="32"><li><a href="https://blog.novelai.net/image-generation-announcement-807b3cf0afec">https://blog.novelai.net/image-generation-announcement-807b3cf0afec</a></li></ol><ol type="1" id="2a36f432-c3c1-4ac8-8212-d0a7bf2730f3" class="numbered-list" start="33"><li><a href="https://boards.4chan.org/h/thread/6885226/hdg-hentai-diffusion-general">https://boards.4chan.org/h/thread/6885226/hdg-hentai-diffusion-general</a></li></ol><ol type="1" id="f407230e-292c-4fd8-b21d-e19eb4f63f09" class="numbered-list" start="34"><li><a href="https://boards.4channel.org/g/thread/89226979/sdg-stable-diffusion-general">https://boards.4channel.org/g/thread/89226979/sdg-stable-diffusion-general</a></li></ol><ol type="1" id="84c3b5d2-6503-469f-9220-71f48f5c3957" class="numbered-list" start="35"><li><a href="https://bytexd.com/get-started-with-stable-diffusion-google-colab-for-ai-generated-art/">https://bytexd.com/get-started-with-stable-diffusion-google-colab-for-ai-generated-art/</a></li></ol><ol type="1" id="14abdafa-5800-4669-b509-5f8fd06b5e4b" class="numbered-list" start="36"><li><a href="https://clipdrop.co/relight">https://clipdrop.co/relight</a></li></ol><ol type="1" id="947783b4-ae77-4f50-9022-06839d199c77" class="numbered-list" start="37"><li><a href="https://github.com/steven2358/awesome-generative-ai">https://github.com/steven2358/awesome-generative-ai</a></li></ol><ol type="1" id="c429bc7e-d45e-4075-a048-3331d594a4d1" class="numbered-list" start="38"><li><a href="https://cyberes.github.io/stable-diffusion-models/">https://cyberes.github.io/stable-diffusion-models/</a></li></ol><ol type="1" id="1aa88756-15ea-4ad2-abe9-4322a1deb899" class="numbered-list" start="39"><li><a href="https://dalle.blog/22290345/stable-diffusion-sd-resource-goldmine-v2#/">https://dalle.blog/22290345/stable-diffusion-sd-resource-goldmine-v2#/</a></li></ol><ol type="1" id="c7f81e01-8578-4e8d-884c-c4d610100997" class="numbered-list" start="40"><li><a href="https://developer.nvidia.com/blog/improving-diffusion-models-as-an-alternative-to-gans-part-1/">https://developer.nvidia.com/blog/improving-diffusion-models-as-an-alternative-to-gans-part-1/</a></li></ol><ol type="1" id="2ea65920-e870-4d65-9728-fa9237925730" class="numbered-list" start="41"><li><a href="https://discord.com/channels/1010980909568245801/1033785248510648350">https://discord.com/channels/1010980909568245801/1033785248510648350</a></li></ol><ol type="1" id="7ba3746f-e30b-4e85-b791-7348236c56d8" class="numbered-list" start="42"><li><a href="https://docs.google.com/document/d/17VPu3U2qXthOpt2zWczFvf-AH6z37hxUbvEe1rJTsEc/edit">https://docs.google.com/document/d/17VPu3U2qXthOpt2zWczFvf-AH6z37hxUbvEe1rJTsEc/edit</a></li></ol><ol type="1" id="238b2511-9293-4463-86b8-c1966b2d0995" class="numbered-list" start="43"><li><a href="https://docs.google.com/document/d/1jE9Tk64SzyOQaOeCzT0qVaY82ZJurISCliJHLSiAcPo/edit">https://docs.google.com/document/d/1jE9Tk64SzyOQaOeCzT0qVaY82ZJurISCliJHLSiAcPo/edit</a></li></ol><ol type="1" id="18649b68-aed0-4f10-b99c-1744ca16d283" class="numbered-list" start="44"><li><a href="https://docs.google.com/document/d/1O41qGvE69qnDoaqcdeokCObcRR_4yUUjRCmvPEVd2MU/edit#heading=h.cftlptjhoywz">https://docs.google.com/document/d/1O41qGvE69qnDoaqcdeokCObcRR_4yUUjRCmvPEVd2MU/edit#heading=h.cftlptjhoywz</a></li></ol><ol type="1" id="1d2cb3bf-cf47-44da-8fd7-0ee4696cc118" class="numbered-list" start="45"><li><a href="https://dreamingcomputers.com/deforum-stable-diffusion/deforum-stable-diffusion-settings/">https://dreamingcomputers.com/deforum-stable-diffusion/deforum-stable-diffusion-settings/</a></li></ol><ol type="1" id="07bbd0a7-0585-4533-b687-0eb17d6bf1bc" class="numbered-list" start="46"><li><a href="https://dtf.ru/howto/1345343-kak-polzovatsya-neyrosetyu-stable-diffusion">https://dtf.ru/howto/1345343-kak-polzovatsya-neyrosetyu-stable-diffusion</a></li></ol><ol type="1" id="2a580783-f147-42df-b2a2-9be2a0fa2d17" class="numbered-list" start="47"><li><a href="https://dtf.ru/howto/1379961-izuchaem-vozmozhnosti-stable-diffusion-chast-2">https://dtf.ru/howto/1379961-izuchaem-vozmozhnosti-stable-diffusion-chast-2</a></li></ol><ol type="1" id="5a836127-68bc-43fb-afea-5dd074223e45" class="numbered-list" start="48"><li><a href="https://dtf.ru/s/595875-neyro-iskusstvo/1299811-kak-polzovatsya-midjourney-ili-kak-ne-potratit-vpustuyu-25-krutok-polnyy-gayd">https://dtf.ru/s/595875-neyro-iskusstvo/1299811-kak-polzovatsya-midjourney-ili-kak-ne-potratit-vpustuyu-25-krutok-polnyy-gayd</a></li></ol><ol type="1" id="f209b4ea-15ce-4a45-a7d1-cb20bdc6a747" class="numbered-list" start="49"><li><a href="https://dtf.ru/s/art/1376651-neyroset-stable-diffusion-i-zhenskaya-krasota-v-subbotnyuyu-noch-i-kak-sdelat-tak-zhe-zahodi-poglyadi-nauchis-chast-1">https://dtf.ru/s/art/1376651-neyroset-stable-diffusion-i-zhenskaya-krasota-v-subbotnyuyu-noch-i-kak-sdelat-tak-zhe-zahodi-poglyadi-nauchis-chast-1</a></li></ol><ol type="1" id="9fdc9e46-5cb0-4746-a90e-000dafe70283" class="numbered-list" start="50"><li><a href="https://dtf.ru/s/art/1377795-neyroset-stable-diffusion-i-nochnaya-zhenskaya-krasota-chast-2">https://dtf.ru/s/art/1377795-neyroset-stable-diffusion-i-nochnaya-zhenskaya-krasota-chast-2</a></li></ol><ol type="1" id="458b7bfb-3eef-4ab2-ac8f-1d9bcd284e6c" class="numbered-list" start="51"><li><a href="https://dtf.ru/science/37841-uluchshaem-tekstury-s-pomoshchyu-esrgan">https://dtf.ru/science/37841-uluchshaem-tekstury-s-pomoshchyu-esrgan</a></li></ol><ol type="1" id="45390335-9626-480d-a232-5f1fa1283067" class="numbered-list" start="52"><li><a href="https://dtf.ru/tag/waifudiffusion">https://dtf.ru/tag/waifudiffusion</a></li></ol><ol type="1" id="2c625366-d154-4747-b189-d3d0e9bb140e" class="numbered-list" start="53"><li><a href="https://dtf.ru/u/123828-fantasticheskaya-tvar/1301241-kak-polzovatsya-neyrosetyu-midjourney-kratkiy-gayd">https://dtf.ru/u/123828-fantasticheskaya-tvar/1301241-kak-polzovatsya-neyrosetyu-midjourney-kratkiy-gayd</a></li></ol><ol type="1" id="10200852-6b9d-41f6-ba47-738f009c42e4" class="numbered-list" start="54"><li><a href="https://energy-based-model.github.io/Compositional-Visual-Generation-with-Composable-Diffusion-Models/">https://energy-based-model.github.io/Compositional-Visual-Generation-with-Composable-Diffusion-Models/</a></li></ol><ol type="1" id="7be3ad4d-624b-4787-a783-1e8bd59d50bb" class="numbered-list" start="55"><li><a href="https://ericri.medium.com/you-the-multiverse-of-you-and-stable-diffusion-93c2b8b8b3f6">https://ericri.medium.com/you-the-multiverse-of-you-and-stable-diffusion-93c2b8b8b3f6</a></li></ol><ol type="1" id="a0af0365-2ec5-4d44-8f95-4d7cf6999e13" class="numbered-list" start="56"><li><a href="https://forklog.com/cryptorium/generatsiya-izobrazhenij-nejrosetyu-5-onlajn-servisov">https://forklog.com/cryptorium/generatsiya-izobrazhenij-nejrosetyu-5-onlajn-servisov</a></li></ol><ol type="1" id="d4a2781c-fe7c-4e0b-b8f2-30f475b1c93d" class="numbered-list" start="57"><li><a href="https://forklog.com/exclusive/konets-ili-vtoroe-dyhanie-kak-nejroseti-menyayut-mir-izobrazitelnogo-iskusstva">https://forklog.com/exclusive/konets-ili-vtoroe-dyhanie-kak-nejroseti-menyayut-mir-izobrazitelnogo-iskusstva</a></li></ol><ol type="1" id="35f89fd0-80f0-4779-a37c-f06c8a7d7556" class="numbered-list" start="58"><li><a href="https://forums.somethingawful.com/showthread.php?threadid=4000251&amp;userid=0&amp;perpage=40&amp;pagenumber=1">https://forums.somethingawful.com/showthread.php?threadid=4000251&amp;userid=0&amp;perpage=40&amp;pagenumber=1</a></li></ol><ol type="1" id="9649d1ac-7552-4dee-bd3d-0a2d63fc9d3d" class="numbered-list" start="59"><li><a href="https://forums.somethingawful.com/showthread.php?threadid=4000251&amp;userid=0&amp;perpage=40&amp;pagenumber=142">https://forums.somethingawful.com/showthread.php?threadid=4000251&amp;userid=0&amp;perpage=40&amp;pagenumber=142</a></li></ol><ol type="1" id="f34216a0-9f64-4904-bbdb-0fdf39ebafbb" class="numbered-list" start="60"><li><a href="https://gigazine.net/gsc_news/en/20220909-automatic1111-stable-diffusion-webui-how-to-use">https://gigazine.net/gsc_news/en/20220909-automatic1111-stable-diffusion-webui-how-to-use</a></li></ol><ol type="1" id="abd40f34-d836-4420-8f67-aa2fedf22351" class="numbered-list" start="61"><li><a href="https://gigazine.net/gsc_news/en/20220909-automatic1111-stable-diffusion-webui-prompt-matrix">https://gigazine.net/gsc_news/en/20220909-automatic1111-stable-diffusion-webui-prompt-matrix</a></li></ol><ol type="1" id="ba3446be-9551-49a0-a83b-974388940257" class="numbered-list" start="62"><li><a href="https://gigazine.net/gsc_news/en/20220909-automatic1111-stable-diffusion-webui-prompt-matrix/">https://gigazine.net/gsc_news/en/20220909-automatic1111-stable-diffusion-webui-prompt-matrix/</a></li></ol><ol type="1" id="ee4224df-cfa5-4255-a3ff-20e1b445aa32" class="numbered-list" start="63"><li><a href="https://gigazine.net/gsc_news/en/20220912-automatic1111-stable-diffusion-webui-prompt-interrogate">https://gigazine.net/gsc_news/en/20220912-automatic1111-stable-diffusion-webui-prompt-interrogate</a></li></ol><ol type="1" id="32eb327c-1182-4eab-b808-78f619f06a1a" class="numbered-list" start="64"><li><a href="https://gigazine.net/gsc_news/en/20220912-automatic1111-stable-diffusion-webui-prompt-interrogate/">https://gigazine.net/gsc_news/en/20220912-automatic1111-stable-diffusion-webui-prompt-interrogate/</a></li></ol><ol type="1" id="bb731bcf-36cd-44fb-98a0-feb983bf0347" class="numbered-list" start="65"><li><a href="https://gigazine.net/gsc_news/en/20220913-automatic1111-stable-diffusion-webui-img2img">https://gigazine.net/gsc_news/en/20220913-automatic1111-stable-diffusion-webui-img2img</a></li></ol><ol type="1" id="3f0b23b1-b93b-4243-ac59-39012075e3c1" class="numbered-list" start="66"><li><a href="https://gigazine.net/gsc_news/en/20220914-automatic1111-stable-diffusion-webui-img2img-outpainting">https://gigazine.net/gsc_news/en/20220914-automatic1111-stable-diffusion-webui-img2img-outpainting</a></li></ol><ol type="1" id="9d27f8cf-a68d-458c-882f-ef6a71ad1eac" class="numbered-list" start="67"><li><a href="https://gigazine.net/gsc_news/en/20220922-txt2mask-for-stable-diffusion">https://gigazine.net/gsc_news/en/20220922-txt2mask-for-stable-diffusion</a></li></ol><ol type="1" id="3dd0ae8a-f25e-40a7-b49e-88a3f0bf2b45" class="numbered-list" start="68"><li><a href="https://gigazine.net/gsc_news/en/20220928-automatic1111-stable-diffusion-webui-settings">https://gigazine.net/gsc_news/en/20220928-automatic1111-stable-diffusion-webui-settings</a></li></ol><ol type="1" id="66903a4d-d38a-4d42-8937-04b9dfe83aca" class="numbered-list" start="69"><li><a href="https://gigazine.net/gsc_news/en/20220928-stable-diffusion-classifier-free-guidance/">https://gigazine.net/gsc_news/en/20220928-stable-diffusion-classifier-free-guidance/</a></li></ol><ol type="1" id="24d77543-66aa-4dec-a359-a882ec4ffdb6" class="numbered-list" start="70"><li><a href="https://gigazine.net/gsc_news/en/20221012-automatic1111-stable-diffusion-webui-deep-danbooru/">https://gigazine.net/gsc_news/en/20221012-automatic1111-stable-diffusion-webui-deep-danbooru/</a></li></ol><ol type="1" id="59cf367f-3ec0-4e90-bc74-68bac9d54695" class="numbered-list" start="71"><li><a href="https://gigazine.net/gsc_news/en/20221014-stable-diffusion-prompt-generator">https://gigazine.net/gsc_news/en/20221014-stable-diffusion-prompt-generator</a></li></ol><ol type="1" id="b8711ad3-e28c-467a-8173-b19851e65922" class="numbered-list" start="72"><li><a href="https://gigazine.net/gsc_news/en/20221014-stable-diffusion-prompt-generator/">https://gigazine.net/gsc_news/en/20221014-stable-diffusion-prompt-generator/</a></li></ol><ol type="1" id="e7b1c448-29bf-41c2-8633-e77980454320" class="numbered-list" start="73"><li><a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui">https://github.com/AUTOMATIC1111/stable-diffusion-webui</a></li></ol><ol type="1" id="864652d7-9035-4f95-8f8d-e7926f53b0c3" class="numbered-list" start="74"><li><a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki">https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki</a></li></ol><ol type="1" id="5ab2efa0-8556-4590-8fa2-a3c0f2c91094" class="numbered-list" start="75"><li><a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Install-and-Run-on-AMD-GPUs">https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Install-and-Run-on-AMD-GPUs</a></li></ol><ol type="1" id="ab00a521-e378-4da1-affb-e76e708a9c89" class="numbered-list" start="76"><li><a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Textual-Inversion">https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Textual-Inversion</a></li></ol><ol type="1" id="0008a31a-0c5e-48f9-baff-39fba5ff9e78" class="numbered-list" start="77"><li><a href="https://github.com/cmdr2/stable-diffusion-ui/wiki/How-to-Use">https://github.com/cmdr2/stable-diffusion-ui/wiki/How-to-Use</a></li></ol><ol type="1" id="dd7c1901-5623-4649-9c3a-968bcb497b79" class="numbered-list" start="78"><li><a href="https://github.com/cnr-isti-vclab/relight">https://github.com/cnr-isti-vclab/relight</a></li></ol><ol type="1" id="ae21085f-c534-4794-b5a4-a21257d5444e" class="numbered-list" start="79"><li><a href="https://github.com/cobanov/awesome-diffusion">https://github.com/cobanov/awesome-diffusion</a></li></ol><ol type="1" id="5c2d55c1-4bb6-475e-b8b9-239a451d31e3" class="numbered-list" start="80"><li><a href="https://github.com/CompVis/stable-diffusion/blob/main/README.md">https://github.com/CompVis/stable-diffusion/blob/main/README.md</a></li></ol><ol type="1" id="1870b800-45ef-4c5f-82ec-6ae94d941dd5" class="numbered-list" start="81"><li><a href="https://github.com/DominikDoom/a1111-sd-webui-tagcomplete">https://github.com/DominikDoom/a1111-sd-webui-tagcomplete</a></li></ol><ol type="1" id="12ca7cfa-a532-4cf5-b8f2-60529be7e914" class="numbered-list" start="82"><li><a href="https://github.com/EugeoSynthesisThirtyTwo/prompt-interpolation-script-for-sd-webui">https://github.com/EugeoSynthesisThirtyTwo/prompt-interpolation-script-for-sd-webui</a></li></ol><ol type="1" id="6760cb6d-5fbb-4d4f-92df-f752b1a0a903" class="numbered-list" start="83"><li><a href="https://github.com/harubaru/waifu-diffusion/blob/main/docs/en/training/README.md">https://github.com/harubaru/waifu-diffusion/blob/main/docs/en/training/README.md</a></li></ol><ol type="1" id="ea8cf396-f86f-4dbe-a019-58f9c00762e6" class="numbered-list" start="84"><li><a href="https://github.com/invoke-ai/InvokeAI/tree/main/docs">https://github.com/invoke-ai/InvokeAI/tree/main/docs</a></li></ol><ol type="1" id="f4722a98-2ff2-4188-a022-2cab06958104" class="numbered-list" start="85"><li><a href="https://github.com/KichangKim/DeepDanbooru">https://github.com/KichangKim/DeepDanbooru</a></li></ol><ol type="1" id="f1260cee-90aa-4a55-bb0b-8aac21acbc71" class="numbered-list" start="86"><li><a href="https://github.com/Maks-s/sd-akashic">https://github.com/Maks-s/sd-akashic</a></li></ol><ol type="1" id="0b2edbc8-127c-4c83-980a-91962ac9fde3" class="numbered-list" start="87"><li><a href="https://github.com/neonsecret/stable-diffusion/blob/main/GUI_TUTORIAL.md">https://github.com/neonsecret/stable-diffusion/blob/main/GUI_TUTORIAL.md</a></li></ol><ol type="1" id="ebdd58f6-11ee-4060-a0bd-804aae6ee384" class="numbered-list" start="88"><li><a href="https://github.com/pinilpypinilpy/sd-webui-colab-simplified">https://github.com/pinilpypinilpy/sd-webui-colab-simplified</a></li></ol><ol type="1" id="f400b027-ed15-4f2d-a4ce-294bac8fcf29" class="numbered-list" start="89"><li><a href="https://github.com/questianon/sdupdates">https://github.com/questianon/sdupdates</a></li></ol><ol type="1" id="109d7448-96d6-463a-9992-069c7cd4585d" class="numbered-list" start="90"><li><a href="https://github.com/sd-webui/stable-diffusion-webui">https://github.com/sd-webui/stable-diffusion-webui</a></li></ol><ol type="1" id="962598ec-97d0-455a-9e97-8759e974ab38" class="numbered-list" start="91"><li><a href="https://habr.com/ru/company/otus/blog/690118/">https://habr.com/ru/company/otus/blog/690118/</a></li></ol><ol type="1" id="96f06b58-c6c4-439f-ae38-a4a13bd63793" class="numbered-list" start="92"><li><a href="https://habr.com/ru/post/688204/">https://habr.com/ru/post/688204/</a></li></ol><ol type="1" id="039b3444-46e4-4f58-ac47-e451e9b4dab8" class="numbered-list" start="93"><li><a href="https://habr.com/ru/post/691192/">https://habr.com/ru/post/691192/</a></li></ol><ol type="1" id="9a66017b-8197-4085-8e33-6dbb2e6dc5b1" class="numbered-list" start="94"><li><a href="https://habr.com/ru/post/693298/">https://habr.com/ru/post/693298/</a></li></ol><ol type="1" id="ebf85419-fb8b-4035-b1db-1d4178ef05ff" class="numbered-list" start="95"><li><a href="https://huggingface.co/">https://huggingface.co/</a></li></ol><ol type="1" id="5b214e6f-7dfb-4373-8c2b-74269d9d5057" class="numbered-list" start="96"><li><a href="https://huggingface.co/blog/stable_diffusion">https://huggingface.co/blog/stable_diffusion</a></li></ol><ol type="1" id="23e16729-700b-4d19-b8e2-103210ab6e6a" class="numbered-list" start="97"><li><a href="https://huggingface.co/kabachuha/elynia-diffusion">https://huggingface.co/kabachuha/elynia-diffusion</a></li></ol><ol type="1" id="95edc8b9-6673-4bb5-bb37-e3024b87f21c" class="numbered-list" start="98"><li><a href="https://imgur.com/a/43f1N8P">https://imgur.com/a/43f1N8P</a></li></ol><ol type="1" id="2f75fa85-c2f5-464d-9749-8f29f5ebb50a" class="numbered-list" start="99"><li><a href="https://invoke-ai.github.io/InvokeAI/features/CLI/">https://invoke-ai.github.io/InvokeAI/features/CLI/</a></li></ol><ol type="1" id="722bfa7a-67ce-4bd0-8721-8fea0f0de88b" class="numbered-list" start="100"><li><a href="https://iwiftp.yerf.org/%E2%81%84fur%E2%81%84/">https://iwiftp.yerf.org/⁄fur⁄/</a></li></ol><ol type="1" id="b07793ad-8aee-40f2-88df-834bb4383083" class="numbered-list" start="101"><li><a href="https://joyreactor.cc/post/5352923">https://joyreactor.cc/post/5352923</a></li></ol><ol type="1" id="e1bd6d49-69c2-406e-bdba-d0a4356ae3af" class="numbered-list" start="102"><li><a href="https://lexica.art/">https://lexica.art/</a></li></ol><ol type="1" id="64ed86c2-97a1-45f3-a3ad-5191fc2a611f" class="numbered-list" start="103"><li><a href="https://medium.com/nightcafe-creator/stable-diffusion-tutorial-how-to-use-stable-diffusion-157785632eb3">https://medium.com/nightcafe-creator/stable-diffusion-tutorial-how-to-use-stable-diffusion-157785632eb3</a></li></ol><ol type="1" id="1adc0d53-2a5b-432b-a1ed-1a9def35db60" class="numbered-list" start="104"><li><a href="https://minibatchai.com/diffusion/generative-models/text2image/2022/06/17/Diffusion.html">https://minibatchai.com/diffusion/generative-models/text2image/2022/06/17/Diffusion.html</a></li></ol><ol type="1" id="42e6de25-41e8-4894-9e83-e1d76a3673f9" class="numbered-list" start="105"><li><a href="https://moritz.pm/posts/parameters">https://moritz.pm/posts/parameters</a></li></ol><ol type="1" id="ce0bdbfc-564a-4025-a51b-bd48041931cb" class="numbered-list" start="106"><li><a href="https://openart.ai/promptbook">https://openart.ai/promptbook</a></li></ol><ol type="1" id="2f255d00-fdde-43f3-aeb3-7acf2cc83280" class="numbered-list" start="107"><li><a href="https://pharmapsychotic.com/tools.html">https://pharmapsychotic.com/tools.html</a></li></ol><ol type="1" id="39ba0daf-d706-4eef-a40a-0eda19712fb6" class="numbered-list" start="108"><li><a href="https://pikabu.ru/story/ekhali_medvedi_na_velosipede_neyroset__protsess_sozdaniya_9556063">https://pikabu.ru/story/ekhali_medvedi_na_velosipede_neyroset__protsess_sozdaniya_9556063</a></li></ol><ol type="1" id="78f9e0d9-b840-4b4e-8306-5f8b871c56b1" class="numbered-list" start="109"><li><a href="https://pikabu.ru/story/samoe_prostoe_vkhozhdeniya_v_rabotu_sostable_diffusion_dlya_samyikh_lenivyikh_zadnits_i_menya_9592934">https://pikabu.ru/story/samoe_prostoe_vkhozhdeniya_v_rabotu_sostable_diffusion_dlya_samyikh_lenivyikh_zadnits_i_menya_9592934</a></li></ol><ol type="1" id="67ddeba9-f8e4-4fab-99b6-5cc77a2764fc" class="numbered-list" start="110"><li><a href="https://pst.klgrth.io/paste/zn5qh">https://pst.klgrth.io/paste/zn5qh</a></li></ol><ol type="1" id="1f49eef5-467f-4321-a136-2d6253187b8e" class="numbered-list" start="111"><li><a href="https://publicprompts.art/microworlds-dreambooth-model/">https://publicprompts.art/microworlds-dreambooth-model/</a></li></ol><ol type="1" id="c1e89e2d-7697-45e8-84a4-982c6909ee5d" class="numbered-list" start="112"><li><a href="https://replicate.com/afiaka87/ldm-autoedit/versions/bdd8cf668c1de02dce4b786970acc1703250d5e330c8a8f16f9d9e5b786d02a3">https://replicate.com/afiaka87/ldm-autoedit/versions/bdd8cf668c1de02dce4b786970acc1703250d5e330c8a8f16f9d9e5b786d02a3</a></li></ol><ol type="1" id="1a79cac5-b97c-420d-aa41-5cc7cdf968da" class="numbered-list" start="113"><li><a href="https://scale.com/guides/diffusion-models-guide#diffusion-models:-additional-capabilities-and-tooling">https://scale.com/guides/diffusion-models-guide#diffusion-models:-additional-capabilities-and-tooling</a></li></ol><ol type="1" id="36b293f0-e53e-4328-83e8-c56c7ef8454d" class="numbered-list" start="114"><li><a href="https://stability.ai/blog/stable-diffusion-public-release">https://stability.ai/blog/stable-diffusion-public-release</a></li></ol><ol type="1" id="31e1db58-ecbd-4a8e-9793-74cc543e6e6c" class="numbered-list" start="115"><li><a href="https://stabilityai.us.auth0.com/u/login?state=hKFo2SBkTHJTWmEyNGV4N2JUUEZEanFtb0p1RjNQZlpYMC1NVKFur3VuaXZlcnNhbC1sb2dpbqN0aWTZIEdSSzBMVjlRQldUcEJtRG1xMDlPS3V0VkRnV0JiOU5uo2NpZNkgS3ZZWkpLU2htVW9PalhwY2xRbEtZVXh1Y0FWZXNsSE4">https://stabilityai.us.auth0.com/u/login?state=hKFo2SBkTHJTWmEyNGV4N2JUUEZEanFtb0p1RjNQZlpYMC1NVKFur3VuaXZlcnNhbC1sb2dpbqN0aWTZIEdSSzBMVjlRQldUcEJtRG1xMDlPS3V0VkRnV0JiOU5uo2NpZNkgS3ZZWkpLU2htVW9PalhwY2xRbEtZVXh1Y0FWZXNsSE4</a></li></ol><ol type="1" id="e74614a6-252a-4ed1-bc06-8fce149cc167" class="numbered-list" start="116"><li><a href="https://stablediffusionguides.carrd.co/#">https://stablediffusionguides.carrd.co/#</a></li></ol><ol type="1" id="f5879572-2a02-434a-81a1-f06fdba1b21d" class="numbered-list" start="117"><li><a href="https://stablediffusionhub.com/">https://stablediffusionhub.com/</a></li></ol><ol type="1" id="d9161d99-5eb9-42ee-a7c5-950df59e2c36" class="numbered-list" start="118"><li><a href="https://stablehorde.net/">https://stablehorde.net/</a></li></ol><ol type="1" id="ade50e4f-a2c1-4582-aa8d-cf7757566066" class="numbered-list" start="119"><li><a href="https://stackdiary.com/stable-diffusion-resources/">https://stackdiary.com/stable-diffusion-resources/</a></li></ol><ol type="1" id="cfa146f0-30e9-4d99-8727-5bf69aab51f6" class="numbered-list" start="120"><li><a href="https://www.notion.so/A-Traveler-s-Guide-to-the-Latent-Space-85efba7e5e6a40e5bd3cae980f30235f">https://sweet-hall-e72.notion.site/A-Traveler-s-Guide-to-the-Latent-Space-85efba7e5e6a40e5bd3cae980f30235f</a></li></ol><ol type="1" id="957ff993-fadc-457f-a3d6-0a43d0330825" class="numbered-list" start="121"><li><a href="https://telegra.ph/SD-sravnenie-parametrov-i-modelej-09-28">https://telegra.ph/SD-sravnenie-parametrov-i-modelej-09-28</a></li></ol><ol type="1" id="4207c4c7-6e31-403c-97e3-a80f3467980c" class="numbered-list" start="122"><li><a href="https://teletype.in/@stablediffusion/artists_for_prompts">https://teletype.in/@stablediffusion/artists_for_prompts</a></li></ol><ol type="1" id="3bd4c64a-47f6-4d77-9cbd-df09d5979717" class="numbered-list" start="123"><li><a href="https://teletype.in/@stablediffusion/dreamstudio">https://teletype.in/@stablediffusion/dreamstudio</a></li></ol><ol type="1" id="d58d0c3a-7ab4-4584-90ef-524d2d06e410" class="numbered-list" start="124"><li><a href="https://teletype.in/@stablediffusion/models_for_SD">https://teletype.in/@stablediffusion/models_for_SD</a></li></ol><ol type="1" id="31e4278d-d27e-440e-907c-c82329fe694d" class="numbered-list" start="125"><li><a href="https://teletype.in/@stablediffusion/PC_install_SD">https://teletype.in/@stablediffusion/PC_install_SD</a></li></ol><ol type="1" id="fe39fec7-6481-4e61-8d8e-b9a705133b14" class="numbered-list" start="126"><li><a href="https://teletype.in/@stablediffusion/samplers_steps">https://teletype.in/@stablediffusion/samplers_steps</a></li></ol><ol type="1" id="1a07e9a7-322f-4ced-8b15-6bb22b3ad668" class="numbered-list" start="127"><li><a href="https://teletype.in/@stablediffusion/util_for_SD">https://teletype.in/@stablediffusion/util_for_SD</a></li></ol><ol type="1" id="cc701f02-480c-4c38-b612-65338b64c59d" class="numbered-list" start="128"><li><a href="https://textual-inversion.github.io/">https://textual-inversion.github.io/</a></li></ol><ol type="1" id="0b415ebe-29be-4caa-ae86-5c76e4734b44" class="numbered-list" start="129"><li><a href="https://vc.ru/future/506283-stable-diffusion-samaya-vpechatlyayushchaya-neyroset-kak-polzovatsya-novym-instrumentom-ii">https://vc.ru/future/506283-stable-diffusion-samaya-vpechatlyayushchaya-neyroset-kak-polzovatsya-novym-instrumentom-ii</a></li></ol><ol type="1" id="907a8b95-a775-41ae-9553-b8eca0f54907" class="numbered-list" start="130"><li><a href="https://vc.ru/services/501747-nemnozhko-pro-generativnuyu-grafiku">https://vc.ru/services/501747-nemnozhko-pro-generativnuyu-grafiku</a></li></ol><ol type="1" id="2d171dee-b39f-4883-a877-ebe17ca91065" class="numbered-list" start="131"><li><a href="https://vk.com/@ai_community_ru-novel-ai-oficialnyi-faq">https://vk.com/@ai_community_ru-novel-ai-oficialnyi-faq</a></li></ol><ol type="1" id="fe3dcd44-6675-47f8-9f20-4dc88a469cd5" class="numbered-list" start="132"><li><a href="https://vk.com/@jmercury-vsya-pravda-o-novel-ai">https://vk.com/@jmercury-vsya-pravda-o-novel-ai</a></li></ol><ol type="1" id="bdad1728-7432-437c-9ee9-c4bdec126db3" class="numbered-list" start="133"><li><a href="https://wiki.installgentoo.com/wiki/Stable_Diffusion">https://wiki.installgentoo.com/wiki/Stable_Diffusion</a></li></ol><ol type="1" id="002506e6-fbce-4dca-81bf-9c3b55c73afc" class="numbered-list" start="134"><li><a href="https://www.assemblyai.com/blog/diffusion-models-for-machine-learning-introduction/">https://www.assemblyai.com/blog/diffusion-models-for-machine-learning-introduction/</a></li></ol><ol type="1" id="c37e6b61-8448-41ee-9e32-23b4e43330b6" class="numbered-list" start="135"><li><a href="https://www.bilibili.com/read/cv19603218">https://www.bilibili.com/read/cv19603218</a></li></ol><ol type="1" id="8bd57dad-df45-49b1-8f9a-e3676d8343ca" class="numbered-list" start="136"><li><a href="https://www.google.com/search?q=novel+ai+stable+diffusion+%D0%B4%D0%B2%D0%B0%D1%87&amp;newwindow=1&amp;sxsrf=ALiCzsZzNkpVYp9DKJedHrHITaPAIbyhCw%3A1665987887165&amp;ei=L_VMY_XMCYfzkwWRi6_ABg&amp;ved=0ahUKEwi1oNvB0Ob6AhWH-aQKHZHFC2gQ4dUDCA4&amp;uact=5&amp;oq=novel+ai+stable+diffusion+%D0%B4%D0%B2%D0%B0%D1%87&amp;gs_lcp=Cgdnd3Mtd2l6EAMyBQghEKABMgUIIRCgATIFCCEQoAE6CggAEEcQ1gQQsAM6BggAEBYQHkoECE0YAUoECEEYAEoECEYYAFD9AVizCGDECWgBcAF4AIABywGIAZUGkgEFMC4yLjKYAQCgAQHIAQjAAQE&amp;sclient=gws-wiz">https://www.google.com/search?q=novel+ai+stable+diffusion+двач&amp;newwindow=1&amp;sxsrf=ALiCzsZzNkpVYp9DKJedHrHITaPAIbyhCw%3A1665987887165&amp;ei=L_VMY_XMCYfzkwWRi6_ABg&amp;ved=0ahUKEwi1oNvB0Ob6AhWH-aQKHZHFC2gQ4dUDCA4&amp;uact=5&amp;oq=novel+ai+stable+diffusion+двач&amp;gs_lcp=Cgdnd3Mtd2l6EAMyBQghEKABMgUIIRCgATIFCCEQoAE6CggAEEcQ1gQQsAM6BggAEBYQHkoECE0YAUoECEEYAEoECEYYAFD9AVizCGDECWgBcAF4AIABywGIAZUGkgEFMC4yLjKYAQCgAQHIAQjAAQE&amp;sclient=gws-wiz</a></li></ol><ol type="1" id="c4815117-36b4-4192-a064-f65d774885bb" class="numbered-list" start="137"><li><a href="https://www.google.com/search?q=prompt-interpolation&amp;sourceid=chrome&amp;ie=UTF-8">https://www.google.com/search?q=prompt-interpolation&amp;sourceid=chrome&amp;ie=UTF-8</a></li></ol><ol type="1" id="252420e5-7d41-48f1-9b2b-c00c847d670b" class="numbered-list" start="138"><li><a href="https://www.jonstokes.com/p/getting-started-with-stable-diffusion#%C2%A7cfg-scale">https://www.jonstokes.com/p/getting-started-with-stable-diffusion#§cfg-scale</a></li></ol><ol type="1" id="c50f8707-f8df-45ea-8e01-33f3beb9bdc5" class="numbered-list" start="139"><li><a href="https://www.louisbouchard.ai/latent-diffusion-models/">https://www.louisbouchard.ai/latent-diffusion-models/</a></li></ol><ol type="1" id="eec1ae73-8eb0-45a3-bcab-618eea6cf8e5" class="numbered-list" start="140"><li><a href="https://www.patreon.com/posts/73544634">https://www.patreon.com/posts/73544634</a></li></ol><ol type="1" id="39d0daae-8337-4597-b3d8-48d0dc443b3b" class="numbered-list" start="141"><li><a href="https://www.reddit.com/r/sdnsfw/comments/ynghyq/comparison_of_different_models_berrys_mix_vs_nai/">https://www.reddit.com/r/sdnsfw/comments/ynghyq/comparison_of_different_models_berrys_mix_vs_nai/</a></li></ol><ol type="1" id="be6a6d4b-c977-41e2-8d25-6914f2838cc9" class="numbered-list" start="142"><li><a href="https://www.reddit.com/r/StableDiffusion/comments/xbeyw3/can_anyone_offer_a_little_guidance_on_the/">https://www.reddit.com/r/StableDiffusion/comments/xbeyw3/can_anyone_offer_a_little_guidance_on_the/</a></li></ol><ol type="1" id="5c1eabd8-dcfd-43a9-a980-888958a07cd4" class="numbered-list" start="143"><li><a href="https://www.reddit.com/r/StableDiffusion/comments/yfm8go/im_glad_to_announce_the_release_of_the_stable/?utm_source=share&amp;utm_medium=ios_app&amp;utm_name=iossmf">https://www.reddit.com/r/StableDiffusion/comments/yfm8go/im_glad_to_announce_the_release_of_the_stable/?utm_source=share&amp;utm_medium=ios_app&amp;utm_name=iossmf</a></li></ol><ol type="1" id="e5b518b0-fbf3-431c-b2a9-4860098f9ea5" class="numbered-list" start="144"><li><a href="https://www.reddit.com/r/StableDiffusion/comments/yknrjt/list_of_sd_tutorials_resources/">https://www.reddit.com/r/StableDiffusion/comments/yknrjt/list_of_sd_tutorials_resources/</a></li></ol><ol type="1" id="2330b3ff-7d2a-4baa-bcc1-a110f0370a89" class="numbered-list" start="145"><li><a href="https://www.reddit.com/r/WaifuDiffusion/comments/y9djma/recreasted_makima_from_chainsaw_man/">https://www.reddit.com/r/WaifuDiffusion/comments/y9djma/recreasted_makima_from_chainsaw_man/</a></li></ol><ol type="1" id="4d32b4db-5116-4413-9830-25c68782b77a" class="numbered-list" start="146"><li><a href="https://www.slaphappylarry.com/making-ai-art-with-stable-diffusion/">https://www.slaphappylarry.com/making-ai-art-with-stable-diffusion/</a></li></ol><ol type="1" id="abd3b599-3911-471c-a0ee-8d2ee08c548f" class="numbered-list" start="147"><li><a href="https://www.youtube.com/watch?v=4j-K-HWLjiI">https://www.youtube.com/watch?v=4j-K-HWLjiI</a></li></ol><ol type="1" id="f0bb4833-bc7a-4865-bd74-596ea04d6ccc" class="numbered-list" start="148"><li><a href="https://www.youtube.com/watch?v=cOXYk5kAQRs">https://www.youtube.com/watch?v=cOXYk5kAQRs</a></li></ol><ol type="1" id="5252c214-80bf-40ed-9666-bd7fd3efdd04" class="numbered-list" start="149"><li><a href="https://www.youtube.com/watch?v=f3oXa7_SYek">https://www.youtube.com/watch?v=f3oXa7_SYek</a></li></ol><ol type="1" id="f560e03c-0fe3-47e6-ae8f-d86a5ec0fc95" class="numbered-list" start="150"><li><a href="https://www.youtube.com/watch?v=wgVaeg_r2PQ">https://www.youtube.com/watch?v=wgVaeg_r2PQ</a></li></ol><ol type="1" id="d808d956-6068-4465-8be6-aaccc40537c3" class="numbered-list" start="151"><li><a href="https://zawindows.ru/%D0%BA%D0%B0%D0%BA-%D0%B7%D0%B0%D0%BF%D1%83%D1%81%D1%82%D0%B8%D1%82%D1%8C-stable-diffusion-%D0%BD%D0%B0-%D1%81%D0%B2%D0%BE%D1%91%D0%BC-%D0%BF%D0%BA-%D0%B4%D0%BB%D1%8F-%D1%81%D0%BE%D0%B7%D0%B4%D0%B0/">https://zawindows.ru/как-запустить-stable-diffusion-на-своём-пк-для-созда/</a></li></ol></div><hr id="5fb8cef3-95a3-4454-8395-4ae159e83c14"/><ul id="9f6187ff-60e8-49d7-80f2-2b274cfcaf51" class="bulleted-list"><li style="list-style-type:disc">Модель stable-diffusion-v1-4 (<a href="https://huggingface.co/CompVis/stable-diffusion-v1-4">https://huggingface.co/CompVis/stable-diffusion-v1-4</a>) [<strong>ПОЧИТАТЬ</strong>]</li></ul><ul id="0b9c4989-72ba-4556-8ffc-3a398f5c141f" class="bulleted-list"><li style="list-style-type:disc">GitHub Stable Diffusion (<a href="https://github.com/CompVis/stable-diffusion#stable-diffusion-v1">https://github.com/CompVis/stable-diffusion#stable-diffusion-v1</a>) [<strong>ПОЧИТАТЬ</strong>]</li></ul><ul id="4304954f-aa80-45bd-b104-43128b60cd28" class="bulleted-list"><li style="list-style-type:disc">Generating images with Stable Diffusion (<a href="https://blog.paperspace.com/generating-images-with-stable-diffusion/">https://blog.paperspace.com/generating-images-with-stable-diffusion/</a>) [<strong>ПОЧИТАТЬ И УДАЛИТЬ?</strong>]</li></ul><hr id="ccc6b574-3de1-42e1-a896-8e7a7be25c88"/><p id="188d7a0e-dec5-4b97-8f72-3155875f198f" class=""><a href="https://joyreactor.cc/post/5352923">https://joyreactor.cc/post/5352923</a></p><hr id="bb9f4982-fa9e-4e38-864f-cae2e37e7d54"/><ul id="f95e5177-ab21-42cf-a55d-8034673788db" class="bulleted-list"><li style="list-style-type:disc">Liner - free tool that lets you train your ML models easily. It takes your training data and gives you an easy-to-integrate ML model. No coding or expertise in machine learning required. <a href="https://liner.ai/">https://liner.ai/</a></li></ul><ul id="2b319bdc-39be-4584-94cd-b5276ca66314" class="bulleted-list"><li style="list-style-type:disc">Галерея <a href="https://arthub.ai/top">https://arthub.ai/top</a></li></ul><ul id="08d7238d-e7c4-4ac0-b940-c42eb67b49a9" class="bulleted-list"><li style="list-style-type:disc">Сборка SD <a href="https://pikabu.ru/story/perenosimaya_sborka_stablediffusion_dostatochno_raspakovat_i_zapustit_9422892#comments">https://pikabu.ru/story/perenosimaya_sborka_stablediffusion_dostatochno_raspakovat_i_zapustit_9422892#comments</a></li></ul><ul id="95d13809-871f-451f-8b85-b6064ff492bb" class="bulleted-list"><li style="list-style-type:disc">Список SD WebUI <a href="https://analyticsindiamag.com/12-ways-to-use-stable-diffusion-without-coding/">https://analyticsindiamag.com/12-ways-to-use-stable-diffusion-without-coding/</a></li></ul><ul id="0ffdcd36-c447-4319-95ac-aa0cd2fee169" class="bulleted-list"><li style="list-style-type:disc">Много полезных ссылок <a href="https://pst.klgrth.io/paste/tjdab">https://pst.klgrth.io/paste/tjdab</a></li></ul><ul id="06cd5015-2fb6-4899-92a7-c4aa631ff86a" class="bulleted-list"><li style="list-style-type:disc">Про модели <a href="https://rentry.co/ng5wh">https://rentry.co/ng5wh</a></li></ul><h3 id="1d52d18c-b409-4644-b745-d21892bf4131" class=""><details open=""><summary>Что-то (возможно модель?) на артах популярного художника WLOP</summary></details></h3><div class="indented"><p id="618a93b8-53cb-4e78-82e7-ce7cbe09d726" class=""><a href="https://huggingface.co/SirVeggie/wlop">https://huggingface.co/SirVeggie/wlop</a></p></div><h3 id="811a0660-6fbc-4b14-941a-bec25598272e" class=""><details open=""><summary><strong>Описание апскейлеров лица</strong></summary></details></h3><div class="indented"><ol type="1" id="bc1f9799-a1c2-4c56-b488-d67078966732" class="numbered-list" start="1"><li>GPEN (GAN Prior Embedded Network) — эффективно улучшает лица с фотографической точностью (<a href="https://github.com/yangxy/GPEN">Ссылка</a>).</li></ol><ol type="1" id="e9fb6469-d1eb-4258-8367-92f6681b4bba" class="numbered-list" start="2"><li>GFPGAN и CodeFormer — улучшают хорошо только очень сильно размытые лица, причём категорически меняя реальные черты лица, узнаваемость падает в разы.</li></ol></div><h3 id="3b68267b-7b6c-48f3-a963-c89f87c069dc" class=""><details open=""><summary><strong><strong>КАК ИСПРАВИТЬ ЛИЦО ПЕРСОНАЖА (ДОПОЛНИТЬ СООТВЕТСТВУЮЩИЙ РАЗДЕЛ)</strong></strong></summary></details></h3><div class="indented"><p id="589de609-8e06-49fb-8cd9-e6778b8c4bb9" class=""><a href="https://youtu.be/Sl1EfFcs-K4">https://youtu.be/Sl1EfFcs-K4</a></p><p id="eef719b4-50a5-4a63-b663-d66467fb68e8" class=""><a href="https://arc.tencent.com/en/ai-demos/faceRestoration">https://arc.tencent.com/en/ai-demos/faceRestoration</a></p><p id="4252fd8d-cec3-417e-b44e-46de780491cc" class=""><a href="https://replicate.com/tencentarc/gfpgan">https://replicate.com/tencentarc/gfpgan</a></p><p id="587d0f83-b1b4-47c3-a352-ee1f06ae7e42" class="">CodeFormer</p><ul id="72e1b246-a627-40a6-af82-19c42279bc9a" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.youtube.com/watch?v=ORtYP8NW4T0">https://www.youtube.com/watch?v=ORtYP8NW4T0</a></li></ul><ul id="b65acdc6-013c-41d9-b67a-34320c66f890" class="bulleted-list"><li style="list-style-type:disc"><a href="https://huggingface.co/spaces/sczhou/CodeFormer">https://huggingface.co/spaces/sczhou/CodeFormer</a></li></ul><ul id="138c1851-8aa2-4ac7-9983-9fb118a674f8" class="bulleted-list"><li style="list-style-type:disc"><strong><strong>Sharper Scaling</strong></strong> — high quality image scaling technology mainly developed for upscaling. (<a href="http://a-sharper-scaling.com/">Ссылка</a>)</li></ul></div><h3 id="620ddfb6-96ef-4ad6-b21e-f73b8612e202" class=""><details open=""><summary>Скрипты для SD</summary></details></h3><div class="indented"><p id="a2a770fa-87e5-421f-a9da-6d0d54d103a5" class=""><a href="https://github.com/adieyal/sd-dynamic-prompts"><strong><strong>Stable Diffusion Dynamic Prompts extension</strong></strong></a><a href="https://github.com/adieyal/sd-dynamic-prompts">
+</a>A custom extension for AUTOMATIC1111/stable-diffusion-webui that implements an expressive template language for random or combinatorial prompt generation along with features to support deep wildcard directory structures.</p><p id="3b29dbb6-c527-4ddd-b58f-fd6fddb5c613" class=""><a href="https://github.com/Lopyter/stable-soup-prompts"><strong><strong>Stable Soup Prompts</strong></strong></a><strong><strong>
+</strong></strong>I took the fantastic work by MisterRuffian and WASasquatch and converted their carefully curated .json file to a bunch of text files. Compatible with <strong>sd-dynamic-prompting wildcards script</strong>.</p><p id="b6453c37-dd5e-42e4-9fec-13bf6d6580bc" class=""><a href="https://github.com/Vetchems/sd-lexikrea"><strong><strong>LexiKrea</strong></strong></a><strong><strong>
+</strong></strong>A script for Automatic1111 Stable Diffusion that pulls prompts from Krea.ai and Lexica.art based on search terms.<strong></strong></p><p id="89dee51f-2748-4c05-83c6-50a292adbfc8" class=""><a href="https://github.com/ThereforeGames/unprompted"><strong><strong>Unprompted for Stable Diffusion
+</strong></strong></a>Supercharge your prompt workflow with this powerful scripting language!</p></div><h3 id="5bd5c59f-8d81-4338-8e2e-f87b0bcde66d" class=""><details open=""><summary>Бесконечный канвас</summary></details></h3><div class="indented"><p id="7a53d618-cb8f-4e00-98b8-22cf62ae6642" class=""><a href="https://www.reddit.com/r/StableDiffusion/comments/yla0u1/new_infinite_canvas_web_app_that_uses_your/?utm_source=share&amp;utm_medium=android_app&amp;utm_name=androidcss&amp;utm_term=14&amp;utm_content=share_button">https://www.reddit.com/r/StableDiffusion/comments/yla0u1/new_infinite_canvas_web_app_that_uses_your/?utm_source=share&amp;utm_medium=android_app&amp;utm_name=androidcss&amp;utm_term=14&amp;utm_content=share_button</a></p></div><h3 id="982e1776-af64-4953-9234-6fd4005e3c37" class=""><details open=""><summary>Как получить свой API в WebUI?</summary></details></h3><div class="indented"><p id="3e55fc3f-bbd0-429d-9af6-05e1b4eace00" class="">Add <code>--api</code> in your custom arguments in the <code>webui-user.bat</code></p><p id="29dd4bc8-1ffe-4917-b906-55538e5cfdfb" class="">The server api is part of the automatic1111 code listening for connections, in this case from the browser. That&#x27;s why the settings of the web app list <a href="https://127.0.0.1:7860/">127.0.0.1:7860</a> as the server IP. That&#x27;s localhost on port 7860, the same address you enter into your browser with automatic1111 as usual but as an IP.</p><p id="faca2ee3-e0eb-40ed-ac97-90b5e987eb8c" class="">Update your local repo if your version is old, e. g. with git pull.</p></div><h3 id="9ad6a693-66f8-43d5-87a1-1bebb4ae2c21" class=""><details open=""><summary><strong>Выявление веса тегов, влияния стилей, различий методов выборки</strong></summary></details></h3><div class="indented"><p id="700333b2-db77-4c40-80a4-da54c0bf90c6" class="">Скрипт Prompt Matrix позволяет указать несколько запросов и генерировать несколько запросов для выявления веса тегов, влияния стилей, различий методов выборки.</p></div><h3 id="882745a0-965c-4ce6-a6d3-ba602888738a" class=""><details open=""><summary><strong>Количество необходимых шагов модели и стиль</strong></summary></details></h3><div class="indented"><p id="ba34edc0-dd1a-4844-9659-caa217e23080" class="">Для Euler a 20 шагов мало.для Euler 20 норм и он в принципе от шагов не сильно меняется при том же сиде,для более анимешной картинки.hypernetworks опять таки влияют на стил,обычно с Novelai первый anime юзают.</p><p id="34cbca88-8198-49a2-ab83-3c38020b566a" class="">стиль можно и с помощью embeddings добить</p><p id="11859be7-dd0f-495e-b40a-36f43e51a68e" class="">По своему опыту с hypernetworks больше артефактов и мутаций выходит</p></div><h3 id="f4c7bdc5-e508-4cdd-a8b2-f207bfcbef08" class=""><details open=""><summary><strong>Как формировать запросы, параметры объединения моделей, список моделей</strong></summary></details></h3><div class="indented"><p id="5d810f23-c087-4093-af74-4407a05fe025" class="">I&#x27;m finding &#x27;subject, comma separated modifiers, style modifier, award winning, top rated&#x27;
+is a great formula</p><p id="cd26dd47-8bcd-4b22-b1ed-57c3feb207a5" class="">more than 50 steps is almost never needed, and it&#x27;s best to just grab the seed and rerun it at a higher step count when you like the 50-step version.
+do as many images as possible, 30-50 steps, then pick the ones you like and re-run from the seed, bump the steps up. I&#x27;d say anything over 120 is overkill but I don&#x27;t take my own advice on that so just play around with it</p><p id="281580ed-a32d-4553-a8e6-4d1164d309a1" class="">i spent all of last night till 5am in the morning mixing SD 1.5 w/VAE and 9 other models using the difference merge @.2. formula was A+(B-SD1.4). the result was M3 (MEGA MERGE MODEL)
+Models are as follows:
+SD 1.5 W/VAE
+ARCANE DIFFUSION
+DISCO ELYSIUM
+ELDEN RING
+F111
+JINXMERGE
+R34
+ROBODIFFUSION
+STRAHD
+VIMOD</p></div><h3 id="81e3f49d-6ee9-4015-8d72-da4cd9cf4040" class=""><details open=""><summary><strong>Описание элементов интерфейса</strong></summary></details></h3><div class="indented"><p id="2e3e9d24-6412-484d-99d1-b9c14cc11c9d" class="">используя gfpgan и Codeformer для восстановления лиц, а также Realesrgan для увеличения картинок в 2 и 4 раза. Кроме этого, командная строка также поддерживает большое количество функций:</p><p id="0075da55-4e60-4041-b855-ad02e356bdfb" class="">— Inpainting — изменение отдельных частей изображений по маске.</p><p id="92cdd1b7-f1ce-42be-8799-06ea6b505758" class="">— Outpainting — дорисовывание изображений вокруг оригинала.</p><p id="c4b565b5-e2cd-4045-9b1e-5e1ea2de9266" class="">— Prompt Unconditioning — удаление ненужных вам объектов из генерации.</p><p id="b22c24bb-331b-45b1-9925-6f2a09ac07f8" class="">— Textual Inversion — обучение нейросети вашим стилям на ваших изображениях и встраивание ваших объектов в сгенерированные картинки.</p><p id="73e86e02-4c88-4662-aaae-19db29ee615b" class="">— Embiggen — генерация изображений с большей детализацией средствами нейросети</p><p id="558b8f5c-f294-41eb-8055-e2a9c4c0932d" class="">Cross Attention (позволяет заменять части изображения без потери его основы)</p><p id="7d9ab684-564e-4dfb-834f-8ad9baeede69" class="">— Улучшенное качество изображений с высоким разрешением — без повторяющихся паттернов-артефактов (которые бывают и Embiggen, Gobig, img2imghd и др.) .</p></div><h3 id="1bd64cf8-98fa-4749-8eff-57d618b27f23" class=""><details open=""><summary><strong>Оценить скорость работы на компьютере</strong></summary></details></h3><div class="indented"><ul id="d602f9fa-8f1e-4440-b803-1f85be60471f" class="bulleted-list"><li style="list-style-type:disc">там 5-6 ит/с при 40 степах</li></ul><figure id="9d24d1dd-2f56-439e-be13-6d644dc5d121" class="image" style="text-align:left"><a href="%D0%A0%D0%B0%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D1%82%D1%8C%202c87741f352e4f6aa2dca47fecbbdb3b/Untitled.png"><img style="width:288px" src="%D0%A0%D0%B0%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D1%82%D1%8C%202c87741f352e4f6aa2dca47fecbbdb3b/Untitled.png"/></a></figure><figure id="950fc8fd-d97a-46b6-a2c2-c05420305c7e" class="image" style="text-align:left"><a href="%D0%A0%D0%B0%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D1%82%D1%8C%202c87741f352e4f6aa2dca47fecbbdb3b/Untitled%201.png"><img style="width:248px" src="%D0%A0%D0%B0%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D1%82%D1%8C%202c87741f352e4f6aa2dca47fecbbdb3b/Untitled%201.png"/></a></figure><figure id="0e49f7b7-d528-4857-b176-82c6c532015d" class="image" style="text-align:left"><a href="%D0%A0%D0%B0%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D1%82%D1%8C%202c87741f352e4f6aa2dca47fecbbdb3b/Untitled%202.png"><img style="width:528px" src="%D0%A0%D0%B0%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D1%82%D1%8C%202c87741f352e4f6aa2dca47fecbbdb3b/Untitled%202.png"/></a></figure></div><h3 id="7b8d56a4-1a1b-493b-93c4-601c5fac5d2f" class=""><details open=""><summary><strong>Параметры генерации</strong></summary></details></h3><div class="indented"><ul id="6c423b38-835f-4499-9b1e-c4a280b42c2d" class="bulleted-list"><li style="list-style-type:disc">Токенов (Tokens) -&quot;операторов” (<a href="https://beta.openai.com/tokenizer">https://beta.openai.com/tokenizer</a>)</li></ul><ul id="b90103eb-ffc8-4c8c-915d-1a8d9213d8f7" class="bulleted-list"><li style="list-style-type:disc"><a href="https://energy-based-model.github.io/Compositional-Visual-Generation-with-Composable-Diffusion-Models/">https://energy-based-model.github.io/Compositional-Visual-Generation-with-Composable-Diffusion-Models/</a></li></ul></div><h3 id="23555dba-f34d-4bbf-8397-36ec0a5ad383" class=""><details open=""><summary>Cписок разных параметров для генерации</summary></details></h3><div class="indented"><p id="07bbcb12-dba6-40fc-954a-d00a0cc15ac7" class="">seeds:</p><ul id="95b62204-cd83-46a1-a181-df6ba41b4f39" class="bulleted-list"><li style="list-style-type:disc">seed:27431878</li></ul><ul id="0c02efa2-9cfc-430c-9e65-7de4d3d86b39" class="bulleted-list"><li style="list-style-type:disc">seed:1094808974</li></ul><ul id="76450445-7391-40e9-8b3e-50b86ebe1790" class="bulleted-list"><li style="list-style-type:disc">seed:1636998765</li></ul><ul id="1ca579fa-345f-434d-9bb3-205ce24a102a" class="bulleted-list"><li style="list-style-type:disc">seed:863654160</li></ul><ul id="b2f907e0-4442-42bf-a8ce-8556549de262" class="bulleted-list"><li style="list-style-type:disc">seed:395728695</li></ul><ul id="9ae7bdf8-4590-4ae3-8715-d8dd47bb0b61" class="bulleted-list"><li style="list-style-type:disc">seed:3477066250</li></ul><ul id="e1336d74-fd36-43e1-ada4-233ef0bb2ec4" class="bulleted-list"><li style="list-style-type:disc">seed:760035788</li></ul><ul id="bb1fce4e-a3ac-4fa8-940a-9c756918e22a" class="bulleted-list"><li style="list-style-type:disc">seed:134761232</li></ul><ul id="a771d419-8bef-4241-8f49-9fb20d0262a2" class="bulleted-list"><li style="list-style-type:disc">seed:3600208139</li></ul><ul id="511ecd2b-de59-45b4-876c-6250cffaced8" class="bulleted-list"><li style="list-style-type:disc">seed:2613670503</li></ul><ul id="ea84fee7-7ce3-43df-b7ec-036c9f268c46" class="bulleted-list"><li style="list-style-type:disc">seed:3453943930</li></ul><p id="7541f4e9-967f-4c3d-bd20-6139324421d8" class="">params:</p><ul id="353d5105-fa9a-4f86-b752-dc965947d80a" class="bulleted-list"><li style="list-style-type:disc">gfp:1,</li></ul><ul id="f1e5d31b-0768-45ae-9fac-3e79448fa5bc" class="bulleted-list"><li style="list-style-type:disc">sampler:euler_a, sampler:lms, sampler:euler, sampler:plms, sampler:heun, sampler:ddim</li></ul><ul id="bbc4899b-c2b7-4f49-a85b-e492321c0743" class="bulleted-list"><li style="list-style-type:disc">ar:9:16,</li></ul><ul id="ecaa0428-5dda-4bf7-a145-97290a5a1fcb" class="bulleted-list"><li style="list-style-type:disc">cfg:1,</li></ul><ul id="8c7237f0-b514-4641-b38c-bad24bb4d2c2" class="bulleted-list"><li style="list-style-type:disc">m:gg, m:w, m:w13</li></ul><ul id="d55ced23-51a6-46ab-981a-2bda97f8905f" class="bulleted-list"><li style="list-style-type:disc">upscale:1,</li></ul><ul id="aa0a6aa7-286d-4155-bafc-f6090853cc05" class="bulleted-list"><li style="list-style-type:disc">iters:1,</li></ul><p id="aa7b5121-136d-48fc-bbfb-a2f019738e05" class="">artists:</p><ul id="930ce45e-6527-4006-a412-6ad76069406e" class="bulleted-list"><li style="list-style-type:disc">classic: Edmund Leighton, Albert Lynch, Valentin De Boulogne</li></ul><ul id="e53f670e-27e8-4945-9a69-5ee0a0310390" class="bulleted-list"><li style="list-style-type:disc">realistic: Mandy Jurgens, Marco Grassi, Olivier Valsecchi, Charlie Bowater</li></ul><ul id="4229cc1d-9891-4019-93ea-02414b23ce34" class="bulleted-list"><li style="list-style-type:disc">cute: Artgerm, gil elvgren, Ross Tran</li></ul><ul id="66e1559a-6706-4858-932c-ba43d6475dc4" class="bulleted-list"><li style="list-style-type:disc">impressionist: greg rutkowski, kyoung hwan kim, Dan Gerhartz, Konstantin Razumov</li></ul><hr id="9b884c88-ecc9-4850-935f-24e13bf95a56"/><p id="56c0f376-0616-41c9-8042-e13ec3ef08bf" class="">++general prompts++</p><p id="ece21b8a-0a5f-4282-ae87-b7ecc063af9a" class=""><strong>aesthetic:</strong> masterpiece, hasselblad photography, 8k photograph, oil painting, anime, cartoon, realistic, photorealistic, hyper realistic,</p><p id="96d4e128-68ed-4cb4-9d6d-f7112f617e95" class=""><strong>lighting/details:</strong> soft lighting, bokeh, polaroid, pastel, rim lit, rimlighting, caustics, sharp focus, smooth detailed, intricate details, space overhead, full view,</p><p id="55ca60c6-1334-4645-91e0-aa9b8086b3f5" class=""><strong>pose:</strong></p><ul id="c13776bb-ca2e-4fdd-9646-e9d3f33e7d9a" class="bulleted-list"><li style="list-style-type:disc">action pose, squatting, squatting pose, squat, crouching, crouch down, crouch, full body, full view, open mouth, moaning, talking, singing, frowning, smiling,</li></ul><ul id="3628eef6-492c-45ab-b282-c7f54fa21db2" class="bulleted-list"><li style="list-style-type:disc">*front view, back view, side view,</li></ul><ul id="1892e34d-f641-4930-a905-a5bd2fb72b74" class="bulleted-list"><li style="list-style-type:disc">*looking away, looking up, looking at viewer,</li></ul><p id="66e545e2-7e74-4efa-b13d-116eb05f368f" class="">general:</p><ul id="daa3e563-0031-44f5-ad0c-e10c94fadb74" class="bulleted-list"><li style="list-style-type:disc">contour, adorable, freckles, beautiful eyes,</li></ul><ul id="d050f013-ee25-4d43-95a9-9e021cbccd17" class="bulleted-list"><li style="list-style-type:disc">gothic, goth, e-girl, ginger,</li></ul><ul id="2702c6f1-7195-45e7-ab06-e2a02f18ed43" class="bulleted-list"><li style="list-style-type:disc">*pale skin, olive skin, dark skin, ebony skin,</li></ul><ul id="4f99a095-1a92-4bad-9d7d-83c360cc8e54" class="bulleted-list"><li style="list-style-type:disc">*exotic woman, erotic woman, adorable woman,</li></ul><ul id="e5dd69f1-15eb-4463-95c3-8195a615bc10" class="bulleted-list"><li style="list-style-type:disc">*exotic feminine face, erotic female face, delicate female face, adorable female face, innocent female face,</li></ul><ul id="ffd53d16-0d55-427b-a7b1-f317289f7172" class="bulleted-list"><li style="list-style-type:disc">*mediterranean woman, latino woman, italian woman, irish woman, persian woman, arab woman, asian woman,</li></ul><p id="bc46c651-daca-4377-bd2b-e0156b7e0836" class=""><strong>detailed:</strong></p><ul id="86153292-1911-4e50-9f85-0e2cf9a77ad0" class="bulleted-list"><li style="list-style-type:disc">realistic breast physics, perfect hands, voluptous body, hourglass figure, realistic full body, wide hips, thick lips, veins</li></ul><ul id="ca7a31ea-55ad-43bd-82ac-df8057eb5b9c" class="bulleted-list"><li style="list-style-type:disc">*symmetrical body, symmetrical legs,</li></ul><ul id="0282fa37-ae64-45d3-85ef-597e6c04e2aa" class="bulleted-list"><li style="list-style-type:disc">*delicate nose, turned-up nose,</li></ul><ul id="51fbf63d-66a4-4633-9d0f-850a706085d5" class="bulleted-list"><li style="list-style-type:disc">*smooth belly, abs, fat, chubby, obese, toned abs, muscular chest</li></ul><ul id="039e4e5b-651d-48f6-b5c6-09a9d14bdfcb" class="bulleted-list"><li style="list-style-type:disc">*symmetrical full body, realistic full body, petite full body, curvy full body, voluptuous full body,</li></ul><ul id="6e5c7fe5-10ae-4918-a643-173bd4deb57f" class="bulleted-list"><li style="list-style-type:disc">*thick thighs, toned thighs, athletic thighs, muscular thighs,</li></ul><ul id="7dfe8580-879a-41b1-9ed5-7e5107faf29b" class="bulleted-list"><li style="list-style-type:disc">*huge ass, toned ass, athletic ass, muscular ass,</li></ul><ul id="56b8b863-aa70-4128-8ffa-a4fe1a65161a" class="bulleted-list"><li style="list-style-type:disc">*petite woman, thick woman, toned woman, athletic woman, muscular woman,</li></ul><ul id="b63f0ac7-432f-4bab-9311-2d0014225ae5" class="bulleted-list"><li style="list-style-type:disc">*petite breasts, realistic breasts, large breasts, huge breasts, overflowing breasts,</li></ul><p id="0ef0a145-bea2-4387-a99c-428bb34c9957" class=""><strong>clothing:</strong></p><ul id="a140c920-c2fe-45a5-be9d-38de90efb0c0" class="bulleted-list"><li style="list-style-type:disc">naked, exposed cleavage, miniskirt, hoop earrings, jewelry, playboy bunny suit, fishnets, tights, choker, bikini, thong, heels, high heels,</li></ul><ul id="ee87f632-2bed-4519-8fb4-33f146fa0b18" class="bulleted-list"><li style="list-style-type:disc">*full-body fishnets, full-body tights,</li></ul><p id="5ec37d99-0dfc-4ccc-8489-f12a73801061" class=""><strong>hair:</strong></p><ul id="15c65e43-c15d-462b-8bf2-1f25b0542021" class="bulleted-list"><li style="list-style-type:disc">mohawk, asymmetrical hair, afro, curls, curly hair, short hair, long hair, straight hair, straight bangs,</li></ul><ul id="f98b0001-e40f-4c0a-8e14-a34d653625b8" class="bulleted-list"><li style="list-style-type:disc">black hair, brown hair, blonde hair, ginger hair</li></ul><hr id="6ef2471a-68ce-4088-8829-97b3987353d5"/><p id="177fb9d8-5ef3-4c8e-ad6b-3980e773bf55" class="">++negative prompts++</p><p id="f4d62d90-b780-4a36-994c-28829b04a108" class=""><strong>multiples</strong></p><ul id="7169ece7-993e-4233-bf6f-6bab366ebe64" class="bulleted-list"><li style="list-style-type:disc">2girls, 2breasts, 2boobs, 2arms, 2legs, 2hands, 2feet</li></ul><p id="b941b068-f52e-4b0e-a4e4-05871a979753" class=""><strong>general</strong></p><ul id="4dc7752e-bddd-4809-92d9-64e7d2d37e1e" class="bulleted-list"><li style="list-style-type:disc">collage, bad art, poor art, ugly, blurry, crop, cropped, out of frame, face out of the frame, low detail, error</li></ul><p id="d4221fde-f2a5-4030-b90f-9587b1b91204" class=""><strong>specific</strong></p><ul id="f9e1c98b-9a2f-45a7-b5eb-fa5c87939aa1" class="bulleted-list"><li style="list-style-type:disc">long waist, cross-eye, bad anatomy, deformed, disfigured, mutation, mutated, amputated, body holes</li></ul><ul id="f172f4c4-b394-4db6-b3ab-da467d664562" class="bulleted-list"><li style="list-style-type:disc">*extra legs, extra arms, extra fingers, extra nipples, extra limbs,</li></ul><ul id="c483b10a-d3e9-4216-b264-990ecae91546" class="bulleted-list"><li style="list-style-type:disc">*missing legs, missing arms, missing fingers, missing nipples, missing limbs,</li></ul><ul id="2169eb92-362b-417c-b360-242ae5f8757a" class="bulleted-list"><li style="list-style-type:disc">*merged legs, merged arms, merged fingers, merged nipples, merged limbs,</li></ul><ul id="cf52b0df-48ca-4a1c-ad93-7e8036ca0ea6" class="bulleted-list"><li style="list-style-type:disc">*amputated legs, amputated arms, amputated fingers, amputated nipples, amputated limbs,</li></ul><ul id="223e2d2c-66a8-4e0a-8fb2-f4c248a7d6e2" class="bulleted-list"><li style="list-style-type:disc">*mutated legs, mutated arms, mutated fingers, mutated nipples, mutated limbs</li></ul><ul id="7db9fba0-d7c8-4d09-838d-cd3c1b21ab63" class="bulleted-list"><li style="list-style-type:disc">*deformed legs, deformed arms, deformed fingers, deformed nipples, deformed limbs</li></ul><hr id="4ae2e78b-61f4-4b72-a8b8-768cd90f72a4"/><p id="ae3986c4-3d82-41a4-841e-17d9bf3b8e10" class="">Use this as a quick copy-paste in case you get really fucked-up results, it might help:
+(((extra legs))), (((extra arms))), (((extra fingers))), (((extra nipples))), (((extra limbs))), (((missing legs))), (((missing arms))), (((missing fingers))), (((missing nipples))), (((missing limbs))), (((merged legs))), (((merged arms))), (((merged fingers))), (((merged nipples))), (((merged limbs))), (((amputated legs))), (((amputated arms))), (((amputated fingers))), (((amputated nipples))), (((amputated limbs))), (((mutated legs))), (((mutated arms))), (((mutated fingers))), (((mutated nipples))), (((mutated limbs))), (((deformed legs))), (((deformed arms))), (((deformed fingers))), (((deformed nipples))), (((deformed limbs))),</p><p id="09c746b9-8d5e-4fd1-b47f-88caabb0e4d2" class="">And remember: more prompts (especially neg. prompts) doesn&#x27;t always mean better results! All art is made in the balance between freedom and constraints, apparently even for AI.</p></div><h3 id="2a5e6152-c220-4dbc-bc14-91cbeb21c796" class=""><details open=""><summary>Метаданные PNG (PNG metadata)</summary></details></h3><div class="indented"><p id="55a862ee-c512-4b7d-8553-c9a0b9b12b0c" class="">Добавить про “Метаданные PNG (PNG metadata)” в <a href="%D0%9F%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D1%8B%20%D0%B2%D0%B5%D0%B1-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B8%CC%86%D1%81%D0%B0%20(AUTOMATIC%201111%20WebUI)%20b6c5ac711f9244698d5ddac7610ae6cb.html"><img class="icon" src="https://www.notion.so/icons/sliders-vertical_gray.svg"/>Параметры веб-интерфейса (AUTOMATIC 1111 WebUI)</a> </p></div><hr id="f0a18d19-aed1-4116-9698-75d87c7be51e"/><p id="c85b5a72-118f-4acb-bbdc-a5a5d30e5772" class="">classic disney style |
+classic disney style:1.2|
+classic disney style:1.2| anime:1.3
+classic disney style:1.2| (3d, anime:1.3)</p><p id="d135cc07-f401-4dda-a0b7-cffa4010a6ef" class="">Duffusion (Диффузия)</p><ol type="1" id="6860325d-554d-4841-a0e1-698d95733b86" class="numbered-list" start="1"><li>Генерируется шум (набор случайных пикселей разных цветов) на основе кода генерации (seed).</li></ol><ol type="1" id="21f825f4-ccfd-4a73-84c7-4b06be8f8792" class="numbered-list" start="2"><li>Модель диффузии генерирует из шума изображение на основе текстового запроса.</li></ol><p id="663955f1-89b1-4f1a-9e4b-ce84ee89e5f1" class="">Textual Inversion - позволяет генерировать новое изображение на основе стилей выбранного изображения. Возможно берется не только стиль, но и формы объекта.</p><p id="dc481b5a-7fef-4d17-9fd6-b9403e478d53" class="">На реддите люди файн-тюнят модели и выкладывают в открытый доступ - тот же вайфу дифьюжн оттуда родился. Видел модели для пиксельных картинок, для каких-то актрисс/актеров, для пейзажей. По сути &#x27;дотренировываешь&#x27; стейбл, чтобы она четко поняла, что от неё хотят именно такой тип картинок. Файл модели будет такой же - можно делиться с кем-либо, или использовать чужие.</p><p id="6140c8d4-e1d7-460d-9b37-8870f38fe81d" class="">Список артистов с примерами, которые распознаются SD (<a href="https://rentry.org/artists_sd-v1-4">https://rentry.org/artists_sd-v1-4</a>)</p><p id="a27a24ae-5d1a-40fa-bf8f-1a82ea6eb435" class=""><strong>РАЗОБРАТ ВСЕ ССЫЛКИ
+ДОПИСАТЬ ПРО ВАРИАНТЫ АПСКЕЙЛА (ОТДЕЛЬНА СТРАНИЦА, ПОСТООБРАБОТКА? ДОБАВИТЬ ССЫЛКУ НА GITHUB ДЛЯ ПРОГРАММЫ ДЛЯ ПОСТОБРАБОТКИ)</strong></p><p id="a6fc9c01-9550-4c93-a462-3d117de1d8cd" class=""><a href="https://rentry.org/sdupdates/">https://rentry.org/sdupdates/</a><a href="https://2ch.hk/b/res/276737848.html">https://2ch.hk/b/res/276737848.html</a>
+list of Textual Inversion embeddings for SD - <a href="https://rentry.org/embeddings">https://rentry.org/embeddings</a>
+Stable Diffusion Models - <a href="https://rentry.org/sdmodels">https://rentry.org/sdmodels</a>
+Pyro&#x27;s Blowjob Model - <a href="https://rentry.org/pyros-sd-model">https://rentry.org/pyros-sd-model</a>
+модели и всё что связано с SD - <a href="https://static.nas1.gl.arkprojects.space/stable-diff/">https://static.nas1.gl.arkprojects.space/stable-diff/</a></p><p id="065e0889-6086-4967-a0e5-267c237359e7" class="">BerryMix Guide (Mix of SD and NAI) - <a href="https://rentry.org/berrymix">https://rentry.org/berrymix</a></p><p id="a10cd169-97c1-409e-aec0-9c8ce7edd44c" class="">Список моделей Upscale - <a href="https://upscale.wiki/wiki/Model_Database">https://upscale.wiki/wiki/Model_Database</a></p><hr id="26c36662-c6e3-4d30-b04a-6544a3f40854"/><p id="65f6b653-436d-4413-855a-aa26268a226b" class="">hypernetworks, embeddings, models</p><p id="f59eec96-cb1d-41e5-9af3-aed9e3a5d47f" class="">Collection of Artist names and Works that SD KNOWS how to do - <a href="https://www.notion.so/e28a4f8d97724f14a784a538b8589e7d">https://proximacentaurib.notion.site/e28a4f8d97724f14a784a538b8589e7d?v=ab624266c6a44413b42a6c57a41d828c</a>
+Tagging groups from danbooru for prompting - <a href="https://danbooru.donmai.us/wiki_pages/tag_groups">https://danbooru.donmai.us/wiki_pages/tag_groups</a>
+extension &quot;Booru tag autocompletion&quot; - <a href="https://github.com/DominikDoom/a1111-sd-webui-tagcomplete">https://github.com/DominikDoom/a1111-sd-webui-tagcomplete</a>
+(Let&#x27;s you find tags when you write things into prompts section)
+(Since some Stable Diffusion models were trained using this information, for example Waifu Diffusion, using exact tags in prompts can often improve composition and help to achieve a wanted look.)
+extension &quot;wildcards&quot;. Randomised prompts that are categorised to clothes etc. - <a href="https://github.com/adieyal/sd-dynamic-prompts">https://github.com/adieyal/sd-dynamic-prompts</a></p><p id="67960888-a7ea-4c63-9b84-cb513f77cbb9" class="">hydrus network - <a href="https://github.com/hydrusnetwork/hydrus">https://github.com/hydrusnetwork/hydrus</a>
+(utility for scraping content off different web sites)</p><hr id="ebc45273-2e04-437d-8e1f-65feae540bd2"/><p id="a3bf360c-89ff-4b59-bb98-2c5b21ce6b1b" class="">LIST OF MERGED MODELS:
+SD 1.5 PRUNED EMA - YOU KNOW WHERE TO GET IT
+ARCANE DIFFUSION - ARCANE STYLE : <a href="https://huggingface.co/nitrosocke/Arcane-Diffusion">https://huggingface.co/nitrosocke/Arcane-Diffusion</a>
+DISCO ELYSIUM - discoelysium style: <a href="https://huggingface.co/nitrosocke/disco-elysium">https://huggingface.co/nitrosocke/disco-elysium</a>
+ELDEN RING 1.5 - elden ring style: <a href="https://huggingface.co/nitrosocke/elden-ring-diffusion/tree/main">https://huggingface.co/nitrosocke/elden-ring-diffusion/tree/main</a>
+F111 - : <a href="https://ai.zeipher.com/#tabs-2">https://ai.zeipher.com/#tabs-2</a>
+JINXMERGE2 - SKS JINX/JINX: <a href="https://huggingface.co/jinofcoolnes/sksjinxmerge/tree/main">https://huggingface.co/jinofcoolnes/sksjinxmerge/tree/main</a>
+LOKEAN_MISSONARY_POV - LOKEAN_MISSIONARY_POV: <a href="https://rentry.org/kwai">https://rentry.org/kwai</a>
+LOKEAN_PUPPYSTYLE_POV - LOKEAN_PUPPYSTYLE_POV: <a href="https://rentry.org/kwai">https://rentry.org/kwai</a>
+PIXEL ART V1 - SKSKS art style: <a href="https://publicprompts.art/pixel-art-v1-dreambooth-model/">https://publicprompts.art/pixel-art-v1-dreambooth-model/</a>
+PORTAL ICONS 5KP - portal icon style: <a href="https://huggingface.co/nitrosocke/Portal-Icons">https://huggingface.co/nitrosocke/Portal-Icons</a>
+R34 - TAGS: <a href="https://mega.nz/file/4sFn0AxQ#pHDvIE5eKJC3NSNpgdEw-ve0WSlWjtsTvfpe7YaYh1Q">https://mega.nz/file/4sFn0AxQ#pHDvIE5eKJC3NSNpgdEw-ve0WSlWjtsTvfpe7YaYh1Q</a>
+- MODEL: <a href="https://mega.nz/file/yJgDUCzA#zOD2yeE6QLBqPEjEpIi2b4FWOlb64yVUveOd_eW6teI">https://mega.nz/file/yJgDUCzA#zOD2yeE6QLBqPEjEpIi2b4FWOlb64yVUveOd_eW6teI</a>
+ROBO DIFFUSION - nousr robot: <a href="https://huggingface.co/nousr/robo-diffusion/tree/main">https://huggingface.co/nousr/robo-diffusion/tree/main</a>
+STRAHD - STRAHD: <a href="https://huggingface.co/jinofcoolnes/Strahdmodel/tree/main">https://huggingface.co/jinofcoolnes/Strahdmodel/tree/main</a>
+ARCANE VIMOD - SKS VI/VI: <a href="https://huggingface.co/jinofcoolnes/VImodel/">https://huggingface.co/jinofcoolnes/VImodel/</a>
+Modern Disney Diffusion - modern disney style: <a href="https://huggingface.co/nitrosocke/modern-disney-diffusion">https://huggingface.co/nitrosocke/modern-disney-diffusion</a>
+Magnum Opus Alpha: <a href="https://discord.com/channels/1010980909568245801/1010980910063161406/1035669163882065920/">https://discord.com/channels/1010980909568245801/1010980910063161406/1035669163882065920/</a>
+Borderlands Diffusion - brld: <a href="https://huggingface.co/JojoHovvey/borderlands-diffusion">https://huggingface.co/JojoHovvey/borderlands-diffusion</a>
+Tron Legacy Diffusion - trnlgcy: <a href="https://huggingface.co/dallinmackay/Tron-Legacy-diffusion">https://huggingface.co/dallinmackay/Tron-Legacy-diffusion</a></p><pre id="5d39a611-086d-4d27-81d1-c0fd010e3541" class="code code-wrap"><code>***
+
+TO BE TESTED:
+Starsector Portraits W/HN - starsectorportrait: &lt;https://huggingface.co/Severian-Void/Starsector-Portraits&gt;
+Cyberware - art in m_cyberware style/&quot;mechanical &#x27;body part or object&#x27;&quot; or simply &quot;mechanical parts&quot;: &lt;https://huggingface.co/Eppinette/Cyberware&gt;
+Cyberpunk Anime Diffusion 1.5 - keyword dgs in your prompt, with illustration style: &lt;https://huggingface.co/DGSpitzer/Cyberpunk-Anime-Diffusion&gt;
+SXD-V0.7-PRUNED: &lt;https://discord.com/channels/1010980909568245801/1011021499152474142/1035355152493854770&gt;
+Pachu Diffusion - artwork style: &lt;https://huggingface.co/ProGamerGov/Pachu-Diffusion&gt;
+FFXIV Diffusion v1.1 - xivcine style: &lt;https://huggingface.co/herpritts/xivcine_person_v1&gt;
+WLOP stable diffusion model/WD 1.-e5 -  m_concept: &lt;https://huggingface.co/SirVeggie/wlop&gt;
+</code></pre><hr id="7ae219be-1819-4653-a01e-424e3467c6dd"/><p id="2fa3d77c-1732-4078-bc8d-ffe51e08b608" class="">To speed up DreamBooth model creation, I&#x27;ve create multiple regularization image datasets for use in training with prior preservation loss.
+Currently my collection of datasets includes the following class / regularization prompts:
+&quot;artwork style&quot;: 4125 images generated using 50 DDIM steps and a CFG of 7, using the MSE VAE.
+&quot;illustration style&quot;: 3050 images generated using 50 DDIM steps and a CFG of 7, using the MSE VAE.
+&quot;fighter jet&quot;: 1600 images generated using 50 DDIM steps and a CFG of 7, using the MSE VAE.
+&quot;train&quot;: 2669 images generated using 50 DDIM steps and a CFG of 7, using the MSE VAE.
+&quot;person&quot;: 2115 images generated using 50 DDIM steps and a CFG of 7, using the MSE VAE.
+&quot;woman&quot;: 4420 images generated using 50 DDIM steps and a CFG of 7, using the MSE VAE.
+&quot;erotic photography&quot;: 2760 images generated using 50 DDIM steps and a CFG of 7, using the MSE VAE.
+&quot;supermodel&quot;: 4411 images generated using 50 DDIM steps and a CFG of 7, using the MSE VAE.</p><p id="ff218fda-2d69-491e-84c7-55660a71b900" class="">You can download the datasets here: <a href="https://huggingface.co/datasets/ProGamerGov/StableDiffusion-v1-5-Regularization-Images">https://huggingface.co/datasets/ProGamerGov/StableDiffusion-v1-5-Regularization-Images</a>
+You can use my regularization / class image data sets with
+<a href="https://github.com/ShivamShrirao/diffusers">https://github.com/ShivamShrirao/diffusers</a>,
+<a href="https://github.com/JoePenna/Dreambooth-Stable-Diffusion">https://github.com/JoePenna/Dreambooth-Stable-Diffusion</a>,
+<a href="https://github.com/TheLastBen/fast-stable-diffusion">https://github.com/TheLastBen/fast-stable-diffusion</a>, and any other DreamBooth repo with support for prior preservation loss.
+Normally generating the reg images for prior preservation loss is one of the most time consuming part of DreamBooth model training, so using my data sets help speed things up significantly!</p><hr id="26b037d2-4405-4cb7-8c4f-f5cbceb63912"/><p id="e87c02d9-5edd-4cba-acb8-1db4efe073dc" class="">style pile just got an update which makes it even more convenient to select artist style, visual style, mood, colors and other things. the .py should be editable to add even more words
+<a href="https://media.discordapp.net/attachments/1011008991532429522/1037362023949938768/unknown.png?width=682&amp;height=676">https://media.discordapp.net/attachments/1011008991532429522/1037362023949938768/unknown.png?width=682&amp;height=676</a></p><p id="5390f78e-dc8a-4d0f-8f5d-59c3aee7af4a" class=""><a href="https://github.com/some9000/StylePile">https://github.com/some9000/StylePile</a></p></div></article></body></html>

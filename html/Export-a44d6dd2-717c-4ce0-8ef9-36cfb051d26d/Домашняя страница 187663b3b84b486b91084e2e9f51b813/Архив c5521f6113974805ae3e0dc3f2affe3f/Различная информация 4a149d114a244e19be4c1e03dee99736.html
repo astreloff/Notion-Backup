@@ -1,0 +1,709 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Различная информация</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="4a149d11-4a24-4e19-be4c-1e03dee99736" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">📒</span></div><h1 class="page-title">Различная информация</h1></header><div class="page-body"><nav id="3d32cddb-5eb8-4505-9a84-8817ffe78b8d" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#b8b39ece-8df5-42a0-b448-4ce0e03aac8e">Дни рождения</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#fcb21406-ec4f-4821-874c-6854bcd9706f">Жизненные принципы</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1c7a4e93-657c-4743-a537-ee85165a07be">Какие вопросы задавать при знакомстве</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#8a1d28c6-7edc-4e50-8195-026a618c60f9">Мои стихи</a></div></nav><h2 id="b8b39ece-8df5-42a0-b448-4ce0e03aac8e" class="block-color-gray_background">Дни рождения</h2><div id="8c7004fd-f223-4365-97d3-f03edb90ddbe" class="collection-content"><h4 class="collection-title">Таблица “Дни рождения”</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M0.637695 13.1914C1.0957 13.1914 1.32812 13 1.47852 12.5215L2.24414 10.3887H6.14746L6.90625 12.5215C7.05664 13 7.2959 13.1914 7.74707 13.1914C8.22559 13.1914 8.5332 12.9043 8.5332 12.4531C8.5332 12.2891 8.50586 12.1523 8.44434 11.9678L5.41602 3.79199C5.2041 3.21777 4.82129 2.9375 4.19922 2.9375C3.60449 2.9375 3.21484 3.21777 3.0166 3.78516L-0.0322266 12.002C-0.09375 12.1797 -0.121094 12.3232 -0.121094 12.4668C-0.121094 12.918 0.166016 13.1914 0.637695 13.1914ZM2.63379 9.12402L4.17871 4.68066H4.21973L5.76465 9.12402H2.63379ZM12.2793 13.2324C13.3115 13.2324 14.2891 12.6787 14.7129 11.8037H14.7402V12.5762C14.7471 12.9863 15.0273 13.2393 15.4238 13.2393C15.834 13.2393 16.1143 12.9795 16.1143 12.5215V8.00977C16.1143 6.49902 14.9658 5.52148 13.1543 5.52148C11.7666 5.52148 10.6592 6.08887 10.2695 6.99121C10.1943 7.15527 10.1533 7.3125 10.1533 7.46289C10.1533 7.81152 10.4062 8.04395 10.7686 8.04395C11.0215 8.04395 11.2129 7.94824 11.3496 7.73633C11.7529 6.99121 12.2861 6.65625 13.1064 6.65625C14.0977 6.65625 14.6992 7.20996 14.6992 8.1123V8.67285L12.5664 8.7959C10.7686 8.8916 9.77734 9.69824 9.77734 11.0107C9.77734 12.3369 10.8096 13.2324 12.2793 13.2324ZM12.6621 12.1387C11.8008 12.1387 11.2129 11.667 11.2129 10.9561C11.2129 10.2725 11.7598 9.82129 12.7578 9.75977L14.6992 9.62988V10.3203C14.6992 11.3457 13.7969 12.1387 12.6621 12.1387Z"></path></svg></span>Имя</th><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesFormula"><path d="M5.04688 14.3604H11.2744C11.7324 14.3604 12.0537 14.0801 12.0537 13.6494C12.0537 13.2119 11.7324 12.9248 11.2744 12.9248H5.81934V12.8564L9.30566 8.82324C9.54492 8.57031 9.6748 8.29688 9.6748 8.0166C9.6748 7.73633 9.54492 7.45605 9.29883 7.20996L5.81934 3.2793V3.21094H11.2812C11.7393 3.21094 12.0537 2.92383 12.0537 2.48633C12.0537 2.05566 11.7393 1.77539 11.2812 1.77539H5.05371C4.34277 1.77539 3.95312 2.26758 3.95312 2.81445C3.95312 3.12207 4.07617 3.44336 4.33594 3.69629L8.15039 7.96875V8.05078L4.3291 12.4395C4.06934 12.6924 3.94629 13.0137 3.94629 13.3213C3.94629 13.8682 4.33594 14.3604 5.04688 14.3604Z"></path></svg></span>Дата рождения</th><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesFormula"><path d="M5.04688 14.3604H11.2744C11.7324 14.3604 12.0537 14.0801 12.0537 13.6494C12.0537 13.2119 11.7324 12.9248 11.2744 12.9248H5.81934V12.8564L9.30566 8.82324C9.54492 8.57031 9.6748 8.29688 9.6748 8.0166C9.6748 7.73633 9.54492 7.45605 9.29883 7.20996L5.81934 3.2793V3.21094H11.2812C11.7393 3.21094 12.0537 2.92383 12.0537 2.48633C12.0537 2.05566 11.7393 1.77539 11.2812 1.77539H5.05371C4.34277 1.77539 3.95312 2.26758 3.95312 2.81445C3.95312 3.12207 4.07617 3.44336 4.33594 3.69629L8.15039 7.96875V8.05078L4.3291 12.4395C4.06934 12.6924 3.94629 13.0137 3.94629 13.3213C3.94629 13.8682 4.33594 14.3604 5.04688 14.3604Z"></path></svg></span>Текущий возраст</th><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesDate"><path d="M3.29688 14.4561H12.7031C14.1797 14.4561 14.9453 13.6904 14.9453 12.2344V3.91504C14.9453 2.45215 14.1797 1.69336 12.7031 1.69336H3.29688C1.82031 1.69336 1.05469 2.45215 1.05469 3.91504V12.2344C1.05469 13.6973 1.82031 14.4561 3.29688 14.4561ZM3.27637 13.1162C2.70898 13.1162 2.39453 12.8154 2.39453 12.2207V5.9043C2.39453 5.30273 2.70898 5.00879 3.27637 5.00879H12.71C13.2842 5.00879 13.6055 5.30273 13.6055 5.9043V12.2207C13.6055 12.8154 13.2842 13.1162 12.71 13.1162H3.27637ZM6.68066 7.38086H7.08398C7.33008 7.38086 7.41211 7.30566 7.41211 7.05957V6.66309C7.41211 6.41699 7.33008 6.3418 7.08398 6.3418H6.68066C6.44141 6.3418 6.35938 6.41699 6.35938 6.66309V7.05957C6.35938 7.30566 6.44141 7.38086 6.68066 7.38086ZM8.92285 7.38086H9.31934C9.56543 7.38086 9.64746 7.30566 9.64746 7.05957V6.66309C9.64746 6.41699 9.56543 6.3418 9.31934 6.3418H8.92285C8.67676 6.3418 8.59473 6.41699 8.59473 6.66309V7.05957C8.59473 7.30566 8.67676 7.38086 8.92285 7.38086ZM11.1582 7.38086H11.5547C11.8008 7.38086 11.8828 7.30566 11.8828 7.05957V6.66309C11.8828 6.41699 11.8008 6.3418 11.5547 6.3418H11.1582C10.9121 6.3418 10.8301 6.41699 10.8301 6.66309V7.05957C10.8301 7.30566 10.9121 7.38086 11.1582 7.38086ZM4.44531 9.58203H4.84863C5.09473 9.58203 5.17676 9.50684 5.17676 9.26074V8.86426C5.17676 8.61816 5.09473 8.54297 4.84863 8.54297H4.44531C4.20605 8.54297 4.12402 8.61816 4.12402 8.86426V9.26074C4.12402 9.50684 4.20605 9.58203 4.44531 9.58203ZM6.68066 9.58203H7.08398C7.33008 9.58203 7.41211 9.50684 7.41211 9.26074V8.86426C7.41211 8.61816 7.33008 8.54297 7.08398 8.54297H6.68066C6.44141 8.54297 6.35938 8.61816 6.35938 8.86426V9.26074C6.35938 9.50684 6.44141 9.58203 6.68066 9.58203ZM8.92285 9.58203H9.31934C9.56543 9.58203 9.64746 9.50684 9.64746 9.26074V8.86426C9.64746 8.61816 9.56543 8.54297 9.31934 8.54297H8.92285C8.67676 8.54297 8.59473 8.61816 8.59473 8.86426V9.26074C8.59473 9.50684 8.67676 9.58203 8.92285 9.58203ZM11.1582 9.58203H11.5547C11.8008 9.58203 11.8828 9.50684 11.8828 9.26074V8.86426C11.8828 8.61816 11.8008 8.54297 11.5547 8.54297H11.1582C10.9121 8.54297 10.8301 8.61816 10.8301 8.86426V9.26074C10.8301 9.50684 10.9121 9.58203 11.1582 9.58203ZM4.44531 11.7832H4.84863C5.09473 11.7832 5.17676 11.708 5.17676 11.4619V11.0654C5.17676 10.8193 5.09473 10.7441 4.84863 10.7441H4.44531C4.20605 10.7441 4.12402 10.8193 4.12402 11.0654V11.4619C4.12402 11.708 4.20605 11.7832 4.44531 11.7832ZM6.68066 11.7832H7.08398C7.33008 11.7832 7.41211 11.708 7.41211 11.4619V11.0654C7.41211 10.8193 7.33008 10.7441 7.08398 10.7441H6.68066C6.44141 10.7441 6.35938 10.8193 6.35938 11.0654V11.4619C6.35938 11.708 6.44141 11.7832 6.68066 11.7832ZM8.92285 11.7832H9.31934C9.56543 11.7832 9.64746 11.708 9.64746 11.4619V11.0654C9.64746 10.8193 9.56543 10.7441 9.31934 10.7441H8.92285C8.67676 10.7441 8.59473 10.8193 8.59473 11.0654V11.4619C8.59473 11.708 8.67676 11.7832 8.92285 11.7832Z"></path></svg></span>Дата (HIDE):</th></tr></thead><tbody><tr id="ce22e6e2-7114-475b-81b6-74d112a6eca6"><td class="cell-title"><a href="%D0%A0%D0%B0%D0%B7%D0%BB%D0%B8%D1%87%D0%BD%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%204a149d114a244e19be4c1e03dee99736/%D0%A2%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0%20%E2%80%9C%D0%94%D0%BD%D0%B8%20%D1%80%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F%E2%80%9D%208c7004fdf223436597d3f03edb90ddbe/%D0%92%D0%B0%D0%BB%D1%8F%20(%D0%91%D0%B0%D0%B1%D1%83%D1%88%D0%BA%D0%B0)%20ce22e6e27114475b81b674d112a6eca6.html">Валя (Бабушка)</a></td><td class="cell-zB^I">01.05.1935</td><td class="cell-OxCk">87</td><td class="cell-m&lt;eG"><time>@05/01/1935</time></td></tr><tr id="a3017516-6cd6-4891-af6f-f7941d7871a0"><td class="cell-title"><a href="%D0%A0%D0%B0%D0%B7%D0%BB%D0%B8%D1%87%D0%BD%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%204a149d114a244e19be4c1e03dee99736/%D0%A2%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0%20%E2%80%9C%D0%94%D0%BD%D0%B8%20%D1%80%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F%E2%80%9D%208c7004fdf223436597d3f03edb90ddbe/%D0%98%D0%B3%D0%BE%D1%80%D1%8C%20(%D0%98%D0%B3%D0%BE%D1%80%D1%8C)%20a30175166cd64891af6ff7941d7871a0.html">Игорь (Игорь)</a></td><td class="cell-zB^I">08.04.1935</td><td class="cell-OxCk">87</td><td class="cell-m&lt;eG"><time>@04/08/1935</time></td></tr><tr id="96aaed9c-6e38-4732-80d3-7ffa0bc74f15"><td class="cell-title"><a href="%D0%A0%D0%B0%D0%B7%D0%BB%D0%B8%D1%87%D0%BD%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%204a149d114a244e19be4c1e03dee99736/%D0%A2%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0%20%E2%80%9C%D0%94%D0%BD%D0%B8%20%D1%80%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F%E2%80%9D%208c7004fdf223436597d3f03edb90ddbe/%D0%9D%D0%B8%D0%BD%D0%B0%20(%D0%91%D0%B0%D0%B1%D1%83%D1%88%D0%BA%D0%B0)%2096aaed9c6e38473280d37ffa0bc74f15.html">Нина (Бабушка)</a></td><td class="cell-zB^I">28.01.1941</td><td class="cell-OxCk">82</td><td class="cell-m&lt;eG"><time>@01/28/1941</time></td></tr><tr id="5276be5a-b34b-4c60-9ded-b2c3a1ef039f"><td class="cell-title"><a href="%D0%A0%D0%B0%D0%B7%D0%BB%D0%B8%D1%87%D0%BD%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%204a149d114a244e19be4c1e03dee99736/%D0%A2%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0%20%E2%80%9C%D0%94%D0%BD%D0%B8%20%D1%80%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F%E2%80%9D%208c7004fdf223436597d3f03edb90ddbe/%D0%92%D1%8F%D1%87%D0%B5%D1%81%D0%BB%D0%B0%D0%B2%20(%D0%9F%D0%B0%D0%BF%D0%B0)%205276be5ab34b4c609dedb2c3a1ef039f.html">Вячеслав (Папа)</a></td><td class="cell-zB^I">17.05.1964</td><td class="cell-OxCk">58</td><td class="cell-m&lt;eG"><time>@05/17/1964</time></td></tr><tr id="ebdee1c2-46ef-4e15-a6d6-3617a5b1612a"><td class="cell-title"><a href="%D0%A0%D0%B0%D0%B7%D0%BB%D0%B8%D1%87%D0%BD%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%204a149d114a244e19be4c1e03dee99736/%D0%A2%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0%20%E2%80%9C%D0%94%D0%BD%D0%B8%20%D1%80%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F%E2%80%9D%208c7004fdf223436597d3f03edb90ddbe/%D0%90%D0%BD%D0%BD%D0%B0%20(%D0%9C%D0%B0%D0%BC%D0%B0)%20ebdee1c246ef4e15a6d63617a5b1612a.html">Анна (Мама)</a></td><td class="cell-zB^I">22.10.1971</td><td class="cell-OxCk">51</td><td class="cell-m&lt;eG"><time>@10/22/1971</time></td></tr><tr id="565920a4-9e64-4dd8-9455-e8b1f32e0083"><td class="cell-title"><a href="%D0%A0%D0%B0%D0%B7%D0%BB%D0%B8%D1%87%D0%BD%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%204a149d114a244e19be4c1e03dee99736/%D0%A2%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0%20%E2%80%9C%D0%94%D0%BD%D0%B8%20%D1%80%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F%E2%80%9D%208c7004fdf223436597d3f03edb90ddbe/%D0%9E%D0%BB%D1%8C%D0%B3%D0%B0%20(%D0%96%D0%B5%D0%BD%D0%B0%20%D0%9F%D0%B0%D0%BF%D1%8B)%20565920a49e644dd89455e8b1f32e0083.html">Ольга (Жена Папы)</a></td><td class="cell-zB^I">06.09.1986</td><td class="cell-OxCk">36</td><td class="cell-m&lt;eG"><time>@09/06/1986</time></td></tr><tr id="6272a9e9-243f-49a0-8659-d2eefb01b92c"><td class="cell-title"><a href="%D0%A0%D0%B0%D0%B7%D0%BB%D0%B8%D1%87%D0%BD%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%204a149d114a244e19be4c1e03dee99736/%D0%A2%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0%20%E2%80%9C%D0%94%D0%BD%D0%B8%20%D1%80%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F%E2%80%9D%208c7004fdf223436597d3f03edb90ddbe/%D0%A1%D0%B5%D1%80%D0%B3%D0%B5%D0%B8%CC%86%20(%D0%94%D1%80%D1%83%D0%B3)%206272a9e9243f49a08659d2eefb01b92c.html">Сергей (Друг)</a></td><td class="cell-zB^I">19.12.1995</td><td class="cell-OxCk">27</td><td class="cell-m&lt;eG"><time>@12/19/1995</time></td></tr><tr id="a20863c0-af7c-4bf7-896c-5361e673869b"><td class="cell-title"><a href="%D0%A0%D0%B0%D0%B7%D0%BB%D0%B8%D1%87%D0%BD%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%204a149d114a244e19be4c1e03dee99736/%D0%A2%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0%20%E2%80%9C%D0%94%D0%BD%D0%B8%20%D1%80%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F%E2%80%9D%208c7004fdf223436597d3f03edb90ddbe/%D0%93%D0%B5%D0%BE%D1%80%D0%B3%D0%B8%D0%B8%CC%86%20(%D0%94%D1%80%D1%83%D0%B3)%20a20863c0af7c4bf7896c5361e673869b.html">Георгий (Друг)</a></td><td class="cell-zB^I">22.09.1996</td><td class="cell-OxCk">26</td><td class="cell-m&lt;eG"><time>@09/22/1996</time></td></tr><tr id="b357e7de-5fd9-4867-a0ab-b9df5c3115b8"><td class="cell-title"><a href="%D0%A0%D0%B0%D0%B7%D0%BB%D0%B8%D1%87%D0%BD%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%204a149d114a244e19be4c1e03dee99736/%D0%A2%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0%20%E2%80%9C%D0%94%D0%BD%D0%B8%20%D1%80%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F%E2%80%9D%208c7004fdf223436597d3f03edb90ddbe/%D0%90%D0%BD%D0%B4%D1%80%D0%B5%D0%B8%CC%86%20(%D0%94%D1%80%D1%83%D0%B3)%20b357e7de5fd94867a0abb9df5c3115b8.html">Андрей (Друг)</a></td><td class="cell-zB^I">17.04.1996</td><td class="cell-OxCk">26</td><td class="cell-m&lt;eG"><time>@04/17/1996</time></td></tr><tr id="c5611bc3-7142-4fb9-a105-6fec6863d6de"><td class="cell-title"><a href="%D0%A0%D0%B0%D0%B7%D0%BB%D0%B8%D1%87%D0%BD%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%204a149d114a244e19be4c1e03dee99736/%D0%A2%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0%20%E2%80%9C%D0%94%D0%BD%D0%B8%20%D1%80%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F%E2%80%9D%208c7004fdf223436597d3f03edb90ddbe/%D0%92%D0%B0%D0%B4%D0%B8%D0%BC%20(%D0%91%D1%80%D0%B0%D1%82)%20c5611bc371424fb9a1056fec6863d6de.html">Вадим (Брат)</a></td><td class="cell-zB^I">05.07.1999</td><td class="cell-OxCk">23</td><td class="cell-m&lt;eG"><time>@07/05/1999</time></td></tr><tr id="7c6d0614-233e-4647-b063-c35d2337904c"><td class="cell-title"><a href="%D0%A0%D0%B0%D0%B7%D0%BB%D0%B8%D1%87%D0%BD%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%204a149d114a244e19be4c1e03dee99736/%D0%A2%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0%20%E2%80%9C%D0%94%D0%BD%D0%B8%20%D1%80%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F%E2%80%9D%208c7004fdf223436597d3f03edb90ddbe/%D0%9D%D0%B0%D1%81%D1%82%D1%8F%20(%D0%9B%D1%8E%D0%B1%D0%B8%D0%BC%D0%B0%D1%8F)%207c6d0614233e4647b063c35d2337904c.html">Настя (Любимая)</a></td><td class="cell-zB^I">07.05.1999</td><td class="cell-OxCk">23</td><td class="cell-m&lt;eG"><time>@05/07/1999</time></td></tr><tr id="8c95894b-82cd-4ce9-9389-8e7b44657c12"><td class="cell-title"><a href="%D0%A0%D0%B0%D0%B7%D0%BB%D0%B8%D1%87%D0%BD%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%204a149d114a244e19be4c1e03dee99736/%D0%A2%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0%20%E2%80%9C%D0%94%D0%BD%D0%B8%20%D1%80%D0%BE%D0%B6%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F%E2%80%9D%208c7004fdf223436597d3f03edb90ddbe/%D0%92%D0%B0%D1%81%D1%8F%20(%D0%91%D1%80%D0%B0%D1%82)%208c95894b82cd4ce993898e7b44657c12.html">Вася (Брат)</a></td><td class="cell-zB^I">27.10.2004</td><td class="cell-OxCk">18</td><td class="cell-m&lt;eG"><time>@10/27/2004</time></td></tr></tbody></table></div><h2 id="fcb21406-ec4f-4821-874c-6854bcd9706f" class="block-color-gray_background">Жизненные принципы</h2><figure class="block-color-red callout" style="white-space:pre-wrap;display:flex" id="26f4aae3-6316-4039-9bb6-dd88431b599e"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong><mark class="highlight-brown">Принципы других людей: </mark></strong><a href="http://stanislaw.ru/rus/author/principles.asp"><mark class="highlight-brown">http://stanislaw.ru/rus/author/principles.asp</mark></a><mark class="highlight-brown"> и </mark><a href="http://fit4brain.com/4904"><mark class="highlight-brown">http://fit4brain.com/4904</mark></a></div></figure><div id="9ae9d6b9-aee5-4bd9-af0d-1765c45be4e9" class="collection-content"><h4 class="collection-title">Талица “Жизненные принципы”</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCheckbox"><path d="M3.85742 14.4561H12.1357C13.6123 14.4561 14.3779 13.6904 14.3779 12.2344V3.91504C14.3779 2.45215 13.6123 1.69336 12.1357 1.69336H3.85742C2.38086 1.69336 1.61523 2.45215 1.61523 3.91504V12.2344C1.61523 13.6973 2.38086 14.4561 3.85742 14.4561ZM3.93945 13.1162C3.30371 13.1162 2.95508 12.7812 2.95508 12.1182V4.02441C2.95508 3.36133 3.30371 3.0332 3.93945 3.0332H12.0537C12.6826 3.0332 13.0381 3.36133 13.0381 4.02441V12.1182C13.0381 12.7812 12.6826 13.1162 12.0537 13.1162H3.93945ZM7.26855 11.3115C7.51465 11.3115 7.72656 11.1885 7.87012 10.9697L10.9258 6.19141C11.0146 6.04785 11.0967 5.88379 11.0967 5.72656C11.0967 5.3916 10.7959 5.16602 10.4746 5.16602C10.2695 5.16602 10.085 5.27539 9.94141 5.50781L7.24121 9.8418L5.96973 8.22168C5.80566 8.00977 5.6416 7.93457 5.43652 7.93457C5.10156 7.93457 4.8418 8.20117 4.8418 8.54297C4.8418 8.70703 4.90332 8.85742 5.01953 9.00098L6.63281 10.9697C6.81738 11.209 7.01562 11.3115 7.26855 11.3115Z"></path></svg></span>Использую</th><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M0.637695 13.1914C1.0957 13.1914 1.32812 13 1.47852 12.5215L2.24414 10.3887H6.14746L6.90625 12.5215C7.05664 13 7.2959 13.1914 7.74707 13.1914C8.22559 13.1914 8.5332 12.9043 8.5332 12.4531C8.5332 12.2891 8.50586 12.1523 8.44434 11.9678L5.41602 3.79199C5.2041 3.21777 4.82129 2.9375 4.19922 2.9375C3.60449 2.9375 3.21484 3.21777 3.0166 3.78516L-0.0322266 12.002C-0.09375 12.1797 -0.121094 12.3232 -0.121094 12.4668C-0.121094 12.918 0.166016 13.1914 0.637695 13.1914ZM2.63379 9.12402L4.17871 4.68066H4.21973L5.76465 9.12402H2.63379ZM12.2793 13.2324C13.3115 13.2324 14.2891 12.6787 14.7129 11.8037H14.7402V12.5762C14.7471 12.9863 15.0273 13.2393 15.4238 13.2393C15.834 13.2393 16.1143 12.9795 16.1143 12.5215V8.00977C16.1143 6.49902 14.9658 5.52148 13.1543 5.52148C11.7666 5.52148 10.6592 6.08887 10.2695 6.99121C10.1943 7.15527 10.1533 7.3125 10.1533 7.46289C10.1533 7.81152 10.4062 8.04395 10.7686 8.04395C11.0215 8.04395 11.2129 7.94824 11.3496 7.73633C11.7529 6.99121 12.2861 6.65625 13.1064 6.65625C14.0977 6.65625 14.6992 7.20996 14.6992 8.1123V8.67285L12.5664 8.7959C10.7686 8.8916 9.77734 9.69824 9.77734 11.0107C9.77734 12.3369 10.8096 13.2324 12.2793 13.2324ZM12.6621 12.1387C11.8008 12.1387 11.2129 11.667 11.2129 10.9561C11.2129 10.2725 11.7598 9.82129 12.7578 9.75977L14.6992 9.62988V10.3203C14.6992 11.3457 13.7969 12.1387 12.6621 12.1387Z"></path></svg></span>Принцип</th><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>Описание</th><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>Тема</th></tr></thead><tbody><tr id="04e2329c-bfc8-45f5-8936-246c42b1ab72"><td class="cell-;WI_"><div class="checkbox checkbox-on"></div></td><td class="cell-title"><a href="%D0%A0%D0%B0%D0%B7%D0%BB%D0%B8%D1%87%D0%BD%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%204a149d114a244e19be4c1e03dee99736/%D0%A2%D0%B0%D0%BB%D0%B8%D1%86%D0%B0%20%E2%80%9C%D0%96%D0%B8%D0%B7%D0%BD%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BD%D1%86%D0%B8%D0%BF%D1%8B%E2%80%9D%209ae9d6b9aee54bd9af0d1765c45be4e9/%D0%97%D0%B4%D0%BE%D1%80%D0%BE%D0%B2%D1%8B%D0%B8%CC%86%20%D1%81%D0%BE%D0%BD%20(7-9%20%D1%87%D0%B0%D1%81%D0%BE%D0%B2)%2004e2329cbfc845f58936246c42b1ab72.html">Здоровый сон (7-9 часов)</a></td><td class="cell-_HB+">Во время сна организм отдыхает и восстанавливается, усваивается полученная за день информация, происходит рост мышечных волокон.
+Сон необходим! Стараться ложиться и вставать раньше, так день ощущается дольше и получается выполнить больше дел.</td><td class="cell-]hMA"><span class="selected-value select-value-color-default">Здоровье</span><span class="selected-value select-value-color-brown">Спорт</span></td></tr><tr id="1f59f866-d3dc-4f4b-b64c-ae9f7a4fbb34"><td class="cell-;WI_"><div class="checkbox checkbox-on"></div></td><td class="cell-title"><a href="%D0%A0%D0%B0%D0%B7%D0%BB%D0%B8%D1%87%D0%BD%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%204a149d114a244e19be4c1e03dee99736/%D0%A2%D0%B0%D0%BB%D0%B8%D1%86%D0%B0%20%E2%80%9C%D0%96%D0%B8%D0%B7%D0%BD%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BD%D1%86%D0%B8%D0%BF%D1%8B%E2%80%9D%209ae9d6b9aee54bd9af0d1765c45be4e9/%D0%92%D0%B5%D1%81%D1%82%D0%B8%20%D1%83%D1%87%D0%B5%D1%82%20%D1%81%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B2%20%D0%B8%20%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%20%D1%82%D1%80%D0%B0%D1%82%D0%B8%D1%82%D1%8C%201f59f866d3dc4f4bb64cae9f7a4fbb34.html">Вести учет средств и рационально тратить</a></td><td class="cell-_HB+">Всегда точно знать, сколько и на что уходит средств, это поможет избавиться от лишних трат и сэкономить на более важное. (http://stanislaw.ru/rus/author/principles.asphttp://fit4brain.com/4904)</td><td class="cell-]hMA"><span class="selected-value select-value-color-blue">Рациональность</span></td></tr><tr id="2acf2ba4-f620-4d06-8d60-93cd806d1e70"><td class="cell-;WI_"><div class="checkbox checkbox-on"></div></td><td class="cell-title"><a href="%D0%A0%D0%B0%D0%B7%D0%BB%D0%B8%D1%87%D0%BD%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%204a149d114a244e19be4c1e03dee99736/%D0%A2%D0%B0%D0%BB%D0%B8%D1%86%D0%B0%20%E2%80%9C%D0%96%D0%B8%D0%B7%D0%BD%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BD%D1%86%D0%B8%D0%BF%D1%8B%E2%80%9D%209ae9d6b9aee54bd9af0d1765c45be4e9/%D0%94%D0%B5%D0%BB%D0%B0%D1%82%D1%8C%20%D0%B4%D0%B5%D0%BB%D0%B0%20%D0%B2%20%D1%81%D1%80%D0%BE%D0%BA%202acf2ba4f6204d068d6093cd806d1e70.html">Делать дела в срок</a></td><td class="cell-_HB+">Оставляя дела на потом, забывается необходимая информация для их выполнения.
+Дела копятся и к назначенному времени, приходится прикладывать больше усилий для их выполнения.
+Если дело требует менее 5 минут, сделать его сразу!</td><td class="cell-]hMA"><span class="selected-value select-value-color-orange">Продуктивность</span></td></tr><tr id="86011cc3-82a1-4640-a36b-5ab6d91a5a8b"><td class="cell-;WI_"><div class="checkbox checkbox-on"></div></td><td class="cell-title"><a href="%D0%A0%D0%B0%D0%B7%D0%BB%D0%B8%D1%87%D0%BD%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%204a149d114a244e19be4c1e03dee99736/%D0%A2%D0%B0%D0%BB%D0%B8%D1%86%D0%B0%20%E2%80%9C%D0%96%D0%B8%D0%B7%D0%BD%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BD%D1%86%D0%B8%D0%BF%D1%8B%E2%80%9D%209ae9d6b9aee54bd9af0d1765c45be4e9/%D0%92%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B2%D1%8B%D0%B3%D0%BE%D0%B4%D0%BD%D1%8B%D0%B5%20%D0%BE%D1%82%D0%BD%D0%BE%D1%88%D0%B5%D0%BD%D0%B8%D1%8F%2086011cc382a14640a36b5ab6d91a5a8b.html">Взаимовыгодные отношения</a></td><td class="cell-_HB+">Если человек сделал мне одолжение или оказал помощь, при необходимости я отвечу ему тем же. В ином случае, не стоит тратить время и усилия, если в ответ ничего не получишь. За исключением просьб близких людей.</td><td class="cell-]hMA"><span class="selected-value select-value-color-yellow">Взаимоотношения</span></td></tr><tr id="99790c11-d80f-4af0-8b5a-828ebef3d186"><td class="cell-;WI_"><div class="checkbox checkbox-on"></div></td><td class="cell-title"><a href="%D0%A0%D0%B0%D0%B7%D0%BB%D0%B8%D1%87%D0%BD%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%204a149d114a244e19be4c1e03dee99736/%D0%A2%D0%B0%D0%BB%D0%B8%D1%86%D0%B0%20%E2%80%9C%D0%96%D0%B8%D0%B7%D0%BD%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BD%D1%86%D0%B8%D0%BF%D1%8B%E2%80%9D%209ae9d6b9aee54bd9af0d1765c45be4e9/%D0%9E%D1%82%D0%BD%D0%BE%D1%81%D0%B8%D1%82%D1%8C%D1%81%D1%8F%20%D0%BA%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%B8%20%D1%81%D0%BA%D0%B5%D0%BF%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%2099790c11d80f4af08b5a828ebef3d186.html">Относиться к информации скептически</a></td><td class="cell-_HB+">Относиться ко всему с долей сомнения. Проверять информацию.</td><td class="cell-]hMA"><span class="selected-value select-value-color-blue">Рациональность</span></td></tr><tr id="df83ab0d-8010-4fc8-b9ee-e49532a11fbb"><td class="cell-;WI_"><div class="checkbox checkbox-on"></div></td><td class="cell-title"><a href="%D0%A0%D0%B0%D0%B7%D0%BB%D0%B8%D1%87%D0%BD%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%204a149d114a244e19be4c1e03dee99736/%D0%A2%D0%B0%D0%BB%D0%B8%D1%86%D0%B0%20%E2%80%9C%D0%96%D0%B8%D0%B7%D0%BD%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BD%D1%86%D0%B8%D0%BF%D1%8B%E2%80%9D%209ae9d6b9aee54bd9af0d1765c45be4e9/%D0%90%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D0%B8%20%D0%BD%D0%B0%D0%B1%D0%BB%D1%8E%D0%B4%D0%B0%D1%82%D1%8C%20(%D0%BE%D1%81%D0%BE%D0%B7%D0%BD%D0%B0%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D1%8C)%20df83ab0d80104fc8b9eee49532a11fbb.html">Анализировать и наблюдать (осознанность)</a></td><td class="cell-_HB+">Прожить жизнь, не пытаясь понять причины и следствия своих собственных действий, событий своей жизни – значит, потратить ее впустую. Анализируя себя и окружающих, можно добиться лучших результатов.</td><td class="cell-]hMA"><span class="selected-value select-value-color-pink">Кругозор</span></td></tr><tr id="10485043-b22d-4490-ab58-86d67b518567"><td class="cell-;WI_"><div class="checkbox checkbox-off"></div></td><td class="cell-title"><a href="%D0%A0%D0%B0%D0%B7%D0%BB%D0%B8%D1%87%D0%BD%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%204a149d114a244e19be4c1e03dee99736/%D0%A2%D0%B0%D0%BB%D0%B8%D1%86%D0%B0%20%E2%80%9C%D0%96%D0%B8%D0%B7%D0%BD%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BD%D1%86%D0%B8%D0%BF%D1%8B%E2%80%9D%209ae9d6b9aee54bd9af0d1765c45be4e9/%D0%92%D0%BE%D0%B2%D0%BB%D0%B5%D1%87%D0%B5%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D1%8C%20%D0%B8%20%D0%BF%D1%80%D0%BE%D0%B0%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D0%BE%D1%81%D1%82%D1%8C%20%D0%B2%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B5%20%D0%B8%20%D0%B6%D0%B8%D0%B7%D0%BD%D0%B8%2010485043b22d4490ab5886d67b518567.html">Вовлеченность и проактивность в работе и жизни</a></td><td class="cell-_HB+">Брать на себя больше ответственности, «суетиться», «допытываться», задавать вопросы и больше вовлекаться. Например: Сам выяснил контакты, сам связался, узнал необходимую информацию.</td><td class="cell-]hMA"><span class="selected-value select-value-color-purple">Личные качества</span></td></tr><tr id="58a32471-0f46-4092-8e7e-3793741e9679"><td class="cell-;WI_"><div class="checkbox checkbox-off"></div></td><td class="cell-title"><a href="%D0%A0%D0%B0%D0%B7%D0%BB%D0%B8%D1%87%D0%BD%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%204a149d114a244e19be4c1e03dee99736/%D0%A2%D0%B0%D0%BB%D0%B8%D1%86%D0%B0%20%E2%80%9C%D0%96%D0%B8%D0%B7%D0%BD%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BD%D1%86%D0%B8%D0%BF%D1%8B%E2%80%9D%209ae9d6b9aee54bd9af0d1765c45be4e9/%D0%91%D1%8B%D1%82%D1%8C%20%D1%83%D0%B2%D0%B5%D1%80%D0%B5%D0%BD%D0%B5%D0%B5,%20%D1%87%D0%B5%D0%BC%20%D0%B5%D1%81%D1%82%D1%8C%20%D0%BD%D0%B0%20%D1%81%D0%B0%D0%BC%D0%BE%D0%BC%20%D0%B4%D0%B5%D0%BB%D0%B5%2058a324710f4640928e7e3793741e9679.html">Быть уверенее, чем есть на самом деле</a></td><td class="cell-_HB+">Наглость второе счастье и порой бывает не лишним перегнуть палку, настоять на своем и &quot;выбить&quot; себе условия получше.
+Ну а если перегнешь палку и люди начнут возмущаться, можно поумерить пыл.
+Например: Озвучить завышенные зарплатные ожидания или устроиться на работу с более строгими требованиями к кандидату.</td><td class="cell-]hMA"><span class="selected-value select-value-color-purple">Личные качества</span></td></tr><tr id="eb49142f-7961-4e64-a61c-67c44ba82267"><td class="cell-;WI_"><div class="checkbox checkbox-off"></div></td><td class="cell-title"><a href="%D0%A0%D0%B0%D0%B7%D0%BB%D0%B8%D1%87%D0%BD%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%204a149d114a244e19be4c1e03dee99736/%D0%A2%D0%B0%D0%BB%D0%B8%D1%86%D0%B0%20%E2%80%9C%D0%96%D0%B8%D0%B7%D0%BD%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5%20%D0%BF%D1%80%D0%B8%D0%BD%D1%86%D0%B8%D0%BF%D1%8B%E2%80%9D%209ae9d6b9aee54bd9af0d1765c45be4e9/%D0%9E%D0%B1%D1%89%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D1%81%20%D0%BB%D1%8E%D0%B4%D1%8C%D0%BC%D0%B8%20%D0%B8%20%D0%B7%D0%B0%D0%B2%D0%BE%D0%B4%D0%B8%D1%82%D1%8C%20%D1%81%D0%B2%D1%8F%D0%B7%D0%B8%20(%D0%BD%D0%B5%D1%82%D0%B2%D0%BE%D1%80%D0%BA%D0%B8%D0%BD%D0%B3)%20eb49142f79614e64a61c67c44ba82267.html">Общаться с людьми и заводить связи (нетворкинг)</a></td><td class="cell-_HB+">Окружающие люди — источники систематизированной информации, а также, возможностей.</td><td class="cell-]hMA"><span class="selected-value select-value-color-yellow">Взаимоотношения</span></td></tr></tbody></table></div><h2 id="1c7a4e93-657c-4743-a537-ee85165a07be" class="block-color-gray_background">Какие вопросы задавать при знакомстве</h2><ol type="1" id="b6ec7786-37ec-4b04-9671-687de6e9054c" class="numbered-list" start="1"><li>Как зовут?</li></ol><ol type="1" id="3abfce5d-1f6a-4753-8484-145c2c6514c0" class="numbered-list" start="2"><li>Сколько лет? (дата рождения)</li></ol><ol type="1" id="84aa4d7e-f844-4276-9343-55d7b8bd9133" class="numbered-list" start="3"><li>Где работаешь/учишься? (На кого и по какой причине собираешься пойти учиться/почему выбрал эту профессию)</li></ol><ol type="1" id="8ad65df5-052c-4b6a-8e44-174e206975c7" class="numbered-list" start="4"><li>Как проводишь свободное от учебы/работы время? (Интересы)</li></ol><ol type="1" id="51d7a256-9c88-43c7-99ed-81c48c73937c" class="numbered-list" start="5"><li>Какими контактами можем обменяться? (Телефон, Вконтакте)</li></ol><ol type="1" id="b48a01b8-c2a8-4a0d-818b-59700d5b92b8" class="numbered-list" start="6"><li>Как относишься к алкоголю, курению, наркотикам, мату, моде, нынешней ситуации в стране?</li></ol><ol type="1" id="fc746a11-c08c-4936-bc4c-8c04c48eff8a" class="numbered-list" start="7"><li>Во что веришь? (Бог, загробная жизнь, инопланетяне, гороскопы, судьба, удача)</li></ol><ol type="1" id="13989716-f1d7-417c-84a6-61bfa8a2ffe5" class="numbered-list" start="8"><li>Что нравится и что не любишь? (Например из еды)</li></ol><ol type="1" id="b913bc1c-46b7-41c9-a6b2-3dffc9a5d851" class="numbered-list" start="9"><li>Где и с кем живешь?</li></ol><ol type="1" id="5a2729ea-6fca-492d-aafa-d3308705f5b6" class="numbered-list" start="10"><li>К какому типу характера себя относишь? (Флегматик, холерик, меланхолик, сангвиник)</li></ol><ol type="1" id="65b6088b-cd04-434a-95b7-5f9a1be3e9e5" class="numbered-list" start="11"><li>Расскажи о своих друзьях, подругах?</li></ol><ol type="1" id="bcb2f37d-fa47-4edf-9339-350ddfca35e9" class="numbered-list" start="12"><li>Как относишься к домашним питомцам и есть ли они?</li></ol><ol type="1" id="68223436-1122-4471-bcb5-2815d0fe38a5" class="numbered-list" start="13"><li>Как проходит обычный будний и выходной день?</li></ol><ol type="1" id="9763c87e-7182-47c7-a7f3-763d1f67d744" class="numbered-list" start="14"><li>Любимые животные, цвета, фильмы, книги, сериалы, фильмы, аниме, музыка?</li></ol><ol type="1" id="ae5a040c-6561-4a77-a4c8-2ec04f38cb2c" class="numbered-list" start="15"><li>Есть ли братья или сестры?</li></ol><ol type="1" id="d7d9d3e2-7f16-4aed-bb29-dd05f4aeb287" class="numbered-list" start="16"><li>Чего боишься? (Темноты, высоты, насекомых)</li></ol><ol type="1" id="2c2cc6ff-01ac-45a4-bbf0-dd64bb504dc3" class="numbered-list" start="17"><li>История жизни с первых воспоминаний и по сей день?</li></ol><h2 id="8a1d28c6-7edc-4e50-8195-026a618c60f9" class="block-color-gray_background">Мои стихи</h2><div id="4b3f1e4a-d116-4588-aef8-62d8733a9f9d" class="column-list"><div id="9e1b3848-9035-421a-b93c-ef793c6894d2" style="width:50%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="5dc11626-be85-451d-8c57-1b77eeadbfa8"><div style="font-size:1.5em"><span class="icon">📄</span></div><div style="width:100%"><strong><em>Написано поздней дождливой ночью о бывшей девушке, которая выносила мне мозги.</em></strong><p id="3b72fc80-911c-48e9-868e-a5f20e03baa8" class="">Твое настроение временами подвержено изменениям
+Как град знойным днем летним, вводит меня в смятение
+Стремительно и необратимо меняя твое поведение
+Не оставляя места былым чувствам и влечениям</p><p id="9e04e8f9-7ca1-418f-8383-4e61ed539cf2" class="">Это лишь пара строф, передающих мысли
+В голове моей будто гнездо свивших
+В столь поздний час, без преувеличении
+Пожелал бы оказаться в твоем сне беспечном</p><p id="f7ba26e8-5f0f-49db-bb52-33e5e2f6d85e" class="">В глубь подсознания, донеся слов смысл
+Избавив тем самым от обид лишних
+Поделившись чувствами, внешне сокрытыми
+Чтобы знала ты, что я к тебе испытываю.</p></div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1b0f87db-e897-4369-86fd-d6bd780c92e7"><div style="font-size:1.5em"><span class="icon">📄</span></div><div style="width:100%"><em><strong>Написано для любимой, о том, какие чувства я переживал в момент нашего общения и необычного знакомства.</strong></em><p id="afb53d03-640d-422c-962c-e89d45ce7bb2" class="">Среди сотен безликих и безымянных
+Темным вечером зимним, сидя усталым
+Неожиданно встретилась мне, та самая
+Кому строчки эти и посвящаю я</p><p id="23cab30a-4e85-46fd-8004-cf8d25fded9d" class="">Буквы складывались в слова, слова в предложения
+Узнавал твои интересы и увлечения
+Будто по кусочкам, собирая пазл
+Формируя образ твой в своем сознании</p><p id="1cd78511-d4f4-45fa-ae7a-c97f62383986" class="">После нашей встречи, мне стало ясно
+Я нашел ту, с которой хочу остаться
+Проводить время вместе, видеться чаще
+В конце дня с которой, не хочу прощаться.</p></div></figure></div><div id="2bd34cd4-8afb-4f18-a4e1-81fa27c7622d" style="width:50%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="45b33913-42e4-474c-83c8-48bd73b50ce0"><div style="font-size:1.5em"><span class="icon">📄</span></div><div style="width:100%"><em><strong>Написано на скучной последней паре в вузе, в день когда я не выспался. </strong></em><p id="e0667981-e86f-41f9-9c57-1ecf06db0688" class="">Осталось совсем немного, пары подходят к концу.
+Накину на плечи куртку, неспешно к метро пойду.
+Доеду до дома немо, ключ поверну в замке.
+Одежду скину на кресло, усталость растворю во сне.</p></div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="014c3a70-46a8-4a58-bb16-a0efa33eeb18"><div style="font-size:1.5em"><span class="icon">📄</span></div><div style="width:100%"><strong><em>Настя попала в больницу, после того как у нее застрял кусок мяса в горле и она поведала мне историю о молодой девушке доставленной в больницу, которая решила покончить с собой наевшись таблеток из-за кожной болячки, а вместо этого сожгла себе пищевод и осталась по сути инвалидом. Мысли на эту тему навели меня на написание этого стихотворения.</em></strong><p id="45b06634-02d3-45e2-8d46-705de558b900" class="">Можно химией травиться иль в лепешку превратиться, током биться, утопиться, газом едким отравиться, да хоть на люстре задушиться...
+Всяко можно помереть, способов уж всех не счесть.
+Для тех, кому жизнь не нужна, всегда протянута рука.
+Печальнее ждет тех судьба, кому жизнь реально дорога.
+Кто её ценит, ей горит и каждым днем в ней дорожит.
+Кто строит планы и спешит на максимум свой день прожить.
+Упавший с крыши льда кусок, пронзительный визг тормозов, в розетке ток, еды кусок...
+Любой миг может стать концом, назначив встречу с праотцом.
+На самом деле мысль проста, всем нам одна лишь жизнь дана.
+Поэтому цени что есть, гордись тем что живешь и здесь.
+Не отпускай, что получил и знай, ты это заслужил!</p><p id="055766af-2456-40bc-9ddb-a3e5416d7b85" class=""><strong><em>Решил немного поменять текст и пока писал, проникся циничной ноткой и дописал продолжение.</em></strong></p><p id="4263aa12-1789-4ace-8c26-50037fd7a7dd" class="">На самом деле, все брехня, жизнь человека не важна.
+И все живем мы чтобы... жить, земли ресурсы потрошить.
+В карманы деньги набивать, проблемы глупые решать.
+Детей рожать, других губить.
+А смысла нет, сколь не ищи, мы лишь частицы и лучи на фоне млечного пути.</p></div></figure></div></div></div></article></body></html>

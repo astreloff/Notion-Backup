@@ -1,0 +1,835 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Траты, варианты выплат и сроки</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="3ef50fa3-489b-4de2-bb03-b3df64b669ce" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">💸</span></div><h1 class="page-title">Траты, варианты выплат и сроки</h1></header><div class="page-body"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="35b8d5cb-9262-4a50-b946-071b1e01c726"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">КОПИТЬ НА РЕМОНТ можем спокойно до лета/осени 2024 года (что от текущего периода 1,5 года), потому что сдача жилья не раньше этого срока </div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="fb4cb1b1-23ce-436c-ab57-9637477b4248"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">В ЛЮБОМ плане можно сократить сроки выплат на 6-12 месяцев, т.к. премии, где-то остатками наэкономим и тд. Но ориентируемся на рассчитанные в картинках!</div></figure><ul id="df1d1b82-f8cd-49c9-8e0a-607f33780af5" class="toggle"><li><details open=""><summary>Текст из калькулятора</summary><pre id="b3557368-8825-4d46-8b9d-a546e9d3c3d9" class="code"><code>zpN = 72000 #ЗП Насти
+zpA = 140000 #ЗП Андрей
+zpO = zpN + zpA #ЗП общая
+
+#Подсчет ОБЯЗАТЕЛЬНЫХ трат
+pit = 30000 #Продукты и вкусняшки
+kom = 10000 #Коммуналка
+otp1 = 15000 #Отпуск 1
+otp2 = 15000 #Отпуск 2
+tratN = 3000 + 1000 + 3000 + 4000 #Личные траты Насти (транспорт, интернет, подарки, нужды)
+tratA = 3000 + 1000+ 4000 + 5000 #Личные траты Андрея (транспорт, интернет, подарки, нужды)
+sumOT = pit + kom + otp1 + otp2 + tratN + tratA
+
+#Сумма необходимая на ремонт
+rem = 1500000
+#Сумма необходимая на подушку безопасности
+pod = 350000
+#Сумма ипотеки
+ipoteka = 15000000
+#Минимальный ежемесячный взнос
+ipotekaMIN = 70000 #минимально возможная сумма ипотеки (от 65 до 70к, откруглила в большую сторону, тк цены растут)
+
+#План расходов 1 (2 отпуска в год)
+svobod1 = zpO - sumOT #остается сумма в месяц
+ost1 = svobod1 - ipotekaMIN #с этой суммы первые годы копим подушку и на ремонт
+srok_pod1 = pod / ost1 #сколько месяцев копим на подушку
+srok_rem1 = rem / ost1 #сколько месяцев копим на ремонт
+#По такому плану копим подушку 7 месяцев и на ремонт почти 3 года. Только потом начинаем вкладываться в ипотеку (картинка 1)
+
+#План расходов 2 (1 отпуск в год)
+svobod2 = zpO - sumOT + otp2 #остается сумма в месяц
+ost2 = svobod2 - ipotekaMIN #с этой суммы первые годы копим подушку и на ремонт
+srok_pod2 = pod / ost2 #сколько месяцев копим на подушку
+srok_rem2 = rem / ost2 #сколько месяцев копим на ремонт
+#По такому плану копим на подушку 5 месяцев и на ремонт 2 года. Потом начинаем вкладываться в ипотеку (картинка 2)
+
+#План расходов 3 (не ездим в отпуска)
+svobod3 = zpO - sumOT + otp2 + otp1 #остается сумма в месяц
+ost3 = svobod3 - ipotekaMIN #с этой суммы первые годы копим подушку и на ремонт
+srok_pod3 = pod / ost3 #сколько месяцев копим на подушку
+srok_rem3 = rem / ost3 #сколько месяцев копим на ремонт
+#По такому плану копим на подушку 4 месяца и на ремонт 1,5 года. Потом начинаем вкладываться в ипотеку (картинка 3). Предлагаю его  и после 2 лет уже начинать ездить в отпуска
+
+#Примерно к 2029 году мы захотим ребенка и скорее всего на него будет уходить определенная сумма. Считаю ее равной 15к, что равняется одному отпуску, поэтому теперь
+rebenok = otp2
+
+#Исходя из картинок 1-4, вижу план таким (картинка 5):
+#Сначала копим на подушку безопасности, потом ремонт, ездим 1 раз в год в отпуск
+#Потом до 2029 года вкладываем все в ипотеку и ездим 1 раз в год в отпуск
+#После 2029 года платим по ипотеке все, что можем (сумма svobod минус 15к на ребенка и + все с отпусков, т.к. в первый год-два мы не сможем особо уехать)
+#С 2033 года платим по ипотеке минималку + каждые 3 мясяца по 15К (что набежит с остатков трат на ребенка)
+
+#ВАРИАНТ ВЫШЕ НО С МАТ.КАПИТАЛОМ (587 тыс. рублей на первого ребенка) - картинка 6
+#Сначала копим на подушку безопасности, потом ремонт, ездим 1 раз в год в отпуск
+#Потом до 2029 года вкладываем все в ипотеку и ездим 1 раз в год в отпуск
+#После 2029 года платим по ипотеке все, что можем (сумма svobod минус 15к на ребенка и + все с отпусков, т.к. в первый год-два мы не сможем особо уехать)
+#весь мат.капитал
+#С 2033 года платим по ипотеке минималку + каждые 3 мясяца по 15К (что набежит с остатков трат на ребенка)</code></pre></details></li></ul><ul id="7dc9893a-c2d4-4b03-b98f-2d7bc8148d83" class="toggle"><li><details open=""><summary>Архивные варианты</summary><figure id="c7b01cb4-f8d0-400b-b158-468d944d1d45" class="image"><a href="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled.png"><img style="width:528px" src="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled.png"/></a></figure><p id="3a54f02d-ffe1-450d-ab6b-d8ef28409cc5" class="">Картинка 1. Начало ипотеки март 2023 - <strong>конец декабрь 2036</strong>
+Ездим в отпуска, чилим без ремонта 3 года. Как только есть подушка и ремонт - вкладываемся в ипотеку с мая 2026</p><figure id="5ae04424-030d-40b1-b331-d4c6a2473fa1" class="image"><a href="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%201.png"><img style="width:528px" src="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%201.png"/></a></figure><figure id="00e3bd4e-fca4-457b-9516-f2189e8b37ab" class="image"><a href="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%202.png"><img style="width:576px" src="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%202.png"/></a></figure><p id="7ae9d0db-46a6-4fd7-a1d1-29b3b00e4363" class="">Картинка 2. Начало ипотеки март 2023 - <strong>конец ноябрь 2034</strong>
+Ездим в 1 отпуск, после накопления на все (2 года 4 месяца) начинаем вкладываться в ипотеку с июля 2025</p><figure id="d015196a-3964-4252-8a38-274d2a0611fa" class="image"><a href="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%203.png"><img style="width:576px" src="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%203.png"/></a></figure><figure id="0912c50f-6d3d-42d9-bb99-98a042b0d9cf" class="image"><a href="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%204.png"><img style="width:576px" src="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%204.png"/></a></figure><p id="19ce8186-214c-41b5-838d-770d0b687efc" class="">Картинка 3. Начало ипотеки март 2023 - <strong>конец август 2034</strong>
+Не ездим в отпуска все время, что копим на ремонт и подушку (2 года), потом вкладываемся в ипотеку и 1 отпуск</p><figure id="830cdad3-75b0-4a9f-869a-e09dfbaef303" class="image"><a href="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%205.png"><img style="width:576px" src="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%205.png"/></a></figure><p id="b56daf05-327e-4ac0-8cb8-0735fd0cbf95" class="">ДРУГОЙ ВАРИАНТ</p><p id="975bb525-1fc8-4458-b369-0ce5118d24a8" class="">Картинка 4. Начало ипотеки март 2023 - <strong>конец июнь 2033</strong>
+Не ездим вообще в отпуска, после того как копим на ремонт и подушку все скидываем в ипотеку</p><figure id="7db82772-4089-4341-ba0d-c15ef76df028" class="image"><a href="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%206.png"><img style="width:576px" src="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%206.png"/></a></figure><figure id="9f7ec591-47f3-4ff2-b982-c75bd3bfd097" class="image"><a href="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%207.png"><img style="width:576px" src="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%207.png"/></a></figure><p id="0a269fc8-f084-4e40-9765-bbb77df38616" class="">Картинка 5 (описана в калькуляторе)
+<strong>Конец декабрь 2036</strong></p><figure id="afee952d-e748-4bff-a3b1-6457af8b2432" class="image"><a href="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%208.png"><img style="width:1121px" src="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%208.png"/></a></figure><figure id="fc9b2b29-c571-4379-8ee2-6ccb14c71038" class="image"><a href="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%209.png"><img style="width:1131px" src="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%209.png"/></a></figure><figure id="cea993c6-ec78-4780-a3d6-6f78fa549e5a" class="image"><a href="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%2010.png"><img style="width:528px" src="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%2010.png"/></a></figure><p id="3cf8e7e3-18c4-49c2-b974-9fcb37e1b2bf" class="">Картинка 6 (история как на 5, но еще мат.капитал)
+<strong>Конец апрель 2035</strong></p><figure id="54469302-536a-4f5d-af57-8c29e9456e46" class="image"><a href="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%2011.png"><img style="width:624px" src="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%2011.png"/></a></figure><h3 id="60a346d3-cd6e-40cb-9729-70be1f0c1a24" class=""><mark class="highlight-teal_background">Ответвление варианта 2</mark></h3><figure id="6bafd555-830d-44f5-b6f2-5719fbd3092e" class="image"><a href="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%202.png"><img style="width:480px" src="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%202.png"/></a></figure><p id="88ec0154-150d-4949-9c0c-8429fea47201" class="">Данный вариант компенсирует затраты на ребенка и обезопасит нас бОльшими накоплениями. После 2 лет накоплений на подушку и ремонт, у нас остается свободных денег (с учетом выплаты минималке по ипотеке) 63к. Если платить ежемесячно 50к досрочно, а 13к копить на ребенка, на траты, на туда-сюда, то получается так. + Это самый спокойный вариант и всегда отпуска</p><p id="3c7c2981-88ac-4c76-91ca-4e19e03b1f42" class="">Закрытие <strong>ноябрь 2035</strong>
+</p><figure id="57ebba65-147d-42c6-9d48-b4cee0b8b309" class="image"><a href="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%2012.png"><img style="width:672px" src="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%2012.png"/></a></figure></details></li></ul><h3 id="c7decf47-84ce-4f41-b0bc-87cc56a5321e" class="block-color-orange_background">Вариант с уменьшением процента за бабки (на 30 лет, уменьшение процента на 2 за 1 миллион) </h3><ul id="9d0380fd-f44e-4bc0-9c97-fff1d2bd691e" class="toggle"><li><details open=""><summary>текст калькулятора</summary><p id="01142c26-0af4-4e63-9b84-ba7ea49afacb" class="">zpN = 72000 #ЗП Насти
+zpA = 140000 #ЗП Андрей
+zpO = zpN + zpA #ЗП общая</p><p id="7a839d69-a806-4af8-a557-35a166d63168" class="">#Подсчет ОБЯЗАТЕЛЬНЫХ трат
+pit = 30000 #Продукты и вкусняшки
+kom = 10000 #Коммуналка
+otp1 = 15000 #Отпуск 1
+otp2 = 15000 #Отпуск 2
+tratN = 3000 + 1000 + 3000 + 4000 #Личные траты Насти (транспорт, интернет, подарки, нужды)
+tratA = 3000 + 1000+ 4000 + 5000 #Личные траты Андрея (транспорт, интернет, подарки, нужды)
+sumOT = pit + kom + otp1 + otp2 + tratN + tratA</p><p id="38bcaf8b-64b2-4efc-90c7-7e22761dfdff" class="">#Сумма необходимая на ремонт
+rem = 1500000
+#Сумма необходимая на подушку безопасности
+pod = 350000
+#Сумма ипотеки
+ipoteka = 14200000
+#Минимальный ежемесячный взнос
+ipotekaMIN = 49000 #минимально возможная сумма ипотеки (от 65 до 70к, откруглила в большую сторону, тк цены растут)
+#Занятый у всех 1 миллион
+dolg = 1000000</p><p id="24c9c7d5-7680-4754-a861-d3e3d18a616c" class="">#План расходов с 1 отпуском и пониженным процентом за 1 миллион
+svobod1 = zpO - sumOT #остается сумма в месяц
+ost1 = svobod1 - ipotekaMIN + otp2 #с этой суммы первые годы копим подушку, отдаем долги и копим на ремонт
+srok_pod1 = round (pod / ost1) #сколько месяцев копим на подушку
+srok_dolg = round (dolg / ost1) #сколько отдаем долги
+srok_rem1 = round (rem / ost1) #сколько месяцев копим на ремонт
+#Срок до начала досрочного погашения ипотеки
+dosrok = round ((srok_pod1 + srok_dolg + srok_rem1) / 12)
+#Спустя 3 года (2026) начинаем досрочно погашать ипотеку, откладывая в месяц по 20к на ребенка и будущие траты
+dopvznos = ost1 - 20000
+#Еще спустя 3 года рождается ребенок. Вкладываем 587к мат.капитала и учитываем то, что я буду получать меньше (округлим и представим, что моя ЗП становится 60к)
+zpN = 60000 #ЗП Насти
+zpA = 140000 #ЗП Андрей
+zpO = zpN + zpA #ЗП общая
+svobod1 = zpO - sumOT #остается сумма в месяц
+ost1 = svobod1 - ipotekaMIN + otp2 #свободная сумма, 20к на ребенка и остальное на ипотеку
+A = ost1 - 20000 #сумма для досрочного погашения</p></details></li></ul><div id="77c567a9-f69e-46dd-9463-44b309af92ff" class="column-list"><div id="f355fc61-3ea1-43f9-a5b6-cd1b4d9872a3" style="width:50%" class="column"><p id="5061981f-6aa1-4891-b0f9-4c271572dfd1" class="">Расчет просто по плану без маткапитала</p><figure id="ee3b2a69-f3ed-4ae1-9bb8-58e4e6843136" class="image"><a href="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%2013.png"><img style="width:1147px" src="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%2013.png"/></a></figure></div><div id="5b43c600-b113-4700-9387-dc54a4881c66" style="width:50%" class="column"><p id="116f36d6-be27-4740-8c5e-0d91e690c3c2" class="">Расчет с маткапиталом по плану</p><figure id="5eb6d34e-ad39-4544-b570-103a6b75d44f" class="image"><a href="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%2014.png"><img style="width:1132px" src="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%2014.png"/></a></figure></div></div><p id="715ace35-294e-40ff-a54f-583c66bbecb7" class="">Срок выплаты по такому варианту - 13-14 лет, минимальная сумма 49к</p><div id="a344df00-2b18-42d4-bdae-76d151d73dbb" class="column-list"><div id="73d70558-0920-401e-9e9a-00f429b837fe" style="width:50%" class="column"><p id="5c252be0-5726-4d28-aab4-79807347f304" class="">Плюсы:</p><ul id="bc60fa56-cd32-425f-9ce1-67b6ad8e3858" class="bulleted-list"><li style="list-style-type:disc">свое жилье</li></ul><ul id="ecdb5c63-3416-4341-a52d-f53716dceaaa" class="bulleted-list"><li style="list-style-type:disc">Удачная планировка</li></ul><ul id="af812ff9-7a15-4040-99c7-41220bbff19f" class="bulleted-list"><li style="list-style-type:disc">Новый дом</li></ul><ul id="bbbcff84-f326-4232-9d32-3886c492baa4" class="bulleted-list"><li style="list-style-type:disc">Минимальный платеж 50к</li></ul></div><div id="6f0db6dc-038a-47ef-9f70-483f1c842738" style="width:50%" class="column"><p id="16123a84-619c-4079-91a7-d0f140b4fd2e" class="">Минусы:</p><ul id="42c64345-7a5c-4263-884e-6ac1d645f828" class="bulleted-list"><li style="list-style-type:disc">Первые три года придется копить подушку, потом возвращать долги и потом только ремонт и потом только погашение ипотеки</li></ul><ul id="7630c389-335b-4116-8f90-2b6fea103c8e" class="bulleted-list"><li style="list-style-type:disc">Страшно обязывать себя перед банком</li></ul></div></div><h3 id="bf806cda-6b70-4325-b133-aa50d2156a21" class="block-color-orange_background">Вариант с уменьшением процента за бабки (на 30 лет, уменьшение процента на 1,5 за 720к) </h3><ul id="640fdf98-e721-44f4-b4dd-a3fa259ca34f" class="toggle"><li><details open=""><summary>текст калькулятора</summary><p id="d7203b22-fb82-469d-a07d-d5ed6578f8df" class="">zpN = 72000 #ЗП Насти
+zpA = 140000 #ЗП Андрей
+zpO = zpN + zpA #ЗП общая</p><p id="3a0d3da9-d0bd-40e5-8366-e4acdd06e564" class="">#Подсчет ОБЯЗАТЕЛЬНЫХ трат
+pit = 30000 #Продукты и вкусняшки
+kom = 10000 #Коммуналка
+otp1 = 15000 #Отпуск 1
+otp2 = 15000 #Отпуск 2
+tratN = 3000 + 1000 + 3000 + 4000 #Личные траты Насти (транспорт, интернет, подарки, нужды)
+tratA = 3000 + 1000+ 4000 + 5000 #Личные траты Андрея (транспорт, интернет, подарки, нужды)
+sumOT = pit + kom + otp1 + otp2 + tratN + tratA</p><p id="bfa691ef-1ff1-4644-b3dc-d693159cc9ae" class="">#Сумма необходимая на ремонт
+rem = 1500000
+#Сумма необходимая на подушку безопасности
+pod = 350000
+#Сумма ипотеки
+ipoteka = 14200000
+#Минимальный ежемесячный взнос
+ipotekaMIN = 52000 #минимально возможная сумма ипотеки (от 65 до 70к, откруглила в большую сторону, тк цены растут)
+#Занятый у всех 1 миллион
+dolg = 720000</p><p id="bc3de47f-c3f0-4c89-bcd7-5195d239943a" class="">#План расходов с 1 отпуском и пониженным процентом за 1 миллион
+svobod1 = zpO - sumOT #остается сумма в месяц
+ost1 = svobod1 - ipotekaMIN + otp2 #с этой суммы первые годы копим подушку, отдаем долги и копим на ремонт
+srok_pod1 = round (pod / ost1) #сколько месяцев копим на подушку
+srok_dolg = round (dolg / ost1) #сколько отдаем долги
+srok_rem1 = round (rem / ost1) #сколько месяцев копим на ремонт
+#Срок до начала досрочного погашения ипотеки
+dosrok = round ((srok_pod1 + srok_dolg + srok_rem1) / 12)
+#Спустя 3 года (2026) начинаем досрочно погашать ипотеку, откладывая в месяц по 20к на ребенка и будущие траты
+dopvznos = ost1 - 20000
+#Еще спустя 3 года рождается ребенок. Вкладываем 587к мат.капитала и учитываем то, что я буду получать меньше (округлим и представим, что моя ЗП становится 60к)
+zpN = 60000 #ЗП Насти
+zpA = 140000 #ЗП Андрей
+zpO = zpN + zpA #ЗП общая
+svobod1 = zpO - sumOT #остается сумма в месяц
+ost1 = svobod1 - ipotekaMIN + otp2 #свободная сумма, 20к на ребенка и остальное на ипотеку
+A = ost1 - 20000 #сумма для досрочного погашения</p></details></li></ul><div id="f91d76ff-2e1f-4fcb-90c0-43b7d48d7e43" class="column-list"><div id="214e469d-40b8-46e2-9922-97374c9ba45e" style="width:50%" class="column"><p id="51d6bcdb-ce7b-450f-9f27-7087df28c1f7" class="">Расчет просто по плану без маткапитала</p><figure id="22f946e7-5ced-4432-b8ac-0bbe9b102395" class="image"><a href="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%2015.png"><img style="width:1135px" src="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%2015.png"/></a></figure></div><div id="6f4d57d3-9cad-488c-9cbc-4f68ae8ec48c" style="width:50%" class="column"><p id="1859c7ee-029d-4e66-903d-c74a2a0bae25" class="">Расчет с маткапиталом по плану</p><figure id="96e0e763-5294-491f-adf4-86f40d0ddcd9" class="image"><a href="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%2016.png"><img style="width:1148px" src="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%2016.png"/></a></figure></div></div><p id="abb0a297-1ab0-487b-9f25-482e6a7860a5" class="">Срок выплаты по такому варианту - 13-14 лет, минимальная сумма 52к</p><div id="8889fc9c-4b11-4d3a-bbec-ecbd4a1250dd" class="column-list"><div id="3fa1571e-7fb8-4129-b1cc-14841e3d150d" style="width:50%" class="column"><p id="9ff409b0-1ffb-4329-b0fb-bf4942f8e193" class="">Плюсы:</p><ul id="6864c2cf-3386-49d0-a5d4-b004f8678aeb" class="bulleted-list"><li style="list-style-type:disc">свое жилье</li></ul><ul id="0944703b-a588-44e0-89cf-e6a7cee95268" class="bulleted-list"><li style="list-style-type:disc">Удачная планировка</li></ul><ul id="2b673707-4b1d-4870-812a-681661a69740" class="bulleted-list"><li style="list-style-type:disc">Новый дом</li></ul><ul id="355d6d9f-bc58-45f0-9c65-d23b1fa72526" class="bulleted-list"><li style="list-style-type:disc">Минимальный платеж 52к</li></ul></div><div id="ee1ba3da-037f-4648-99ed-6fc96a09afce" style="width:50%" class="column"><p id="23e5346d-f180-4ac9-9235-026ad58760dd" class="">Минусы:</p><ul id="20dfae81-13ad-4706-974d-a4edfbbf6a95" class="bulleted-list"><li style="list-style-type:disc">Первые три года придется копить подушку, потом возвращать долги и потом только ремонт и потом только погашение ипотеки</li></ul><ul id="ac6c7b7c-2501-451d-8ee1-d1dcd4a3443d" class="bulleted-list"><li style="list-style-type:disc">Страшно обязывать себя перед банком</li></ul></div></div><p id="42753016-3c90-4c40-900f-d1b13c932c2f" class="block-color-blue_background">Разница между 1,5%, 2 % и без % с маткапиталом:</p><table id="538003d3-818c-444a-b59c-e723de133016" class="simple-table"><thead class="simple-table-header"><tr id="b9e8a429-9829-406c-ba27-c6480b093e69"><th id="qt[o" class="simple-table-header-color simple-table-header"></th><th id="caC[" class="simple-table-header-color simple-table-header">1,5%</th><th id="DKEh" class="simple-table-header-color simple-table-header">2%</th><th id="O[Qt" class="simple-table-header-color simple-table-header">Без процента</th></tr></thead><tbody><tr id="879639f8-fc4e-4a60-9088-64c1cd995956"><td id="qt[o" class="">Срок выплат</td><td id="caC[" class="">13 лет 1 месяц</td><td id="DKEh" class="">12 лет 9 месяцев</td><td id="O[Qt" class="">13 лет 10 месяцев</td></tr><tr id="0a81ee3f-55d6-4c01-bcc0-69244ab036ee"><td id="qt[o" class="">Сумма переплат</td><td id="caC[" class="">2 292 000</td><td id="DKEh" class="">2 435 000</td><td id="O[Qt" class="">4 576 000</td></tr><tr id="e2761939-94c0-4ff6-90f3-3ba1806bc257"><td id="qt[o" class="">Срок возврата долгов</td><td id="caC[" class="">9 месяцев</td><td id="DKEh" class="">12 месяцев</td><td id="O[Qt" class="">0 месяцев</td></tr></tbody></table><h1 id="0fc42862-e4ac-4eed-a231-1b5aa808e71f" class="">ДЛЯ СРАВНЕНИЯ БЕЗ ПРОЦЕНТА</h1><p id="a5d18f54-9f37-4538-a7d1-2d6c543d98c6" class="">Те же исходные данные, что и выше, но без платного процента</p><ul id="36d0e1a0-b743-4c9f-a6a6-d0e87257dc2b" class="toggle"><li><details open=""><summary>текст из калькулятора</summary><p id="f55abd3a-30af-4bb3-8432-5f7e458e77af" class="">zpN = 72000 #ЗП Насти
+zpA = 140000 #ЗП Андрей
+zpO = zpN + zpA #ЗП общая</p><p id="01e0bcb8-0eae-4c88-8dae-0d7e5b23db2f" class="">#Подсчет ОБЯЗАТЕЛЬНЫХ трат
+pit = 30000 #Продукты и вкусняшки
+kom = 10000 #Коммуналка
+otp1 = 15000 #Отпуск 1
+otp2 = 15000 #Отпуск 2
+tratN = 3000 + 1000 + 3000 + 4000 #Личные траты Насти (транспорт, интернет, подарки, нужды)
+tratA = 3000 + 1000+ 4000 + 5000 #Личные траты Андрея (транспорт, интернет, подарки, нужды)
+sumOT = pit + kom + otp1 + otp2 + tratN + tratA</p><p id="bfa3eb11-cc93-44d7-b3df-8422aa9ec966" class="">#Сумма необходимая на ремонт
+rem = 1500000
+#Сумма необходимая на подушку безопасности
+pod = 350000
+#Сумма ипотеки
+ipoteka = 14200000
+#Минимальный ежемесячный взнос
+ipotekaMIN = 63000 #минимально возможная сумма ипотеки (от 65 до 70к, откруглила в большую сторону, тк цены растут)
+#Занятый у всех 1 миллион
+dolg = 1000000</p><p id="cfa30379-e184-4df2-80e5-8cb92167c7eb" class="">#План расходов с 1 отпуском и пониженным процентом за 1 миллион
+svobod1 = zpO - sumOT #остается сумма в месяц
+ost1 = svobod1 - ipotekaMIN + otp2 #с этой суммы первые годы копим подушку, отдаем долги и копим на ремонт
+srok_pod1 = round (pod / ost1) #сколько месяцев копим на подушку
+srok_rem1 = round (rem / ost1) #сколько месяцев копим на ремонт
+#По такому плану копим подушку и ремонт 26 месяцев (2 года 4 месяца)
+#Спустя 2 года 4 месяца (2025 июль) начинаем досрочно погашать ипотеку, откладывая в месяц по 20к на ребенка и будущие траты
+dopvznos = ost1 - 20000
+#Спустя 4 года рождается ребенок (2029 год). Вкладываем 587к мат.капитала и учитываем то, что я буду получать меньше (округлим и представим, что моя ЗП становится 60к)
+zpN = 60000 #ЗП Насти
+zpA = 140000 #ЗП Андрей
+zpO = zpN + zpA #ЗП общая
+svobod1 = zpO - sumOT #остается сумма в месяц
+ost1 = svobod1 - ipotekaMIN + otp2 #свободная сумма, 20к на ребенка и остальное на ипотеку
+A = ost1 - 20000 #сумма для досрочного погашения</p></details></li></ul><div id="264ac785-c7f0-45d7-af03-e229a6572cf8" class="column-list"><div id="780dc378-762f-45ca-b984-d739377458f4" style="width:50%" class="column"><figure id="a4f579b3-0fc5-4bac-92e7-2d4e19bc1b46" class="image"><a href="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%2017.png"><img style="width:768px" src="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%2017.png"/></a></figure></div><div id="5e113418-d909-4002-9891-d541aa1dffa3" style="width:50%" class="column"><figure id="5b9bdb4b-59b7-4222-a936-7a678fb6b8f4" class="image"><a href="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%2018.png"><img style="width:1136px" src="%D0%A2%D1%80%D0%B0%D1%82%D1%8B,%20%D0%B2%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%D0%B8%20%D1%81%D1%80%D0%BE%D0%BA%D0%B8%203ef50fa3489b4de2bb03b3df64b669ce/Untitled%2018.png"/></a></figure></div></div><p id="407ba624-f921-47ce-80d7-d1e436da3ead" class="">Ежемесячный платеж 62 к, один отпуск, 2 года 4 месяца подушка и ремонт копим, потом вкладываемся до 2029 в ипотеку, дальше рожаем, вкладываем мат.капитал и немного продолжаем досрочно вкидывать бабки, оставляя на траты по 20к в месяц
+Срок выплаты так почти 14 лет</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="6c41c3a7-5348-4e71-b093-2fe93a824f5b"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%">ВАЖНО
+При любом раскладе срок не менее 12,5 лет. Готов ли ты СТОЛЬКО работать в it без перерывов? Иначе процент станется обычным 10-12</div></figure></div></article></body></html>
