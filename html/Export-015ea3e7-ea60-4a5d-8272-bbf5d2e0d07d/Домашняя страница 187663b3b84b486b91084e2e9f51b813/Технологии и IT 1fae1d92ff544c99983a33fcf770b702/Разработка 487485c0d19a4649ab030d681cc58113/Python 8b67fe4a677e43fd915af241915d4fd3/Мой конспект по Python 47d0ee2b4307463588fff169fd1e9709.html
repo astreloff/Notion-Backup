@@ -1,0 +1,743 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Мой конспект по Python</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="47d0ee2b-4307-4635-88ff-f169fd1e9709" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🐍</span></div><h1 class="page-title">Мой конспект по Python</h1></header><div class="page-body"><ul id="d2efa34f-e5eb-4e16-a6e3-7bda08d7217a" class="toggle"><li><details open=""><summary><strong>Формат описания</strong></summary><ol type="1" id="1c50ff59-b6bf-44e3-b969-5afb34133587" class="numbered-list" start="1"><li>Определение</li></ol><ol type="1" id="74cecd10-068b-4d77-9b6b-41c15a948382" class="numbered-list" start="2"><li>Особенности и примечания<ol type="a" id="09a37137-d882-4e48-8785-f3cd84535390" class="numbered-list" start="1"><li>Если описывается функция или метод, указывать их параметры с описанием</li></ol></li></ol><ol type="1" id="7ffcb680-7c2e-49f0-be9c-5fba9cd05f6c" class="numbered-list" start="3"><li>Пример синтаксиса</li></ol></details></li></ul><ul id="57f439b8-6990-4398-b206-3d364e2b590b" class="toggle"><li><details open=""><summary><strong>Содержание</strong></summary><nav id="dbd76699-81df-4128-9708-5eb3051aa677" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#77742ad6-91c5-44d3-8cff-3fecefe82028">Варианты использования</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#75cc38ee-53bd-4e0a-b824-d7e7689e8f58">Ввод данных</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#a04302a8-1c36-4f1b-ab4b-9ffc012ca7ad">Типы данных</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#4974595c-4a84-45a4-8c4b-645d525bbb30">Логика и операции</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#539beb04-cf3e-4543-8425-594ffd3d6480">Методы и функции</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#be5b0932-e7a4-40d0-bf23-487b61ecd78b">Другая информация</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a48248f5-835a-420e-b863-49239ec44a19"><strong>Другое</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7ed43a5f-306f-43c8-a229-9e32c7ce381e">Лучшие практики | Best Practice</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7576b52a-50e0-4e82-9a5f-a287cca41924">Модуль, Пакет, Библиотека | <strong>Module, Package, Library</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#694eac00-12c7-433c-8a8f-742891f5b532">Полезная информация</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#744cd9b0-8675-444f-95c7-a1846329843d">Примеры кода</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#4fb9b4b3-036a-4dc8-b92f-c0682d2bb81a">Ссылки для разбора</a></div></nav></details></li></ul><hr id="b2aaeea7-1375-40f6-a517-3815696facdf"/><h1 id="77742ad6-91c5-44d3-8cff-3fecefe82028" class="block-color-gray_background">Варианты использования</h1><div id="403b5a59-27a7-4a47-a210-a54563fe6664" class="collection-content"><h4 class="collection-title">Варианты использования</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M0.637695 13.1914C1.0957 13.1914 1.32812 13 1.47852 12.5215L2.24414 10.3887H6.14746L6.90625 12.5215C7.05664 13 7.2959 13.1914 7.74707 13.1914C8.22559 13.1914 8.5332 12.9043 8.5332 12.4531C8.5332 12.2891 8.50586 12.1523 8.44434 11.9678L5.41602 3.79199C5.2041 3.21777 4.82129 2.9375 4.19922 2.9375C3.60449 2.9375 3.21484 3.21777 3.0166 3.78516L-0.0322266 12.002C-0.09375 12.1797 -0.121094 12.3232 -0.121094 12.4668C-0.121094 12.918 0.166016 13.1914 0.637695 13.1914ZM2.63379 9.12402L4.17871 4.68066H4.21973L5.76465 9.12402H2.63379ZM12.2793 13.2324C13.3115 13.2324 14.2891 12.6787 14.7129 11.8037H14.7402V12.5762C14.7471 12.9863 15.0273 13.2393 15.4238 13.2393C15.834 13.2393 16.1143 12.9795 16.1143 12.5215V8.00977C16.1143 6.49902 14.9658 5.52148 13.1543 5.52148C11.7666 5.52148 10.6592 6.08887 10.2695 6.99121C10.1943 7.15527 10.1533 7.3125 10.1533 7.46289C10.1533 7.81152 10.4062 8.04395 10.7686 8.04395C11.0215 8.04395 11.2129 7.94824 11.3496 7.73633C11.7529 6.99121 12.2861 6.65625 13.1064 6.65625C14.0977 6.65625 14.6992 7.20996 14.6992 8.1123V8.67285L12.5664 8.7959C10.7686 8.8916 9.77734 9.69824 9.77734 11.0107C9.77734 12.3369 10.8096 13.2324 12.2793 13.2324ZM12.6621 12.1387C11.8008 12.1387 11.2129 11.667 11.2129 10.9561C11.2129 10.2725 11.7598 9.82129 12.7578 9.75977L14.6992 9.62988V10.3203C14.6992 11.3457 13.7969 12.1387 12.6621 12.1387Z"></path></svg></span>Название</th><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>Пример</th><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Использует</th></tr></thead><tbody><tr id="f6d5b6c7-7850-4551-a3b4-72bf3f087eb5"><td class="cell-title"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%92%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20403b5a5927a74a47a210a54563fe6664/%D0%9F%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C%20%D1%87%D0%B0%D1%81%D1%82%D1%8C%20%D0%BC%D0%B0%D1%81%D1%81%D0%B8%D0%B2%D0%B0%20f6d5b6c778504551a3b472bf3f087eb5.html">Получить часть массива</a></td><td class="cell-vaIf">Получить часть символов из строки.
+Получить год из даты.</td><td class="cell-K}\s"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%94%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5%204b19bbf843c748bca35b57c499f83ae1/%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%20(Index)%20106bc5c1747f451f8a735eacd0f1c683.html">Индекс (Index)</a>, <a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%94%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5%204b19bbf843c748bca35b57c499f83ae1/%D0%A1%D1%80%D0%B5%D0%B7%20(Slice)%203b48386cb26b4b669d2710162c98bdb0.html">Срез (Slice)</a></td></tr></tbody></table></div><h1 id="75cc38ee-53bd-4e0a-b824-d7e7689e8f58" class="block-color-gray_background">Ввод данных</h1><div id="171651e2-f343-4edb-8c0b-36df3c7f3ddc" class="collection-content"><h4 class="collection-title">Ввод</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M0.637695 13.1914C1.0957 13.1914 1.32812 13 1.47852 12.5215L2.24414 10.3887H6.14746L6.90625 12.5215C7.05664 13 7.2959 13.1914 7.74707 13.1914C8.22559 13.1914 8.5332 12.9043 8.5332 12.4531C8.5332 12.2891 8.50586 12.1523 8.44434 11.9678L5.41602 3.79199C5.2041 3.21777 4.82129 2.9375 4.19922 2.9375C3.60449 2.9375 3.21484 3.21777 3.0166 3.78516L-0.0322266 12.002C-0.09375 12.1797 -0.121094 12.3232 -0.121094 12.4668C-0.121094 12.918 0.166016 13.1914 0.637695 13.1914ZM2.63379 9.12402L4.17871 4.68066H4.21973L5.76465 9.12402H2.63379ZM12.2793 13.2324C13.3115 13.2324 14.2891 12.6787 14.7129 11.8037H14.7402V12.5762C14.7471 12.9863 15.0273 13.2393 15.4238 13.2393C15.834 13.2393 16.1143 12.9795 16.1143 12.5215V8.00977C16.1143 6.49902 14.9658 5.52148 13.1543 5.52148C11.7666 5.52148 10.6592 6.08887 10.2695 6.99121C10.1943 7.15527 10.1533 7.3125 10.1533 7.46289C10.1533 7.81152 10.4062 8.04395 10.7686 8.04395C11.0215 8.04395 11.2129 7.94824 11.3496 7.73633C11.7529 6.99121 12.2861 6.65625 13.1064 6.65625C14.0977 6.65625 14.6992 7.20996 14.6992 8.1123V8.67285L12.5664 8.7959C10.7686 8.8916 9.77734 9.69824 9.77734 11.0107C9.77734 12.3369 10.8096 13.2324 12.2793 13.2324ZM12.6621 12.1387C11.8008 12.1387 11.2129 11.667 11.2129 10.9561C11.2129 10.2725 11.7598 9.82129 12.7578 9.75977L14.6992 9.62988V10.3203C14.6992 11.3457 13.7969 12.1387 12.6621 12.1387Z"></path></svg></span>Наименование</th></tr></thead><tbody><tr id="ca1afc11-1ca6-4145-ae2e-addd989d59ae"><td class="cell-title"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%92%D0%B2%D0%BE%D0%B4%20171651e2f3434edb8c0b36df3c7f3ddc/%D0%97%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D1%8F%20(%D0%9B%D0%B8%D1%82%D0%B5%D1%80%D0%B0%D0%BB%D1%8B)%20Values%20(Literals)%20ca1afc111ca64145ae2eaddd989d59ae.html">Значения (Литералы) | Values (Literals)</a></td></tr><tr id="5901cd86-73a9-43eb-9620-75671206993b"><td class="cell-title"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%92%D0%B2%D0%BE%D0%B4%20171651e2f3434edb8c0b36df3c7f3ddc/%D0%9B%D0%B8%D1%82%D0%B5%D1%80%D0%B0%D0%BB%D1%8B%205901cd8673a943eb962075671206993b.html">Литералы</a></td></tr><tr id="1982f472-a0cd-4f72-8f25-1d2ccad8647b"><td class="cell-title"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%92%D0%B2%D0%BE%D0%B4%20171651e2f3434edb8c0b36df3c7f3ddc/%D0%9F%D0%B5%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5%201982f472a0cd4f728f251d2ccad8647b.html">Переменные</a></td></tr><tr id="44adc1e0-5256-47cd-8fe5-0d6535ff4620"><td class="cell-title"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%92%D0%B2%D0%BE%D0%B4%20171651e2f3434edb8c0b36df3c7f3ddc/%D0%9F%D0%B5%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5%20%D0%B8%20%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D0%B0%D0%BD%D1%82%D1%8B%20Variables%20and%20Constants%2044adc1e0525647cd8fe50d6535ff4620.html">Переменные и Константы | Variables and Constants</a></td></tr><tr id="6d0fb526-eec7-4649-83d5-cc4c93a1c4ad"><td class="cell-title"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%92%D0%B2%D0%BE%D0%B4%20171651e2f3434edb8c0b36df3c7f3ddc/%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D0%B0%D0%BD%D1%82%D1%8B%206d0fb526eec7464983d5cc4c93a1c4ad.html">Константы</a></td></tr><tr id="a27ee36d-b897-4d82-b166-2596c5e82601"><td class="cell-title"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%92%D0%B2%D0%BE%D0%B4%20171651e2f3434edb8c0b36df3c7f3ddc/%D0%AD%D0%BA%D1%80%D0%B0%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20a27ee36db8974d82b1662596c5e82601.html">Экранирование</a></td></tr><tr id="92eca84d-fdf4-45cf-ba4c-c84219dcc5de"><td class="cell-title"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%92%D0%B2%D0%BE%D0%B4%20171651e2f3434edb8c0b36df3c7f3ddc/%D0%9C%D0%BD%D0%BE%D0%B3%D0%BE%D1%81%D1%82%D1%80%D0%BE%D1%87%D0%BD%D1%8B%D0%B5%20%D1%81%D1%82%D1%80%D0%BE%D0%BA%D0%B8%20Multiline%20Strings%2092eca84dfdf445cfba4cc84219dcc5de.html">Многострочные строки | Multiline Strings</a></td></tr></tbody></table></div><h1 id="a04302a8-1c36-4f1b-ab4b-9ffc012ca7ad" class="block-color-gray_background">Типы данных</h1><div id="4b19bbf8-43c7-48bc-a35b-57c499f83ae1" class="collection-content"><h4 class="collection-title">Данные</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M0.637695 13.1914C1.0957 13.1914 1.32812 13 1.47852 12.5215L2.24414 10.3887H6.14746L6.90625 12.5215C7.05664 13 7.2959 13.1914 7.74707 13.1914C8.22559 13.1914 8.5332 12.9043 8.5332 12.4531C8.5332 12.2891 8.50586 12.1523 8.44434 11.9678L5.41602 3.79199C5.2041 3.21777 4.82129 2.9375 4.19922 2.9375C3.60449 2.9375 3.21484 3.21777 3.0166 3.78516L-0.0322266 12.002C-0.09375 12.1797 -0.121094 12.3232 -0.121094 12.4668C-0.121094 12.918 0.166016 13.1914 0.637695 13.1914ZM2.63379 9.12402L4.17871 4.68066H4.21973L5.76465 9.12402H2.63379ZM12.2793 13.2324C13.3115 13.2324 14.2891 12.6787 14.7129 11.8037H14.7402V12.5762C14.7471 12.9863 15.0273 13.2393 15.4238 13.2393C15.834 13.2393 16.1143 12.9795 16.1143 12.5215V8.00977C16.1143 6.49902 14.9658 5.52148 13.1543 5.52148C11.7666 5.52148 10.6592 6.08887 10.2695 6.99121C10.1943 7.15527 10.1533 7.3125 10.1533 7.46289C10.1533 7.81152 10.4062 8.04395 10.7686 8.04395C11.0215 8.04395 11.2129 7.94824 11.3496 7.73633C11.7529 6.99121 12.2861 6.65625 13.1064 6.65625C14.0977 6.65625 14.6992 7.20996 14.6992 8.1123V8.67285L12.5664 8.7959C10.7686 8.8916 9.77734 9.69824 9.77734 11.0107C9.77734 12.3369 10.8096 13.2324 12.2793 13.2324ZM12.6621 12.1387C11.8008 12.1387 11.2129 11.667 11.2129 10.9561C11.2129 10.2725 11.7598 9.82129 12.7578 9.75977L14.6992 9.62988V10.3203C14.6992 11.3457 13.7969 12.1387 12.6621 12.1387Z"></path></svg></span>Наименование</th><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Используется в</th><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Использует</th></tr></thead><tbody><tr id="bf4d21c3-b60a-46d0-abcc-8b3c22f8907f"><td class="cell-title"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%94%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5%204b19bbf843c748bca35b57c499f83ae1/%D0%A2%D0%B8%D0%BF%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20Data%20Types%20bf4d21c3b60a46d0abcc8b3c22f8907f.html">Типы данных | Data Types</a></td><td class="cell-ItJ}"></td><td class="cell-:pEq"></td></tr><tr id="fd739fea-11c5-4740-88fd-967acc231fac"><td class="cell-title"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%94%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5%204b19bbf843c748bca35b57c499f83ae1/%D0%A1%D0%BF%D0%B8%D1%81%D0%BA%D0%B8%20(Lists)%20fd739fea11c5474088fd967acc231fac.html">Списки (Lists)</a></td><td class="cell-ItJ}"></td><td class="cell-:pEq"></td></tr><tr id="106bc5c1-747f-451f-8a73-5eacd0f1c683"><td class="cell-title"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%94%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5%204b19bbf843c748bca35b57c499f83ae1/%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%20(Index)%20106bc5c1747f451f8a735eacd0f1c683.html">Индекс (Index)</a></td><td class="cell-ItJ}"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%92%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20403b5a5927a74a47a210a54563fe6664/%D0%9F%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C%20%D1%87%D0%B0%D1%81%D1%82%D1%8C%20%D0%BC%D0%B0%D1%81%D1%81%D0%B8%D0%B2%D0%B0%20f6d5b6c778504551a3b472bf3f087eb5.html">Получить часть массива</a></td><td class="cell-:pEq"></td></tr><tr id="3b48386c-b26b-4b66-9d27-10162c98bdb0"><td class="cell-title"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%94%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5%204b19bbf843c748bca35b57c499f83ae1/%D0%A1%D1%80%D0%B5%D0%B7%20(Slice)%203b48386cb26b4b669d2710162c98bdb0.html">Срез (Slice)</a></td><td class="cell-ItJ}"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%92%D0%B0%D1%80%D0%B8%D0%B0%D0%BD%D1%82%D1%8B%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20403b5a5927a74a47a210a54563fe6664/%D0%9F%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C%20%D1%87%D0%B0%D1%81%D1%82%D1%8C%20%D0%BC%D0%B0%D1%81%D1%81%D0%B8%D0%B2%D0%B0%20f6d5b6c778504551a3b472bf3f087eb5.html">Получить часть массива</a></td><td class="cell-:pEq"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%A4%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%B8%209e3a832939aa4b4fb0f9861c2d66b776/slice()%20d9b06e02ee2540098dd427a7c7645565.html">slice()</a></td></tr></tbody></table></div><h1 id="4974595c-4a84-45a4-8c4b-645d525bbb30" class="block-color-gray_background">Логика и операции</h1><div id="ffff0205-0f4c-430c-bf76-9ef3d019fe0a" class="collection-content"><h4 class="collection-title">Логика и операции</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M0.637695 13.1914C1.0957 13.1914 1.32812 13 1.47852 12.5215L2.24414 10.3887H6.14746L6.90625 12.5215C7.05664 13 7.2959 13.1914 7.74707 13.1914C8.22559 13.1914 8.5332 12.9043 8.5332 12.4531C8.5332 12.2891 8.50586 12.1523 8.44434 11.9678L5.41602 3.79199C5.2041 3.21777 4.82129 2.9375 4.19922 2.9375C3.60449 2.9375 3.21484 3.21777 3.0166 3.78516L-0.0322266 12.002C-0.09375 12.1797 -0.121094 12.3232 -0.121094 12.4668C-0.121094 12.918 0.166016 13.1914 0.637695 13.1914ZM2.63379 9.12402L4.17871 4.68066H4.21973L5.76465 9.12402H2.63379ZM12.2793 13.2324C13.3115 13.2324 14.2891 12.6787 14.7129 11.8037H14.7402V12.5762C14.7471 12.9863 15.0273 13.2393 15.4238 13.2393C15.834 13.2393 16.1143 12.9795 16.1143 12.5215V8.00977C16.1143 6.49902 14.9658 5.52148 13.1543 5.52148C11.7666 5.52148 10.6592 6.08887 10.2695 6.99121C10.1943 7.15527 10.1533 7.3125 10.1533 7.46289C10.1533 7.81152 10.4062 8.04395 10.7686 8.04395C11.0215 8.04395 11.2129 7.94824 11.3496 7.73633C11.7529 6.99121 12.2861 6.65625 13.1064 6.65625C14.0977 6.65625 14.6992 7.20996 14.6992 8.1123V8.67285L12.5664 8.7959C10.7686 8.8916 9.77734 9.69824 9.77734 11.0107C9.77734 12.3369 10.8096 13.2324 12.2793 13.2324ZM12.6621 12.1387C11.8008 12.1387 11.2129 11.667 11.2129 10.9561C11.2129 10.2725 11.7598 9.82129 12.7578 9.75977L14.6992 9.62988V10.3203C14.6992 11.3457 13.7969 12.1387 12.6621 12.1387Z"></path></svg></span>Наименование</th></tr></thead><tbody><tr id="ca7b4637-e855-43fb-a304-cd0647b5b0cf"><td class="cell-title"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%9B%D0%BE%D0%B3%D0%B8%D0%BA%D0%B0%20%D0%B8%20%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%B8%20ffff02050f4c430cbf769ef3d019fe0a/%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%8B%20ca7b4637e85543fba304cd0647b5b0cf.html">Операторы</a></td></tr><tr id="5b206bad-770d-4db6-883a-35cadde4ca89"><td class="cell-title"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%9B%D0%BE%D0%B3%D0%B8%D0%BA%D0%B0%20%D0%B8%20%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%B8%20ffff02050f4c430cbf769ef3d019fe0a/%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%B8%20%D0%B8%20%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%8B%205b206bad770d4db6883a35cadde4ca89.html">Операции и операторы</a></td></tr><tr id="371a1c08-12d6-456d-a129-14cf29567e76"><td class="cell-title"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%9B%D0%BE%D0%B3%D0%B8%D0%BA%D0%B0%20%D0%B8%20%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%B8%20ffff02050f4c430cbf769ef3d019fe0a/%D0%A3%D1%81%D0%BB%D0%BE%D0%B2%D0%BD%D1%8B%D0%B5%20%D0%B2%D1%8B%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20371a1c0812d6456da12914cf29567e76.html">Условные выражения</a></td></tr><tr id="72563589-fa92-47d8-b33d-388f1ca5e4c5"><td class="cell-title"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%9B%D0%BE%D0%B3%D0%B8%D0%BA%D0%B0%20%D0%B8%20%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%B8%20ffff02050f4c430cbf769ef3d019fe0a/%D0%A6%D0%B8%D0%BA%D0%BB%D1%8B%20%D0%B8%20%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%8B%20%D0%B2%20%D0%BD%D0%B8%D1%85%2072563589fa9247d8b33d388f1ca5e4c5.html">Циклы и операторы в них</a></td></tr></tbody></table></div><h1 id="539beb04-cf3e-4543-8425-594ffd3d6480" class="block-color-gray_background">Методы и функции</h1><div id="a616dcde-bcdc-4bc0-bf27-385e0c081585" class="collection-content"><h4 class="collection-title">Таблица “Методы и функции”</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M0.637695 13.1914C1.0957 13.1914 1.32812 13 1.47852 12.5215L2.24414 10.3887H6.14746L6.90625 12.5215C7.05664 13 7.2959 13.1914 7.74707 13.1914C8.22559 13.1914 8.5332 12.9043 8.5332 12.4531C8.5332 12.2891 8.50586 12.1523 8.44434 11.9678L5.41602 3.79199C5.2041 3.21777 4.82129 2.9375 4.19922 2.9375C3.60449 2.9375 3.21484 3.21777 3.0166 3.78516L-0.0322266 12.002C-0.09375 12.1797 -0.121094 12.3232 -0.121094 12.4668C-0.121094 12.918 0.166016 13.1914 0.637695 13.1914ZM2.63379 9.12402L4.17871 4.68066H4.21973L5.76465 9.12402H2.63379ZM12.2793 13.2324C13.3115 13.2324 14.2891 12.6787 14.7129 11.8037H14.7402V12.5762C14.7471 12.9863 15.0273 13.2393 15.4238 13.2393C15.834 13.2393 16.1143 12.9795 16.1143 12.5215V8.00977C16.1143 6.49902 14.9658 5.52148 13.1543 5.52148C11.7666 5.52148 10.6592 6.08887 10.2695 6.99121C10.1943 7.15527 10.1533 7.3125 10.1533 7.46289C10.1533 7.81152 10.4062 8.04395 10.7686 8.04395C11.0215 8.04395 11.2129 7.94824 11.3496 7.73633C11.7529 6.99121 12.2861 6.65625 13.1064 6.65625C14.0977 6.65625 14.6992 7.20996 14.6992 8.1123V8.67285L12.5664 8.7959C10.7686 8.8916 9.77734 9.69824 9.77734 11.0107C9.77734 12.3369 10.8096 13.2324 12.2793 13.2324ZM12.6621 12.1387C11.8008 12.1387 11.2129 11.667 11.2129 10.9561C11.2129 10.2725 11.7598 9.82129 12.7578 9.75977L14.6992 9.62988V10.3203C14.6992 11.3457 13.7969 12.1387 12.6621 12.1387Z"></path></svg></span>Наименование</th></tr></thead><tbody><tr id="af2746f0-ee96-4b0e-a3ec-ba77d14600f4"><td class="cell-title"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%A2%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0%20%E2%80%9C%D0%9C%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B8%20%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%B8%E2%80%9D%20a616dcdebcdc4bc0bf27385e0c081585/Untitled%20af2746f0ee964b0ea3ecba77d14600f4.html">Untitled</a></td></tr><tr id="e4c58948-7b84-4863-881f-3808c8412454"><td class="cell-title"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%A2%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0%20%E2%80%9C%D0%9C%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B8%20%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%B8%E2%80%9D%20a616dcdebcdc4bc0bf27385e0c081585/Untitled%20e4c589487b844863881f3808c8412454.html">Untitled</a></td></tr><tr id="ae95886b-f221-4c30-bee1-c8ce27c1509e"><td class="cell-title"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%A2%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0%20%E2%80%9C%D0%9C%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B8%20%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%B8%E2%80%9D%20a616dcdebcdc4bc0bf27385e0c081585/Untitled%20ae95886bf2214c30bee1c8ce27c1509e.html">Untitled</a></td></tr></tbody></table></div><article id="9e3a8329-39aa-4b4f-b0f9-861c2d66b776" class="page sans"><header><h1 class="page-title"></h1></header><div class="page-body"><figure id="e66ab466-dfa7-4edb-9ebf-b28418d2023c" class="link-to-page"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%A4%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%B8%209e3a832939aa4b4fb0f9861c2d66b776/print()%20e66ab466dfa74edb9ebfb28418d2023c.html">print()</a></figure><figure id="d97b9644-e399-451d-b553-d8177e2e3cb6" class="link-to-page"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%A4%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%B8%209e3a832939aa4b4fb0f9861c2d66b776/input()%20d97b9644e399451db553d8177e2e3cb6.html">input()</a></figure><figure id="abcf3abe-e819-47af-bcdf-a63be53afb8a" class="link-to-page"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%A4%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%B8%209e3a832939aa4b4fb0f9861c2d66b776/min()%20abcf3abee81947afbcdfa63be53afb8a.html">min()</a></figure><figure id="5d4640fa-c44c-4717-a12a-afb631d0fa9f" class="link-to-page"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%A4%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%B8%209e3a832939aa4b4fb0f9861c2d66b776/max()%205d4640fac44c4717a12aafb631d0fa9f.html">max()</a></figure><figure id="49b0cf77-02ec-4e07-b989-72a3e024f0c3" class="link-to-page"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%A4%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%B8%209e3a832939aa4b4fb0f9861c2d66b776/abs()%2049b0cf7702ec4e07b98972a3e024f0c3.html">abs()</a></figure><figure id="4edb7b34-51fb-4c7d-9b18-4e0b9dba231d" class="link-to-page"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%A4%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%B8%209e3a832939aa4b4fb0f9861c2d66b776/pow()%204edb7b3451fb4c7d9b184e0b9dba231d.html">pow()</a></figure><figure id="b29cba04-0c91-471f-a077-8df1c0cf37a2" class="link-to-page"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%A4%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%B8%209e3a832939aa4b4fb0f9861c2d66b776/round()%20b29cba040c91471fa0778df1c0cf37a2.html">round()</a></figure><figure id="34870ff3-f64c-441b-bea6-18b1823b5054" class="link-to-page"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%A4%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%B8%209e3a832939aa4b4fb0f9861c2d66b776/str()%2034870ff3f64c441bbea618b1823b5054.html">str()</a></figure><figure id="9f942795-338f-437f-b4cf-04792b6b5b87" class="link-to-page"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%A4%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%B8%209e3a832939aa4b4fb0f9861c2d66b776/int()%209f942795338f437fb4cf04792b6b5b87.html">int()</a></figure><figure id="51056b0e-40ab-476f-86d2-16f69afc7120" class="link-to-page"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%A4%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%B8%209e3a832939aa4b4fb0f9861c2d66b776/float()%2051056b0e40ab476f86d216f69afc7120.html">float()</a></figure><figure id="b416330b-f66b-4f1b-bd16-cef7592e8791" class="link-to-page"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%A4%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%B8%209e3a832939aa4b4fb0f9861c2d66b776/bool()%20b416330bf66b4f1bbd16cef7592e8791.html">bool()</a></figure></div></article><article id="c1e0da37-a0b2-4271-a01c-c4cfe2a462e3" class="page sans"><header><h1 class="page-title"></h1></header><div class="page-body"><figure id="f208e958-2d10-4c18-8099-e858bb021c3d" class="link-to-page"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%A1%D0%B2%D0%BE%D0%B8%CC%86%D1%81%D1%82%D0%B2%D0%B0%20%D0%BF%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D1%8B%20%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%B8%CC%86%20c1e0da37a0b24271a01cc4cfe2a462e3/sep=%E2%80%9D%E2%80%9D%20f208e9582d104c188099e858bb021c3d.html">sep=””</a></figure><figure id="46eecb51-7097-4a06-ad4a-38fbdd0dfe3f" class="link-to-page"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%A1%D0%B2%D0%BE%D0%B8%CC%86%D1%81%D1%82%D0%B2%D0%B0%20%D0%BF%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80%D1%8B%20%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%B8%CC%86%20c1e0da37a0b24271a01cc4cfe2a462e3/end=%E2%80%9D%E2%80%9D%2046eecb5170974a06ad4a38fbdd0dfe3f.html">end=””</a></figure></div></article><ul id="43addf6f-1b49-463c-9770-a0f111d4bc41" class="toggle"><li><details open=""><summary><strong>Методы</strong></summary><ol type="1" id="ef78fb57-a25e-46a7-83b5-57ddd0475b10" class="numbered-list" start="1"><li><code>chr()</code> — переводит число в символ Unicode. | int → str</li></ol><ol type="1" id="97a22562-0e2e-4afa-8a11-75ad66eae519" class="numbered-list" start="2"><li><code>ord()</code> — порядок символа в таблице Unicode. | str → int</li></ol><ol type="1" id="aaceaea6-92f1-4038-8d58-42077d14a5eb" class="numbered-list" start="3"><li><code>type()</code> — отображает тип переменной или выражения. Пример: <code>print(type(chr(169)))</code> ⇒ <code>&lt;class &#x27;str&#x27;&gt;</code> any → type</li></ol><ol type="1" id="75e791b1-c33e-44c8-8849-8991ce00d6a3" class="numbered-list" start="4"><li><code>isinstance(var_or_value, data_type/list_of_types)</code> — проверяет, относится ли переменная или выражение к указанному типу данных. | any → bool</li></ol></details></li></ul><ul id="0a5f448d-bb4f-49a9-9f1d-6d0be32b7416" class="toggle"><li><details open=""><summary><strong>Директивы</strong></summary><table id="0a78a891-1002-4e64-9049-3894cb9d2689" class="simple-table"><thead class="simple-table-header"><tr id="00559109-8599-4c4e-b2a6-a0c27a489be1"><th id="xsEX" class="simple-table-header-color simple-table-header" style="width:172px">Название директивы</th><th id="N^h\" class="simple-table-header-color simple-table-header" style="width:335px">Описание</th><th id="ttVF" class="simple-table-header-color simple-table-header" style="width:210px">Пример</th></tr></thead><tbody><tr id="edf65f98-5fbc-4935-90c9-56640fb19762"><td id="xsEX" class="" style="width:172px">del</td><td id="N^h\" class="" style="width:335px">Удаляет переменную, список, часть списка и т.п.</td><td id="ttVF" class="" style="width:210px"><code>del first_name</code></td></tr></tbody></table></details></li></ul><h1 id="be5b0932-e7a4-40d0-bf23-487b61ecd78b" class="block-color-gray_background">Другая информация</h1><h3 id="a48248f5-835a-420e-b863-49239ec44a19" class=""><details open=""><summary><strong>Другое</strong></summary></details></h3><div class="indented"><ol type="1" id="95e44f3c-293e-4da4-9f09-56186a558235" class="numbered-list" start="1"><li><strong>Линтер (Linter)</strong> — инструмент для проверки кода на соответствие стандартам и его автоматической корректировки. Например, популярный линтер <a href="https://flake8.pycqa.org/en/latest/">Flake8</a>.</li></ol><ol type="1" id="a515d485-15b2-40a1-a8d7-aa32b5e423a9" class="numbered-list" start="2"><li><strong>Кодировка </strong>— набор символов, закодированных с помощью чисел для представления текста в электронном виде. Представлена в виде таблицы сопоставления букв и чисел.</li></ol><ol type="1" id="c1d891da-a44c-461e-acf4-07f887b6c137" class="numbered-list" start="3"><li>Возможно использовать несколько команд в одной строке с использования разделителя <code>;</code>
+Пример: <code>print(&#x27;Hello&#x27;); print(&#x27;World!&#x27;)</code></li></ol></div><h3 id="7ed43a5f-306f-43c8-a229-9e32c7ce381e" class=""><details open=""><summary>Лучшие практики | Best Practice</summary></details></h3><div class="indented"><div><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="9e8990b8-8092-47a1-9b90-b394497e1e12"><div style="font-size:1.5em"><span class="icon">👍</span></div><div style="width:100%">Следует разделять арифметические операторы пробелами от самих чисел (операндов).
+Пример: <code>print(80 - -25)</code>, а не <code>print(80--25)</code></div></figure></div><div><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="857e0bc7-f4e0-47f3-973d-64f9712a0e3f"><div style="font-size:1.5em"><span class="icon">👍</span></div><div style="width:100%">Переменные принято создавать как можно ближе к тому месту где они используются, для удобства анализа программы.</div></figure></div><div><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="fdde1aba-9549-45f7-afb9-ea6f9147cba1"><div style="font-size:1.5em"><span class="icon">👍</span></div><div style="width:100%">Не использовать в коде значения без создания переменных, так называемые магические числа (magic numbers), т.к. без переменных с понятным названием не будет ясно, что это за значения. </div></figure></div></div><h3 id="7576b52a-50e0-4e82-9a5f-a287cca41924" class=""><details open=""><summary>Модуль, Пакет, Библиотека | <strong>Module, Package, Library</strong></summary></details></h3><div class="indented"><figure id="5893de68-43b7-4b2c-9691-2752f5578d04"><a href="https://www.geeksforgeeks.org/what-is-the-difference-between-pythons-module-package-and-library/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">What is the difference between Python&#x27;s Module, Package and Library? - GeeksforGeeks</div><div class="bookmark-description">Module: The module is a simple Python file that contains collections of functions and global variables and with having a .py extension file. It is an executable file and to organize all the modules we have the concept called Package in Python.</div></div><div class="bookmark-href"><img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/gfg_favicon.png" class="icon bookmark-icon"/>https://www.geeksforgeeks.org/what-is-the-difference-between-pythons-module-package-and-library/</div></div><img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/gfg_200x200-min.png" class="bookmark-image"/></a></figure><p id="515da76e-cf3b-4688-bfeb-0fb4c4e1d21b" class=""><a href="https://www.w3schools.com/python/python_regex.asp">https://www.w3schools.com/python/python_regex.asp</a>, <a href="https://www.w3schools.com/python/python_arrays.asp">https://www.w3schools.com/python/python_arrays.asp</a></p></div><h3 id="694eac00-12c7-433c-8a8f-742891f5b532" class=""><details open=""><summary>Полезная информация</summary></details></h3><div class="indented"><h3 id="010dc328-7f1d-453e-a60a-08c58353dd44" class="block-color-gray_background">Вопросы и ответы</h3><h3 id="b37f69a0-8a1d-457e-a670-d044d0191fd7" class="">Чем отличаются методы от функций?</h3><ul id="5a9abc82-a0ae-4b5b-b980-2e999d92b1cb" class="bulleted-list"><li style="list-style-type:disc"><strong>F</strong>unction → <strong>F</strong>ree (Free means it can be anywhere, no need to be in an object or class)
+<strong>M</strong>ethod → <strong>M</strong>ember (A member of an object or class).</li></ul><h3 id="c1ef61bb-6548-4a12-8944-22762ccbe4c3" class="">Какой самый популярный фреймворк для web-приложений?</h3><ul id="7cdfd74f-acd0-45d5-8634-0b1c28ed32a2" class="bulleted-list"><li style="list-style-type:disc"><strong>django</strong></li></ul><h3 id="d0e84670-9706-4a19-98a8-4f2521aad1fe" class="block-color-gray_background">Словарь</h3><div id="68f798c6-2987-4790-bedc-f20226cb6cc8" class="collection-content"><h4 class="collection-title">Словарь терминов Python</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M0.637695 13.1914C1.0957 13.1914 1.32812 13 1.47852 12.5215L2.24414 10.3887H6.14746L6.90625 12.5215C7.05664 13 7.2959 13.1914 7.74707 13.1914C8.22559 13.1914 8.5332 12.9043 8.5332 12.4531C8.5332 12.2891 8.50586 12.1523 8.44434 11.9678L5.41602 3.79199C5.2041 3.21777 4.82129 2.9375 4.19922 2.9375C3.60449 2.9375 3.21484 3.21777 3.0166 3.78516L-0.0322266 12.002C-0.09375 12.1797 -0.121094 12.3232 -0.121094 12.4668C-0.121094 12.918 0.166016 13.1914 0.637695 13.1914ZM2.63379 9.12402L4.17871 4.68066H4.21973L5.76465 9.12402H2.63379ZM12.2793 13.2324C13.3115 13.2324 14.2891 12.6787 14.7129 11.8037H14.7402V12.5762C14.7471 12.9863 15.0273 13.2393 15.4238 13.2393C15.834 13.2393 16.1143 12.9795 16.1143 12.5215V8.00977C16.1143 6.49902 14.9658 5.52148 13.1543 5.52148C11.7666 5.52148 10.6592 6.08887 10.2695 6.99121C10.1943 7.15527 10.1533 7.3125 10.1533 7.46289C10.1533 7.81152 10.4062 8.04395 10.7686 8.04395C11.0215 8.04395 11.2129 7.94824 11.3496 7.73633C11.7529 6.99121 12.2861 6.65625 13.1064 6.65625C14.0977 6.65625 14.6992 7.20996 14.6992 8.1123V8.67285L12.5664 8.7959C10.7686 8.8916 9.77734 9.69824 9.77734 11.0107C9.77734 12.3369 10.8096 13.2324 12.2793 13.2324ZM12.6621 12.1387C11.8008 12.1387 11.2129 11.667 11.2129 10.9561C11.2129 10.2725 11.7598 9.82129 12.7578 9.75977L14.6992 9.62988V10.3203C14.6992 11.3457 13.7969 12.1387 12.6621 12.1387Z"></path></svg></span>Термин</th><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>Определение</th></tr></thead><tbody><tr id="8e05e60f-c44b-4684-b1b8-fc60a74537c6"><td class="cell-title"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C%20%D1%82%D0%B5%D1%80%D0%BC%D0%B8%D0%BD%D0%BE%D0%B2%20Python%2068f798c629874790bedcf20226cb6cc8/%D0%90%D1%80%D0%B3%D1%83%D0%BC%D0%B5%D0%BD%D1%82%20(%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D0%BD%D0%B4,%20%D0%9F%D0%B0%D1%80%D0%B0%D0%BC%D0%B5%D1%82%D1%80)%208e05e60fc44b4684b1b8fc60a74537c6.html">Аргумент (Операнд, Параметр)</a></td><td class="cell-pMEf">Информация, которую функция получает при вызове.</td></tr><tr id="d9aeedec-4fb5-4987-9e79-61440ee0b155"><td class="cell-title"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C%20%D1%82%D0%B5%D1%80%D0%BC%D0%B8%D0%BD%D0%BE%D0%B2%20Python%2068f798c629874790bedcf20226cb6cc8/%D0%9A%D1%83%D1%80%D1%81%D0%BE%D1%80%20(%D0%9A%D0%B0%D1%80%D0%B5%D1%82%D0%BA%D0%B0)%20d9aeedec4fb549879e7961440ee0b155.html">Курсор (Каретка)</a></td><td class="cell-pMEf"></td></tr><tr id="516e9ed2-d2fe-4975-a618-1ce9283bd6ac"><td class="cell-title"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C%20%D1%82%D0%B5%D1%80%D0%BC%D0%B8%D0%BD%D0%BE%D0%B2%20Python%2068f798c629874790bedcf20226cb6cc8/%D0%9B%D0%B8%D1%82%D0%B5%D1%80%D0%B0%D0%BB%D1%8B%20(Literals)%20516e9ed2d2fe4975a6181ce9283bd6ac.html">Литералы (Literals)</a></td><td class="cell-pMEf"></td></tr><tr id="7a417336-ac84-4193-9c47-0a9d4d72e5ae"><td class="cell-title"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C%20%D1%82%D0%B5%D1%80%D0%BC%D0%B8%D0%BD%D0%BE%D0%B2%20Python%2068f798c629874790bedcf20226cb6cc8/%D0%9F%D1%80%D0%B5%D1%84%D0%B8%D0%BA%D1%81%D1%8B%20(Prefix)%207a417336ac8441939c470a9d4d72e5ae.html">Префиксы (Prefix)</a></td><td class="cell-pMEf"></td></tr><tr id="58b1b5b7-7f37-4638-8e6f-d8317ba20ae3"><td class="cell-title"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/%D0%A1%D0%BB%D0%BE%D0%B2%D0%B0%D1%80%D1%8C%20%D1%82%D0%B5%D1%80%D0%BC%D0%B8%D0%BD%D0%BE%D0%B2%20Python%2068f798c629874790bedcf20226cb6cc8/%D0%A1%D0%B8%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F%20%D1%81%D1%82%D1%80%D0%BE%D0%B3%D0%B0%D1%8F%20%D1%82%D0%B8%D0%BF%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%20(Strong%20typing)%2058b1b5b77f3746388e6fd8317ba20ae3.html">Сильная/строгая типизация (Strong typing)</a></td><td class="cell-pMEf">Свойство некоторых языков программирования (например, Python) не позволяющее совершать операции с разными типами данных. Например, нельзя выполнить <code>print(’7’+3)</code>, т.к. 7 является строкой, а 3 является числом.
+
+В таких языках как JavaScript, PHP и т.п. осуществляется автоматическое неявное преобразование (например <code>Число 1 + Строка 7 = Строка 17</code>).</td></tr></tbody></table></div><h3 id="15426479-bafd-449a-be14-86c666f9244b" class="block-color-gray_background">Сокращенные действия</h3><ol type="1" id="10dd4b8e-64c0-4cd2-afec-c060732362d2" class="numbered-list" start="1"><li>Если необходимо выполнить математическую операцию с одной переменной, то вместо <code>num1=num1+5</code> можно использовать <code>num1+=5</code> для сложения, <code>*=</code> для умножения, <code>%=</code> для получения остатка при делении.</li></ol><ol type="1" id="6fc3acbe-3f89-4498-8fcc-ba070b08e430" class="numbered-list" start="2"><li>Если необходимо проверить значение переменной с логическим типом данных, то вместо первого варианта можно использовать второй, т.к. <em>по умолчанию, переменная равна значению True (?)</em>.<pre id="ec12b58f-5adb-43d5-b22c-e91d6cb64993" class="code"><code>x = True
+# Вариант 1 - Длинный вариант с True
+if x == True:
+    print (&#x27;1&#x27;)
+# Вариант 2 - Сокращенный вариант с True
+if x:
+    print (&#x27;2&#x27;)
+# Вариант 2 - Сокращенный вариант с False
+if not x == False:
+    print (&#x27;3&#x27;)</code></pre></li></ol><ol type="1" id="542fe262-16ee-4061-bdd5-d0f5fe36268c" class="numbered-list" start="3"><li>Если необходимо использовать условные операторы состоящие из <code>if</code> и <code>else</code>, то вместо условного оператора можно использовать тернарный оператор.<figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="b83e291f-38cf-47de-af7e-59ebc8265bac"><div style="font-size:1.5em"><span class="icon">ℹ️</span></div><div style="width:100%">Тернарный оператор можно вкладывать в другой тернарный оператор. <strong>Не стоит этого делать</strong>, т.к. такой код тяжело читать и отлаживать, это <strong>очень плохая практика</strong>.</div></figure><pre id="2c65aa5a-e327-4fc0-b5de-b6dd52bc3344" class="code"><code># Использование уловного оператора (длинный вариант)
+data = input()
+if data == &#x27;Five&#x27;:
+    number = 5
+else:
+    number = 0
+print(number)
+
+# Использование тернарного оператора
+data = input()
+number = 5 if data == &#x27;Five&#x27; else 0
+print(number)</code></pre></li></ol><ol type="1" id="3e662898-f6ec-4167-a59a-a638947ca4e3" class="numbered-list" start="4"><li>Если необходимо создать несколько переменных, то можно сделать это в одной строке.<pre id="acde0b3b-7bb2-48b2-b004-a82f34c5c78e" class="code"><code>variable1, variable2 = &#x27;value1&#x27;,&#x27;value2&#x27;</code></pre></li></ol><h3 id="7ed9cdb7-1dd5-48b0-8b91-f346c2c74898" class="block-color-gray_background">Терминал</h3><ul id="de9c76be-a664-44fa-94e6-93161afacf34" class="bulleted-list"><li style="list-style-type:disc">Для использования Python в терминале, необходимо добавить его в PATH при установке.</li></ul><ul id="3e0f2c5e-ad45-4e70-9902-b040c8648e47" class="bulleted-list"><li style="list-style-type:disc">Для запуска среды выполнения Python необходимо прописать в консоли &quot;python&quot;.</li></ul><ul id="da18a5d7-c9ec-4703-b999-28bdb59c8a74" class="bulleted-list"><li style="list-style-type:disc">Для выполнения кода на питоне, необходимо:<ul id="dcf56ee9-e6bc-4ab2-a5e6-8570adecbfbb" class="bulleted-list"><li style="list-style-type:circle">Запустить файл через терминал, написав &quot;py &lt;название_файла.py&gt;&quot;.</li></ul><ul id="dbfa40bd-68d8-4aa3-95bc-48fb0a2f9d18" class="bulleted-list"><li style="list-style-type:circle">Или запустить файл с помощью кнопки ▶
+(при необходимости настроить конфигурацию).</li></ul></li></ul><h3 id="554e89d1-9de3-453a-8a2f-019bfe7d656c" class="block-color-gray_background">Комментарии</h3><ul id="9894e0d6-0bf2-48ce-ae48-e19f5fa3e60c" class="bulleted-list"><li style="list-style-type:disc">Однострочные комментарии начинаются с символа <code>#</code>, а многострочные с символов <code>&#x27;&#x27;&#x27;</code>.</li></ul><ul id="393d637b-c6e4-41fc-af8c-d02d401edb71" class="bulleted-list"><li style="list-style-type:disc">Следует использовать горячие клавиши для быстрого комментирования строк или блоков кода <code>[Ctrl + /]</code>.</li></ul><h3 id="ab4db5ce-5d26-43f8-af0e-e2650e87f610" class="block-color-gray_background">Форматы создания файлов</h3><ul id="1209ede7-f903-4081-a94a-e9048dac5c8e" class="bulleted-list"><li style="list-style-type:disc">.py — для создания python файла.</li></ul><ul id="d2aee4af-2cba-4f87-886c-ba3dfb271793" class="bulleted-list"><li style="list-style-type:disc">.ipynb — для с создания интерактивного ноутбука.<figure id="35290358-e29a-4145-8c3a-edcb555614e4"><a href="https://thecode.media/jupyter/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Что такое jupyter-ноутбук и зачем он нужен - Журнал &quot;Код&quot; программирование без снобизма</div><div class="bookmark-description">Рассказываем о необычной среде разработки Если вы хотите писать на Python или заниматься дата-сайенсом, вот классная штука для вас. Это уже, считай, стандарт для огромного числа питонистов, наслаждайтесь. Jupyter-ноутбук - это среда разработки, где сразу можно видеть результат выполнения кода и его отдельных фрагментов.</div></div><div class="bookmark-href"><img src="https://thecode.media/wp-content/uploads/2021/07/cropped-512x512-1-192x192.png" class="icon bookmark-icon"/>https://thecode.media/jupyter/</div></div><img src="https://thecode.media/wp-content/uploads/2021/05/photo_2021-05-27_16-13-58.jpg" class="bookmark-image"/></a></figure><figure id="6c63da98-1f3c-43bd-94cf-0842789dccf6"><a href="https://webdevblog.ru/jupyter-notebook-dlya-nachinajushhih-uchebnik/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Jupyter Notebook для начинающих: учебник - Еще один блог веб-разработчика</div><div class="bookmark-description">Jupyter Notebook - невероятно мощный инструмент для интерактивной разработки и представления проектов в области наук о данных. В этой статье вы узнаете, как настроить Jupyter Notebooks на локальном компьютере и как начать использовать его в ваших проектах. Начнем с определения: что такое &quot; notebook &quot; (блокнот)?</div></div><div class="bookmark-href"><img src="https://webdevblog.ru/wp-content/uploads/2019/01/cropped-faviconka_ru_964-192x192.png" class="icon bookmark-icon"/>https://webdevblog.ru/jupyter-notebook-dlya-nachinajushhih-uchebnik/</div></div><img src="https://webdevblog.ru/wp-content/uploads/2019/09/jupyter.png" class="bookmark-image"/></a></figure></li></ul><h3 id="79b49da3-e1f2-4638-81a5-251e9ddc2b4e" class="block-color-gray_background">Экранирование</h3><p id="208b258e-7cb2-4565-b12b-421cd376e67f" class="">Экранирование символов в Python осуществляется с помощью символа <code>\</code> .
+<strong>Например:</strong> <code>print(&#x27;\&#x27;Привет!\&#x27;&#x27;)</code> выведет в консоли <code>&#x27;Привет!’</code>.</p></div><h3 id="744cd9b0-8675-444f-95c7-a1846329843d" class=""><details open=""><summary>Примеры кода</summary></details></h3><div class="indented"><pre id="456da93e-5dfc-475c-9c1a-5cfc5d939cb4" class="code"><code>#Программа для нахождения количества символов в строке в зависимости от заданного регистра
+user_word = input(&#x27;Введите слово: &#x27;)
+user_character = input(&#x27;Введите символ для поиска: &#x27;)
+upper = True if input(&#x27;Учитывать регистр? да, нет: &#x27;) == &#x27;да&#x27; else False
+count = 0
+
+if upper == True:
+    for i in user_word:
+        if i == user_character:
+            count += 1
+    print(&#x27;Символ&#x27;, user_character, &#x27;найден&#x27;, count, &#x27;раза&#x27;)
+else:
+    for i in user_word:
+        if i == user_character or user_character.upper():
+            count += 1
+    print(&#x27;Символ&#x27;, user_character, &#x27;найден&#x27;, count, &#x27;раза&#x27;)</code></pre></div><h3 id="4fb9b4b3-036a-4dc8-b92f-c0682d2bb81a" class=""><details open=""><summary>Ссылки для разбора</summary></details></h3><div class="indented"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="a49b62d0-5a66-43fa-8608-0e96abd95c16"><div style="font-size:1.5em"><span class="icon">ℹ️</span></div><div style="width:100%">Изучать не только саму ссылку но и сайт целиком с целью пополнить свой конспект.</div></figure><ul id="88387a85-b619-441c-a27a-a182d75b375e" class="toggle"><li><details open=""><summary>Ключевые слова в Python | Python Keywords</summary><figure id="6f7c8198-6c61-4fcc-ae8a-d9e234d9ab26"><a href="https://www.programiz.com/python-programming/keyword-list" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">List of Keywords in Python</div><div class="bookmark-description">Keywords are the reserved words in Python. We cannot use a keyword as a variable name, function name or any other identifier. Here&#x27;s a list of all keywords in Python Programming The above keywords may get altered in different versions of Python. Some extra might get added or some might be removed.</div></div><div class="bookmark-href"><img src="https://www.programiz.com/sites/tutorial2program/files/favicon.png" class="icon bookmark-icon"/>https://www.programiz.com/python-programming/keyword-list</div></div></a><figcaption>Ключевые слова в Python #1</figcaption></figure><figure id="e809d8e7-aa85-4de1-9991-72b558ef69c1"><a href="https://realpython.com/python-keywords/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Python Keywords: An Introduction - Real Python</div><div class="bookmark-description">There are a lot of good Python IDEs out there. All of them will highlight keywords to differentiate them from other words in your code. This will help you quickly identify Python keywords while you&#x27;re programming so you don&#x27;t use them incorrectly.</div></div><div class="bookmark-href"><img src="https://cdn.realpython.com/static/favicon.68cbf4197b0c.png" class="icon bookmark-icon"/>https://realpython.com/python-keywords/</div></div><img src="https://files.realpython.com/media/A-Guide-to-Python-Keywords_Watermarked.73f8f57a93ed.jpg" class="bookmark-image"/></a><figcaption>Ключевые слова в Python #3</figcaption></figure><figure id="562513b4-004e-4c90-9ef3-5bdd6b7fb4c9"><a href="https://www.w3schools.com/python/python_ref_keywords.asp" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Python Keywords</div><div class="bookmark-description">W3Schools offers free online tutorials, references and exercises in all the major languages of the web. Covering popular subjects like HTML, CSS, JavaScript, Python, SQL, Java, and many, many more.</div></div><div class="bookmark-href"><img src="https://www.w3schools.com/favicon.ico" class="icon bookmark-icon"/>https://www.w3schools.com/python/python_ref_keywords.asp</div></div><img src="https://www.w3schools.com/images/w3schools_logo_436_2.png" class="bookmark-image"/></a><figcaption>Ключевые слова в Python #2</figcaption></figure></details></li></ul><ul id="f399b28c-a33d-4510-a643-ef09887f0377" class="toggle"><li><details open=""><summary>Обучающие материалы</summary><figure id="6573067d-c3c2-4101-bc1c-9c60570fff16"><a href="https://www.youtube.com/watch?v=-X2ubBdP2Ak&amp;t=866s" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Уроки Python с нуля / #7 - Списки (list). Функции и их методы</div><div class="bookmark-description">Ранее мы научились хранить небольшие значения в переменных. Для хранения большого объема информации нам понадобится нечто иное. В ходе урока мы научимся испо...</div></div><div class="bookmark-href"><img src="https://www.youtube.com/s/desktop/ef96fcf5/img/favicon.ico" class="icon bookmark-icon"/>https://www.youtube.com/watch?v=-X2ubBdP2Ak&amp;t=866s</div></div><img src="https://i.ytimg.com/vi/-X2ubBdP2Ak/hqdefault.jpg" class="bookmark-image"/></a><figcaption>Видеокурс по Python (в процессе изучения)</figcaption></figure><figure id="e826e5ad-5195-4204-af76-6c0a2251dc71"><a href="https://www.pythonforbeginners.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Learn Python By Example - PythonForBeginners.com</div><div class="bookmark-description">PythonForBeginners.com offers free content for those looking to learn the Python programming language. We offer the above Python Tutorial with over 4,000 words of content to help cover all the basics. We also offer an email newsletter that provides more tips and tricks to solve your programming objectives.</div></div><div class="bookmark-href"><img src="https://www.pythonforbeginners.com/wp-content/uploads/2020/05/cropped-pfb_icon-192x192.png" class="icon bookmark-icon"/>https://www.pythonforbeginners.com/</div></div><img src="https://www.pythonforbeginners.com/wp-content/uploads/loops_featured.png" class="bookmark-image"/></a><figcaption>Изучить разделы <strong>Learn Python</strong> и <strong>Categories</strong>.
+Обратить внимание на раздел <a href="https://www.pythonforbeginners.com/python-on-the-web/how-to-access-various-web-services-in-python"><strong>How to access various Web Services in Python</strong></a><strong>.</strong></figcaption></figure><figure id="4792990d-a9d6-40ed-99c4-c8d81907ffc9"><a href="https://www.programiz.com/python-programming/first-program" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">How to Get Started With Python?</div><div class="bookmark-description">Python is a cross-platform programming language, which means that it can run on multiple platforms like Windows, macOS, Linux, and has even been ported to the Java and .NET virtual machines. It is free and open-source. Even though most of today&#x27;s Linux and Mac have Python pre-installed in it, the version might be out-of-date.</div></div><div class="bookmark-href"><img src="https://www.programiz.com/sites/tutorial2program/files/favicon.png" class="icon bookmark-icon"/>https://www.programiz.com/python-programming/first-program</div></div><img src="https://cdn.programiz.com/sites/tutorial2program/files/test.jpg" class="bookmark-image"/></a><figcaption>Обучение Python</figcaption></figure><figure id="e7ce9674-627d-4a1d-aad0-db17a7d4a93e"><a href="https://pythonworld.ru/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Python 3 для начинающих и чайников - уроки программирования</div><div class="bookmark-description">Язык программирования Python 3 - это мощный инструмент для создания программ самого разнообразного назначения, доступный даже для новичков. С его помощью можно решать задачи различных типов. Этот сайт призван помочь начинающим и чайникам научиться программировать на python 3. Также здесь можно подробнее узнать об особенностях функционирования этого языка.</div></div><div class="bookmark-href"><img src="https://pythonworld.ru/favicon.ico" class="icon bookmark-icon"/>https://pythonworld.ru/</div></div><img src="https://pythonworld.ru/m/mistypes/images/mistypes.png" class="bookmark-image"/></a><figcaption>Самоучитель Python</figcaption></figure></details></li></ul><ul id="58ad4c62-423c-4a27-913d-43dd03499605" class="toggle"><li><details open=""><summary>Regex</summary><figure id="7f208c0d-d479-4254-9930-872d1ede8fe9"><a href="https://habr.com/ru/post/349860/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Регулярные выражения в Python от простого к сложному. Подробности, примеры, картинки, упражнения</div><div class="bookmark-description">Решил я давеча моим школьникам дать задачек на регулярные выражения для изучения. А к задачкам нужна какая-нибудь теория. И стал я искать хорошие тексты на русском. Пяток сносных нашёл, но всё не то. Что-то смято, что-то упущено. У этих текстов был не только фатальный недостаток. Мало картинок, мало примеров.</div></div><div class="bookmark-href"><img src="https://assets.habr.com/habr-web/img/favicons/favicon-32.png" class="icon bookmark-icon"/>https://habr.com/ru/post/349860/</div></div><img src="https://habr.com/share/publication/349860/2074873ccc4aca344fb7d39526b646ab/" class="bookmark-image"/></a><figcaption>Регулярные выражения в Python (Regex)</figcaption></figure></details></li></ul><p id="67fe3987-928f-42c3-8123-856f3691312e" class="">—</p><pre id="b3f43a2b-625a-44a3-9862-93b4fd94f71f" class="code"><code>https://djangofan.ru/python-literals
+https://stackoverflow.com/questions/3289601/referring-to-the-null-object-in-python#:~:text=There&#x27;s%20no%20null%20in%20Python,refer%20to%20the%20same%20object.
+https://pythonworld.ru/tipy-dannyx-v-python/none.html
+https://www.google.com/search?q=escape+sequence&amp;newwindow=1&amp;sxsrf=APq-WBuCLAxoFn1hGiqqCUYOBmRlEbxnrA%3A1644147719860&amp;ei=B7T_YbzmM5WVrwTWl4SYDA&amp;ved=0ahUKEwj8hbPG_-r1AhWVyosKHdYLAcMQ4dUDCA4&amp;uact=5&amp;oq=escape+sequence&amp;gs_lcp=Cgdnd3Mtd2l6EAMyBAgjECcyBggjECcQEzIKCAAQgAQQhwIQFDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQywEyBQgAEMsBMgUIABDLATIFCAAQywE6BAgAEEdKBAhBGABKBAhGGABQzAZYzAZg_wloAHADeACAAU-IAU-SAQExmAEAoAEByAEIwAEB&amp;sclient=gws-wiz
+https://docs.microsoft.com/ru-ru/cpp/c-language/escape-sequences?view=msvc-170
+https://www.google.com/search?q=escape+character&amp;newwindow=1&amp;sxsrf=APq-WBvWpuc8H8bIdHTnhXFqXkWCLxUm6A%3A1644147665387&amp;ei=0bP_YYb7FpffrgT-77PgBA&amp;ved=0ahUKEwjGp7as_-r1AhWXr4sKHf73DEwQ4dUDCA4&amp;uact=5&amp;oq=escape+character&amp;gs_lcp=Cgdnd3Mtd2l6EAMyBQgAEIAEMgoIABCABBCHAhAUMgoIABCABBCHAhAUMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABDLAToHCCMQsAMQJzoHCAAQRxCwAzoECCMQJzoGCCMQJxATOggILhCABBCxAzoECAAQQzoICC4QsQMQgwE6CwguEIAEELEDEIMBOggIABCABBCxAzoFCC4QgAQ6CwguEIAEEMcBEK8BOgYIABAWEB5KBAhBGABKBAhGGABQzQNY2TVghDdoAXACeACAAaQBiAGRCZIBAzguNJgBAKABAcgBCcABAQ&amp;sclient=gws-wiz
+https://www.freecodecamp.org/news/escape-sequences-python/
+https://www.w3schools.com/python/gloss_python_escape_characters.asp
+https://pyprog.pro/python/py/str/esqape_sec.html
+https://learn.javascript.ru/regexp-escaping
+https://www.google.com/search?q=%D1%82%D0%B5%D1%80%D0%BD%D0%B0%D1%80%D0%BD%D1%8B%D0%B9+%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80&amp;newwindow=1&amp;sxsrf=APq-WBvrUOBqWPZMU88mhwGVla-5esJz4A%3A1644147198174&amp;ei=_rH_YdiNCu7rrgSF9pOQDQ&amp;ved=0ahUKEwjYhNLN_er1AhXutYsKHQX7BNIQ4dUDCA4&amp;uact=5&amp;oq=%D1%82%D0%B5%D1%80%D0%BD%D0%B0%D1%80%D0%BD%D1%8B%D0%B9+%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80&amp;gs_lcp=Cgdnd3Mtd2l6EAMyBAgjECcyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQ6BwgAEEcQsAM6BwgAELADEENKBAhBGABKBAhGGABQwANYzgRg3gVoAXACeACAAVOIAVOSAQExmAEAoAEByAEKwAEB&amp;sclient=gws-wiz
+https://www.rupython.com/python-40-277.html
+https://ru.code-basics.com/languages/python/lessons/ternary-operator
+https://skobki.com/python-ternarnyj-uslovnyj-operator-if-or-else/
+https://codecamp.ru/blog/python-conditionals/
+https://all-python.ru/osnovy/uslovnye-operatory.html
+https://www.google.com/search?q=python+convert+to&amp;newwindow=1&amp;sxsrf=APq-WBtc86ma6A54qRUnb2rKpR5WzpPCzg%3A1644144676369&amp;ei=JKj_YYTvFc2k3AOYlbeQDA&amp;ved=0ahUKEwiEkZOb9Or1AhVNEncKHZjKDcIQ4dUDCA4&amp;uact=5&amp;oq=python+convert+to&amp;gs_lcp=Cgdnd3Mtd2l6EAMyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEOgQIIxAnOgQIABBDOgcIABCxAxBDOg0IABCABBCHAhCxAxAUOggIABCABBCxA0oECEEYAEoECEYYAFAAWLAgYIUhaABwAngAgAG8AYgB3gaSAQM3LjKYAQCgAQHAAQE&amp;sclient=gws-wiz
+https://www.google.com/search?q=convert+or+cast+types+python&amp;newwindow=1&amp;sxsrf=APq-WBvfOcWunduczWnj52MtOzoT9bxl-Q%3A1644144821046&amp;ei=taj_YaqeAoatrgSl56yQBg&amp;oq=convert%2C+or+cast%2C+types+pyt&amp;gs_lcp=Cgdnd3Mtd2l6EAMYADIICCEQFhAdEB46BwgAEEcQsAM6BAgjECdKBAhBGABKBAhGGABQpglYthFglhpoAXACeACAAWOIAfQCkgEBNJgBAKABAcgBCMABAQ&amp;sclient=gws-wiz
+https://www.freecodecamp.org/news/python-convert-string-to-int-how-to-cast-a-string-in-python/#:~:text=To%20convert%2C%20or%20cast%2C%20a,int(%22str%22)%20.
+https://devpractice.ru/python-lesson-3-data-model/
+https://pyneng.readthedocs.io/ru/latest/book/04_data_structures/index.html
+https://www.geeksforgeeks.org/how-to-take-integer-input-in-python/
+https://thomas-cokelaer.info/tutorials/python/basics.html#variables-and-types-toy-example
+https://www.geeksforgeeks.org/type-conversion-python/
+https://www.stackoftuts.com/python-3/typecasting-in-python/
+https://www.programiz.com/python-programming/type-conversion-and-casting#:~:text=In%20Explicit%20Type%20Conversion%2C%20users,data%20type%20of%20the%20objects.
+https://pynative.com/python-type-casting/
+https://pythonexamples.org/python-type-casting/
+https://www.geeksforgeeks.org/difference-between-type-casting-and-type-conversion/#:~:text=TYPE%20CONVERSION-,1.,data%20type%20by%20a%20compiler.
+https://www.w3schools.com/python/python_casting.asp
+https://www.geeksforgeeks.org/python-arrays/</code></pre><figure id="b464027b-3f85-4271-b923-afaff4aaaf3d" class="image"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/Untitled.png"><img style="width:663px" src="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/Untitled.png"/></a></figure><figure id="b4a8db93-4919-4152-80bb-2d9f5a16add7" class="image"><a href="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/Untitled%201.png"><img style="width:432px" src="%D0%9C%D0%BE%D0%B8%CC%86%20%D0%BA%D0%BE%D0%BD%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%BF%D0%BE%20Python%2047d0ee2b4307463588fff169fd1e9709/Untitled%201.png"/></a><figcaption>Почитать про анонимные функции и lambda (почему используют её)</figcaption></figure></div></div></article></body></html>

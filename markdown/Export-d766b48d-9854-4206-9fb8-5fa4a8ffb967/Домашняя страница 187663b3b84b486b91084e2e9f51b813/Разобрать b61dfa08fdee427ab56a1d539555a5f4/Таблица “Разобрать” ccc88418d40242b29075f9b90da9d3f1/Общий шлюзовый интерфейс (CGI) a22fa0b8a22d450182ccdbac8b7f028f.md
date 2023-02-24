@@ -1,0 +1,9 @@
+# Общий шлюзовый интерфейс (CGI)
+
+Date [HIDE]: July 15, 2021 5:39 AM
+Без разбора: 589 дней
+Добавлено: 15.07.2021
+Категория: Системный анализ
+Разобрано: No
+Ссылка: https://lectureswww.readthedocs.io/5.web.server/cgi.html http://www.4stud.info/web-programming/cgi.html
+Темы: ../%D0%A2%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0%20%E2%80%9C%D0%A2%D0%B5%D0%BC%D1%8B%E2%80%9D%205261d8ac365a4baa890082f78175e751/%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%BD%D1%8B%D0%B8%CC%86%20%D0%B0%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%20ae200d94ea88489f8e0a0675bbb363f5.md

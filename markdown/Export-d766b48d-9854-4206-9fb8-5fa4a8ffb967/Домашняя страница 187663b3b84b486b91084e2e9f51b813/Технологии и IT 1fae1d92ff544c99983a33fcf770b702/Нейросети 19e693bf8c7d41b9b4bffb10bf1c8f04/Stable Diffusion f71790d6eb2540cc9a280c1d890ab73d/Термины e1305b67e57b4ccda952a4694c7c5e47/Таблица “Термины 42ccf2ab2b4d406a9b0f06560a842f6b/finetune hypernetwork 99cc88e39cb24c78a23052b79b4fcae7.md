@@ -1,0 +1,3 @@
+# finetune hypernetwork
+
+Определение: ДОПИСАТЬ
