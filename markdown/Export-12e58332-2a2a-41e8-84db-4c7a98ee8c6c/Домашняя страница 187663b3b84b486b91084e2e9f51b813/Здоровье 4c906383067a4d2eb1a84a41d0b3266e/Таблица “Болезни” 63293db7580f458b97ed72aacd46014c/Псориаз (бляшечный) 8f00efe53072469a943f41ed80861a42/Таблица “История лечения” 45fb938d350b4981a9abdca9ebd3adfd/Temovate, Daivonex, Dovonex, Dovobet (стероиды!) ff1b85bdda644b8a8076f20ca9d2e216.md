@@ -1,1 +1,0 @@
-# Temovate, Daivonex, Dovonex, Dovobet (стероиды!)

@@ -1,1 +1,0 @@
-# La Roche Posay Psoriasis ISO-UREA MD
