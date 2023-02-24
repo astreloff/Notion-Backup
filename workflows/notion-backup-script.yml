@@ -1,0 +1,142 @@
+name: "notion-backup-script"
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    -   cron: "0 */4 * * *"
+    
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+
+
+image: python:3.8
+
+jobs:
+  backup:
+  only:
+    - schedules
+  script:
+    - git remote set-url origin https://${GITLAB_USER_ID}:${CI_PUSH_TOKEN}@gitlab.com/${CI_PROJECT_PATH}.git
+    - git config --global user.email ${GITLAB_USER_EMAIL}
+    - git config --global user.name ${GITLAB_USER_NAME}
+    - mkdir -p backup
+    - rm -rf backup/*
+    - ./notion_export_gen.py && ./merge_gen.sh
+
+.before_script_template: &before_script_template |
+  cat >notion_export_gen.py <<EOL
+  #!/usr/bin/env python
+  import os
+  import json
+  import time
+  import urllib
+  import urllib.request
+  import zipfile
+  import uuid
+
+  TZ = os.getenv("TZ", "Europe/Amsterdam")
+  NOTION_API = os.getenv('NOTION_API', 'https://www.notion.so/api/v3')
+  EXPORT_FILENAME = os.getenv('EXPORT_FILENAME', 'export.zip')
+  NOTION_TOKEN_V2 = os.environ['NOTION_TOKEN_V2']
+  NOTION_SPACE_ID = os.environ['NOTION_SPACE_ID']
+
+  ENQUEUE_TASK_PARAM = {
+      "task": {
+          "eventName": "exportSpace", "request": {
+              "spaceId": NOTION_SPACE_ID,
+              "exportOptions": {"exportType": "markdown", "timeZone": TZ, "locale": "en"}
+          }
+      }
+  }
+
+  def request(endpoint: str, params: object):
+      req = urllib.request.Request(
+          f'{NOTION_API}/{endpoint}',
+          data=json.dumps(params).encode('utf8'),
+          headers={
+              'content-type': 'application/json',
+              'cookie': f'token_v2={NOTION_TOKEN_V2}; '
+          },
+      )
+      response = urllib.request.urlopen(req)
+      return json.loads(response.read().decode('utf8'))
+
+
+  def export():
+      task_id = request('enqueueTask', ENQUEUE_TASK_PARAM).get('taskId')
+      print(f'Enqueued task {task_id}')
+
+      while True:
+          time.sleep(2)
+          tasks = request("getTasks", {"taskIds": [task_id]}).get('results')
+          task = next(t for t in tasks if t.get('id') == task_id)
+          print(f'\rPages exported: {task.get("status").get("pagesExported")}', end="")
+
+          if task.get('state') == 'success':
+              break
+
+      export_url = task.get('status').get('exportURL')
+      print(f'\nExport created, downloading: {export_url}')
+
+      urllib.request.urlretrieve(
+          export_url, EXPORT_FILENAME,
+          reporthook=lambda c, bs, ts: print(f"\r{int(c * bs * 100 / ts)}%", end="")
+      )
+      print(f'\nDownload complete: {EXPORT_FILENAME}')
+
+  def removeGuids(currentPath: str):
+      for fileOrDirName in os.listdir(currentPath):
+          oldPath = os.path.join(currentPath, fileOrDirName)
+          newPath = os.path.join(currentPath, removeGuidAtTheEnd(fileOrDirName))
+
+          if newPath != oldPath:
+              os.rename(oldPath, newPath)
+
+          if os.path.isdir(newPath):
+              removeGuids(newPath)
+
+  def removeGuidAtTheEnd(path: str):
+      name, extension = os.path.splitext(path)
+      if (len(name) > 37 and isValidGuid(name[-36:]) and (name[-37] == ' ' or name[-37] == '-')):
+          return name[:-37] + extension
+      if (len(name) > 33 and isValidGuid(name[-32:]) and (name[-33] == ' ' or name[-33] == '-')):
+          return name[:-33] + extension
+      return name + extension
+
+  def isValidGuid(value: str):
+      try:
+          uuid.UUID(value)
+          return True
+      except ValueError:
+          return False
+
+  if __name__ == "__main__":
+      export()
+      zipfile.ZipFile(EXPORT_FILENAME, 'r').extractall("backup")
+      removeGuids("backup")
+  EOL
+
+  cat > merge_gen.sh <<EOL
+  #!/bin/bash
+  set -e
+
+  stats="\$(git diff --shortstat | xargs)"
+  if [ -z "\${stats}" ]; then
+      echo "No changes in Notion - skip commiting"
+      exit 0
+  fi
+
+  printf "[Automated Notion backups](https://artur-en.medium.com/automated-notion-backups-f6af4edc298d)\n\nUpdated: %s\n\nUpdates: %s" "\$(date)" "\$stats" > README.md
+
+  git add backup README.md && git commit -m "Updates: \$stats"
+  git push origin HEAD:main
+  EOL
+
+  chmod +x notion_export_gen.py
+  chmod +x merge_gen.sh
+
+before_script:
+  - *before_script_template
