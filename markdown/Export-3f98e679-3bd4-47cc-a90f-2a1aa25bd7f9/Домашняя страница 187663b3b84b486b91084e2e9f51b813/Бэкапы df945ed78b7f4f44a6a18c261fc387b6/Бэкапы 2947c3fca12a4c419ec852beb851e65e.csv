@@ -1,0 +1,3 @@
+﻿Название,Источник,Хранилище,Бэкап,Описание,Автоматизация
+Фото и видео,Смартфон,"Google Drive, HDD",Google Drive → HDD каждые 6 месяцев,Снятые фото и видео вручную отбираются и переносятся в Google Drive,No
+Notion — Личное,Notion,GitHub,Notion → GitHub (https://github.com/astreloff/Notion-Backup) каждый день в 04:00,Личное пространство Notion автоматически сохраняется на GitHub,Yes
