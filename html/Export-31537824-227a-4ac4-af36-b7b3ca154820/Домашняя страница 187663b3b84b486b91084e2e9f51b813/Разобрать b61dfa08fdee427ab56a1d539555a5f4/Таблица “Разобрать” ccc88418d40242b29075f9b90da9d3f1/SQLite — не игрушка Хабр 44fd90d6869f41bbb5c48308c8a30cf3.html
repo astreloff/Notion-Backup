@@ -1,0 +1,904 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>SQLite — не игрушка / Хабр</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="44fd90d6-869f-41bb-b5c4-8308c8a30cf3" class="page sans"><header><h1 class="page-title">SQLite — не игрушка / Хабр</h1><table class="properties"><tbody><tr class="property-row property-row-url"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesUrl"><path d="M7.69922 10.8945L8.73828 9.84863C7.91797 9.77344 7.34375 9.51367 6.91992 9.08984C5.76465 7.93457 5.76465 6.29395 6.91309 5.14551L9.18262 2.87598C10.3379 1.7207 11.9717 1.7207 13.127 2.87598C14.2891 4.04492 14.2822 5.67188 13.1338 6.82031L11.958 7.99609C12.1768 8.49512 12.2451 9.10352 12.1289 9.62988L14.0908 7.6748C15.7725 6 15.7793 3.62109 14.084 1.92578C12.3887 0.223633 10.0098 0.237305 8.33496 1.91211L5.95605 4.29785C4.28125 5.97266 4.26758 8.35156 5.96289 10.0469C6.36621 10.4434 6.90625 10.7441 7.69922 10.8945ZM8.30078 5.13184L7.26855 6.17773C8.08203 6.25293 8.66309 6.51953 9.08008 6.93652C10.2422 8.09863 10.2422 9.73242 9.08691 10.8809L6.81738 13.1504C5.66211 14.3057 4.03516 14.3057 2.87305 13.1504C1.71094 11.9883 1.71777 10.3545 2.87305 9.20605L4.04199 8.03027C3.83008 7.53125 3.75488 6.92969 3.87109 6.39648L1.91602 8.35156C0.234375 10.0264 0.227539 12.4121 1.92285 14.1074C3.61816 15.8027 5.99707 15.7891 7.67188 14.1143L10.0439 11.7354C11.7256 10.0537 11.7324 7.6748 10.0371 5.98633C9.64062 5.58301 9.10059 5.28223 8.30078 5.13184Z"></path></svg></span>Ссылка</th><td><a href="https://habr.com/ru/post/547448/" class="url-value">https://habr.com/ru/post/547448/</a></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Темы</th><td><a href="../%D0%A2%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0%20%E2%80%9C%D0%A2%D0%B5%D0%BC%D1%8B%E2%80%9D%205261d8ac365a4baa890082f78175e751/%D0%91%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20(SQL)%20ec12bd25c68747bab6c6d26f17fada09.html"><img class="icon" src="https://www.notion.so/icons/table_gray.svg"/>Базы данных (SQL)</a></td></tr><tr class="property-row property-row-select"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM7.62402 10.6348C7.79492 10.915 8.20508 10.9287 8.37598 10.6348L10.666 6.73145C10.8574 6.41016 10.7002 6.04102 10.3652 6.04102H5.62793C5.29297 6.04102 5.14941 6.43066 5.32031 6.73145L7.62402 10.6348Z"></path></svg></span>Категория</th><td><span class="selected-value select-value-color-blue">Базы данных (SQL)</span></td></tr><tr class="property-row property-row-formula"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesFormula"><path d="M5.04688 14.3604H11.2744C11.7324 14.3604 12.0537 14.0801 12.0537 13.6494C12.0537 13.2119 11.7324 12.9248 11.2744 12.9248H5.81934V12.8564L9.30566 8.82324C9.54492 8.57031 9.6748 8.29688 9.6748 8.0166C9.6748 7.73633 9.54492 7.45605 9.29883 7.20996L5.81934 3.2793V3.21094H11.2812C11.7393 3.21094 12.0537 2.92383 12.0537 2.48633C12.0537 2.05566 11.7393 1.77539 11.2812 1.77539H5.05371C4.34277 1.77539 3.95312 2.26758 3.95312 2.81445C3.95312 3.12207 4.07617 3.44336 4.33594 3.69629L8.15039 7.96875V8.05078L4.3291 12.4395C4.06934 12.6924 3.94629 13.0137 3.94629 13.3213C3.94629 13.8682 4.33594 14.3604 5.04688 14.3604Z"></path></svg></span>Добавлено</th><td>15.07.2021</td></tr><tr class="property-row property-row-checkbox"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCheckbox"><path d="M3.85742 14.4561H12.1357C13.6123 14.4561 14.3779 13.6904 14.3779 12.2344V3.91504C14.3779 2.45215 13.6123 1.69336 12.1357 1.69336H3.85742C2.38086 1.69336 1.61523 2.45215 1.61523 3.91504V12.2344C1.61523 13.6973 2.38086 14.4561 3.85742 14.4561ZM3.93945 13.1162C3.30371 13.1162 2.95508 12.7812 2.95508 12.1182V4.02441C2.95508 3.36133 3.30371 3.0332 3.93945 3.0332H12.0537C12.6826 3.0332 13.0381 3.36133 13.0381 4.02441V12.1182C13.0381 12.7812 12.6826 13.1162 12.0537 13.1162H3.93945ZM7.26855 11.3115C7.51465 11.3115 7.72656 11.1885 7.87012 10.9697L10.9258 6.19141C11.0146 6.04785 11.0967 5.88379 11.0967 5.72656C11.0967 5.3916 10.7959 5.16602 10.4746 5.16602C10.2695 5.16602 10.085 5.27539 9.94141 5.50781L7.24121 9.8418L5.96973 8.22168C5.80566 8.00977 5.6416 7.93457 5.43652 7.93457C5.10156 7.93457 4.8418 8.20117 4.8418 8.54297C4.8418 8.70703 4.90332 8.85742 5.01953 9.00098L6.63281 10.9697C6.81738 11.209 7.01562 11.3115 7.26855 11.3115Z"></path></svg></span>Разобрано</th><td><div class="checkbox checkbox-off"></div></td></tr><tr class="property-row property-row-formula"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesFormula"><path d="M5.04688 14.3604H11.2744C11.7324 14.3604 12.0537 14.0801 12.0537 13.6494C12.0537 13.2119 11.7324 12.9248 11.2744 12.9248H5.81934V12.8564L9.30566 8.82324C9.54492 8.57031 9.6748 8.29688 9.6748 8.0166C9.6748 7.73633 9.54492 7.45605 9.29883 7.20996L5.81934 3.2793V3.21094H11.2812C11.7393 3.21094 12.0537 2.92383 12.0537 2.48633C12.0537 2.05566 11.7393 1.77539 11.2812 1.77539H5.05371C4.34277 1.77539 3.95312 2.26758 3.95312 2.81445C3.95312 3.12207 4.07617 3.44336 4.33594 3.69629L8.15039 7.96875V8.05078L4.3291 12.4395C4.06934 12.6924 3.94629 13.0137 3.94629 13.3213C3.94629 13.8682 4.33594 14.3604 5.04688 14.3604Z"></path></svg></span>Без разбора</th><td>591 дней</td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Связь &quot;Разобрать&quot;</th><td></td></tr><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedAt"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM4.54102 8.91211H7.99316C8.30078 8.91211 8.54004 8.67285 8.54004 8.37207V3.8877C8.54004 3.58691 8.30078 3.34766 7.99316 3.34766C7.69238 3.34766 7.45312 3.58691 7.45312 3.8877V7.83203H4.54102C4.2334 7.83203 4.00098 8.06445 4.00098 8.37207C4.00098 8.67285 4.2334 8.91211 4.54102 8.91211Z"></path></svg></span>Date [HIDE]</th><td><time>@July 15, 2021 5:39 AM</time></td></tr></tbody></table></header><div class="page-body"><p id="c5ff4747-f026-4aec-8c74-12a93d980def" class="">Рассказываю, почему SQLite отлично подойдет вам в повседневной работе. И неважно, разработчик вы, аналитик, тестировщик, админ или продакт-менеджер.</p><p id="b33be523-456c-401d-b37f-7375f897ba8d" class="">Для затравки несколько известных фактов:</p><ul id="aaa91bd4-a10f-4717-84a8-aecff37ba4b0" class="bulleted-list"><li style="list-style-type:disc">SQLite — самая распространенная СУБД в мире, включена во все популярные ОС.</li></ul><ul id="fa6782f3-fe3f-446a-909d-7cac1ed49db1" class="bulleted-list"><li style="list-style-type:disc">Работает без сервера.</li></ul><ul id="4d892163-b329-4f4a-b47f-8b9b22d1edc0" class="bulleted-list"><li style="list-style-type:disc">Для разработчиков — встраивается прямо в приложение.</li></ul><ul id="c6ce1cb0-3a47-419d-80da-64fca25d7e1f" class="bulleted-list"><li style="list-style-type:disc">Для всех остальных — удобная консоль (REPL) одним файлом (sqlite3.exe на Windows, sqlite3 в Linux / macOS).</li></ul><h2 id="085cd525-bfb7-421a-a61e-f6e51d8645b3" class="">Консоль, импорт и экспорт</h2><p id="e8eef70b-2f65-41c0-ab0f-22f6c5b1a0f9" class="">Консоль — это киллер-фича SQLite: более мощный инструмент анализа данных, чем Excel, и сильно более простой, чем какой-нибудь pandas. Данные из CSV загружаются одной командой, таблица создается автоматически:</p><pre id="506fe91d-1cee-4d3c-b118-710ebe08b4a6" class="code code-wrap"><code>&gt; .import --csv city.csv city
+&gt; select count(*) from city;
+1117</code></pre><p id="35ea83ad-c06a-4d31-843d-ad63811e4252" class="">Поддерживаются базовые SQL-фичи, а результат консоль показывает в приятной табличке. Продвинутые SQL-фичи тоже есть, но о них чуть позже.</p><pre id="09047955-6bab-4cb7-97d0-fc1479ce57e6" class="code code-wrap"><code>select
+  century || &#x27;-й век&#x27; as dates,
+  count(*) as city_count
+from history
+group by century
+order by century desc;</code></pre><pre id="6c1ef6e5-a4bf-46a1-b900-8460a7d1007b" class="code code-wrap"><code>┌──────────┬────────────┐
+│  dates   │ city_count │
+├──────────┼────────────┤
+│ 21-й век │ 1          │
+│ 20-й век │ 263        │
+│ 19-й век │ 189        │
+│ 18-й век │ 191        │
+│ 17-й век │ 137        │
+│ 16-й век │ 79         │
+│ 15-й век │ 39         │
+│ 14-й век │ 38         │
+│ 13-й век │ 27         │
+│ 12-й век │ 44         │
+│ 11-й век │ 8          │
+│ 10-й век │ 6          │
+│ 9-й век  │ 4          │
+│ 5-й век  │ 1          │
+│ 3-й век  │ 1          │
+└──────────┴────────────┘</code></pre><p id="986eeb63-9453-4b3a-b17e-eb97b3152a7d" class="">Куча форматов выгрузки данных: sql, csv, json, даже markdown и html. Все делается парой команд:</p><pre id="659449d7-ee3b-4669-ac57-473543ffc89b" class="code code-wrap"><code>.mode json
+.output city.json
+select city, foundation_year, timezone from city limit 10;
+.shell cat city.json</code></pre><pre id="0d74b6a4-bd0e-4846-a984-f847a9626def" class="code code-wrap"><code>[{&quot;city&quot;:&quot;Адыгейск&quot;,&quot;foundation_year&quot;:1969,&quot;timezone&quot;:&quot;UTC+3&quot;},
+{&quot;city&quot;:&quot;Майкоп&quot;,&quot;foundation_year&quot;:1857,&quot;timezone&quot;:&quot;UTC+3&quot;},
+{&quot;city&quot;:&quot;Горно-Алтайск&quot;,&quot;foundation_year&quot;:1830,&quot;timezone&quot;:&quot;UTC+7&quot;},
+{&quot;city&quot;:&quot;Алейск&quot;,&quot;foundation_year&quot;:1913,&quot;timezone&quot;:&quot;UTC+7&quot;},
+{&quot;city&quot;:&quot;Барнаул&quot;,&quot;foundation_year&quot;:1730,&quot;timezone&quot;:&quot;UTC+7&quot;},
+{&quot;city&quot;:&quot;Белокуриха&quot;,&quot;foundation_year&quot;:1846,&quot;timezone&quot;:&quot;UTC+7&quot;},
+{&quot;city&quot;:&quot;Бийск&quot;,&quot;foundation_year&quot;:1709,&quot;timezone&quot;:&quot;UTC+7&quot;},
+{&quot;city&quot;:&quot;Горняк&quot;,&quot;foundation_year&quot;:1942,&quot;timezone&quot;:&quot;UTC+7&quot;},
+{&quot;city&quot;:&quot;Заринск&quot;,&quot;foundation_year&quot;:1748,&quot;timezone&quot;:&quot;UTC+7&quot;},
+{&quot;city&quot;:&quot;Змеиногорск&quot;,&quot;foundation_year&quot;:1736,&quot;timezone&quot;:&quot;UTC+7&quot;}]</code></pre><h2 id="6509e711-34ee-49a2-9123-7ae6eb1e29c6" class="">Нативная работа с JSON</h2><p id="89f42649-9b43-4a9d-8f63-054753ee5e9d" class="">Нет ничего удобнее SQLite для анализа и преобразования JSON. Можно селектить данные напрямую из файла, как будто это обычная таблица. Или загрузить в таблицу и селектить оттуда — как вам удобнее.</p><pre id="435ff0b8-40dc-4958-84c5-f3fe67190f16" class="code code-wrap"><code>select
+  json_extract(value, &#x27;$.code&#x27;) as code,
+  json_extract(value, &#x27;$.name&#x27;) as name,
+  json_extract(value, &#x27;$.rate&#x27;) as rate,
+  json_extract(value, &#x27;$.default&#x27;) as &quot;default&quot;
+from
+  json_each(readfile(&#x27;currency.sample.json&#x27;))
+;</code></pre><pre id="f9515e50-154b-46a2-9705-b77271e23684" class="code code-wrap"><code>┌──────┬───────────────────┬────────────┬─────────┐
+│ code │       name        │    rate    │ default │
+├──────┼───────────────────┼────────────┼─────────┤
+│ AZN  │ Манаты            │ 0.023107   │ 0       │
+│ BYR  │ Белорусские рубли │ 0.034966   │ 0       │
+│ EUR  │ Евро              │ 0.011138   │ 0       │
+│ GEL  │ Грузинский лари   │ 0.0344     │ 0       │
+│ KGS  │ Киргизский сом    │ 1.131738   │ 0       │
+│ KZT  │ Тенге             │ 5.699857   │ 0       │
+│ RUR  │ Рубли             │ 1.0        │ 1       │
+│ UAH  │ Гривны            │ 0.380539   │ 0       │
+│ USD  │ Доллары           │ 0.013601   │ 0       │
+│ UZS  │ Узбекский сум     │ 142.441417 │ 0       │
+└──────┴───────────────────┴────────────┴─────────┘</code></pre><p id="273a13a5-b145-4ea9-86bb-0d0efcfa48c8" class="">Неважно, насколько развесистый JSON — можно выбрать атрибуты любой вложенности:</p><pre id="f6549863-9744-40d2-afdd-c404ded4fc29" class="code code-wrap"><code>select
+  json_extract(value, &#x27;$.id&#x27;) as id,
+  json_extract(value, &#x27;$.name&#x27;) as name
+from
+  json_tree(readfile(&#x27;industry.sample.json&#x27;))
+where
+  path like &#x27;$[%].industries&#x27;
+;</code></pre><pre id="d5d4b31c-a477-478f-adb8-fed3d7bca0a1" class="code code-wrap"><code>┌────────┬──────────────────────┐
+│   id   │         name         │
+├────────┼──────────────────────┤
+│ 7.538  │ Интернет-провайдер   │
+│ 7.539  │ ИТ-консалтинг        │
+│ 7.540  │ Разработка ПО        │
+│ 9.399  │ Мобильная связь      │
+│ 9.400  │ Фиксированная связь  │
+│ 9.401  │ Оптоволоконная связь │
+│ 43.641 │ Аудит                │
+│ 43.646 │ Страхование          │
+│ 43.647 │ Банк                 │
+└────────┴──────────────────────┘</code></pre><h2 id="25f40ba8-9c68-4bc6-9467-7f60595d992c" class="">CTE и операции над множествами</h2><p id="7b8af3f1-fd66-4080-841e-27eb4dfbe773" class="">Разумеется, поддерживаются Common Table Expressions (конструкция <code>WITH</code>) и джойны, тут даже примеры приводить не буду. А если данные иерархичные (таблица ссылается сама на себя через столбец вроде <code>parent_id</code>) — поможет рекурсивный <code>WITH</code>. Иерархию любого уровня можно «размотать» одним запросом.</p><pre id="192f66b5-e889-407c-b4ff-516bac45a00c" class="code code-wrap"><code>with recursive tmp(id, name, level) as (
+  select id, name, 1 as level
+  from area
+  where parent_id is null
+
+  union all
+
+  select
+    area.id,
+    tmp.name || &#x27;, &#x27; || area.name as name,
+    tmp.level + 1 as level
+  from area
+    join tmp on area.parent_id = tmp.id
+)
+
+select * from tmp;</code></pre><pre id="36dbe261-57e5-42ea-b41c-79dd46b51fdb" class="code code-wrap"><code>┌──────┬─────────────────────────────────────┬───────┐
+│  id  │               name                  │ level │
+├──────┼─────────────────────────────────────┼───────┤
+│ 113  │ Россия                              │ 1     │
+│ 1    │ Россия, Москва                      │ 2     │
+│ 1586 │ Россия, Самарская область           │ 2     │
+│ 1588 │ Россия, Самарская область, Кинель   │ 3     │
+│ 78   │ Россия, Самарская область, Самара   │ 3     │
+│ 212  │ Россия, Самарская область, Тольятти │ 3     │
+│ ...  │ ...                                 │ ...   │
+└──────┴─────────────────────────────────────┴───────┘</code></pre><p id="edc662ea-897e-4187-8da6-0b79c182e9e2" class="">Множества? Нет проблем: <code>UNION</code>, <code>INTERSECT</code>, <code>EXCEPT</code> к вашим услугам.</p><pre id="061a6b92-602d-4bd9-9181-98c0cb8b5d26" class="code code-wrap"><code>select employer_id
+from employer_area
+where area_id = 1
+
+except
+
+select employer_id
+from employer_area
+where area_id = 2;</code></pre><figure id="2953bd57-401d-4df1-86b6-35da952ccd48" class="image"><a href="SQLite%20%E2%80%94%20%D0%BD%D0%B5%20%D0%B8%D0%B3%D1%80%D1%83%D1%88%D0%BA%D0%B0%20%D0%A5%D0%B0%D0%B1%D1%80%2044fd90d6869f41bbb5c48308c8a30cf3/50b35017373cb161ec8367866ad9fe0e.png"><img style="width:700px" src="SQLite%20%E2%80%94%20%D0%BD%D0%B5%20%D0%B8%D0%B3%D1%80%D1%83%D1%88%D0%BA%D0%B0%20%D0%A5%D0%B0%D0%B1%D1%80%2044fd90d6869f41bbb5c48308c8a30cf3/50b35017373cb161ec8367866ad9fe0e.png"/></a></figure><p id="1b843d14-cd30-4fc3-8fc6-e79d7c9d81c6" class="">Хотите рассчитать один столбец на основании нескольких других? Пожалуйста — вычисляемые столбцы:</p><pre id="4368038b-e8db-42fe-8685-9dddddf915b5" class="code code-wrap"><code>alter table vacancy
+add column salary_net integer as (
+  case when salary_gross = true then
+    round(salary_from/1.13)
+  else
+    salary_from
+  end
+);</code></pre><p id="37f3a825-82ec-44fc-a51e-0d97076a8632" class="">Вычисляемый столбец в селекте доступен точно так же, как обычный:</p><pre id="72e9fde9-992a-4b04-873a-2f40dc5fc9be" class="code code-wrap"><code>select
+  substr(name, 1, 40) as name,
+  salary_net
+from vacancy
+where
+  salary_currency = &#x27;RUR&#x27;
+  and salary_net is not null
+limit 10;</code></pre><pre id="e8983af3-f616-4b47-96b1-47d3893ebc87" class="code code-wrap"><code>┌──────────────────────────────────────────┬────────────┐
+│                   name                   │ salary_net │
+├──────────────────────────────────────────┼────────────┤
+│ Ведущий инженер-программист (Delphi)     │ 40000      │
+│ Ведущий программист Scala / Java ( Senio │ 60000      │
+│ Java / Kotlin Developer                  │ 150000     │
+│ Ведущий аналитик 1С                      │ 150000     │
+│ Разработчик C#                           │ 53097      │
+│ Программист 1С                           │ 80000      │
+│ Java - разработчик (Middle, Senior)      │ 100000     │
+│ Программист C#/ .NET                     │ 70796      │
+│ Тестировщик ПО/ QA engineer (ручное тест │ 45000      │
+│ Курьер                                   │ 17699      │
+└──────────────────────────────────────────┴────────────┘</code></pre><h2 id="16711e4f-20d1-413f-bbd7-9ee5716b651e" class="">Мат. статистика</h2><p id="6591f987-529a-44ad-85b1-034c70bee7db" class="">Описательная статистика? Запросто: среднее, медиана, процентили, стандартное отклонение и вот это все. Правда, придется подключить библиотеку со стат. функциями, но это тоже одна команда (и один файл).</p><pre id="5e253c3f-effd-4a14-a40b-f81808445e77" class="code code-wrap"><code>.load sqlite3-stats
+
+select
+  count(*) as book_count,
+  cast(avg(num_pages) as integer) as mean,
+  cast(median(num_pages) as integer) as median,
+  mode(num_pages) as mode,
+  percentile_90(num_pages) as p90,
+  percentile_95(num_pages) as p95,
+  percentile_99(num_pages) as p99
+from books;</code></pre><pre id="3303d798-d57e-4b14-af08-d0798b8b6e82" class="code code-wrap"><code>┌────────────┬──────┬────────┬──────┬─────┬─────┬──────┐
+│ book_count │ mean │ median │ mode │ p90 │ p95 │ p99  │
+├────────────┼──────┼────────┼──────┼─────┼─────┼──────┤
+│ 1483       │ 349  │ 295    │ 256  │ 640 │ 817 │ 1199 │
+└────────────┴──────┴────────┴──────┴─────┴─────┴──────┘</code></pre><blockquote id="775f7784-b398-40fc-aa5a-73d693d7f3a7" class="">Лирическое отступление. SQLite традиционно бедна функциями по сравнению с каким-нибудь постгресом. Но их легко добавить, чем многие и занимаются — каждый кто во что горазд. Получается легкий бардак.Поэтому я решил сделать нормальный набор библиотек, с разделением по предметной области и автоматической сборкой для всех ОС. Пока библиотек там немного, но скоро прибавится:</blockquote><p id="8a2244c0-e175-4728-ae69-9c4d61dc17b0" class="">А вот еще о статистике. Можно нарисовать распределение значений прямо в консоли. Смотрите, какая милота:</p><pre id="b040ea16-ff63-44ac-8299-158252c22cfa" class="code code-wrap"><code>with slots as (
+  select
+    num_pages/100 as slot,
+    count(*) as book_count
+  from books
+  group by slot
+),
+max as (
+  select max(book_count) as value
+  from slots
+)
+select
+  slot,
+  book_count,
+  printf(&#x27;%.&#x27; || (book_count * 30 / max.value) || &#x27;c&#x27;, &#x27;*&#x27;) as bar
+from slots, max
+order by slot;</code></pre><pre id="83cb02c3-4a97-45eb-8b1f-2b6ba7208a15" class="code code-wrap"><code>┌──────┬────────────┬────────────────────────────────┐
+│ slot │ book_count │              bar               │
+├──────┼────────────┼────────────────────────────────┤
+│ 0    │ 116        │ *********                      │
+│ 1    │ 254        │ ********************           │
+│ 2    │ 376        │ ****************************** │
+│ 3    │ 285        │ **********************         │
+│ 4    │ 184        │ **************                 │
+│ 5    │ 90         │ *******                        │
+│ 6    │ 54         │ ****                           │
+│ 7    │ 41         │ ***                            │
+│ 8    │ 31         │ **                             │
+│ 9    │ 15         │ *                              │
+│ 10   │ 11         │ *                              │
+│ 11   │ 12         │ *                              │
+│ 12   │ 2          │ *                              │
+│ 13   │ 5          │ *                              │
+│ 14   │ 3          │ *                              │
+│ 15   │ 1          │ *                              │
+│ 17   │ 1          │ *                              │
+│ 18   │ 2          │ *                              │
+└──────┴────────────┴────────────────────────────────┘</code></pre><h2 id="818c9a21-e83d-4c94-9779-950572b5c91e" class="">Быстродействие</h2><p id="7197c86b-cf62-4701-9c54-5cbe96659015" class="">SQLite спокойно работает с десятками миллионов записей (с сотнями тоже — я проверял). Обычные <code>INSERT</code> дают на моем ноуте около 240 тысяч записей в секунду. А если подключить исходный CSV как виртуальную таблицу (такая специальная фича) — еще в 2 раза быстрее.</p><pre id="ac151ac3-795d-442e-96c0-e03571605d8b" class="code code-wrap"><code>.load sqlite3-vsv
+create virtual table temp.blocks_csv using vsv(
+    filename=&quot;ipblocks.csv&quot;,
+    schema=&quot;create table x(network text, geoname_id integer, registered_country_geoname_id integer, represented_country_geoname_id integer, is_anonymous_proxy integer, is_satellite_provider integer, postal_code text, latitude real, longitude real, accuracy_radius integer)&quot;,
+    columns=10,
+    header=on,
+    nulls=on
+);</code></pre><pre id="9ed5e068-5eb8-415e-bf2b-08cd0b377d9f" class="code code-wrap"><code>.timer on
+insert into blocks
+select * from blocks_csv;
+
+Run Time: real 5.176 user 4.716420 sys 0.403866</code></pre><pre id="6ca36696-f885-43c4-a4a1-b4d686e52fed" class="code code-wrap"><code>select count(*) from blocks;
+3386629
+
+Run Time: real 0.095 user 0.021972 sys 0.063716</code></pre><p id="d147ca3d-2c40-4227-ba5b-6eeab7b09c2f" class="">Среди разработчиков распространено мнение, что SQLite не подходит для веба, потому что поддерживает только одного клиента. Это миф. В режиме write-ahead log (стандартная фича современных СУБД) читателей может быть сколько угодно. Писатель — один, но часто больше и не надо.</p><p id="ab076dff-ef5f-4081-b783-d57cd7aacb7a" class="">SQLite отлично подходит для небольших сайтов и приложений. Например, <a href="https://sqlite.org/">sqlite.org</a> использует SQLite в качестве базы, не заморачиваясь с оптимизацией (~200 запросов на страницу). При этом у него 700К визитов в месяц, а работает быстрее 95% сайтов.</p><h2 id="adbf867f-d534-4f4f-b894-5c7aa4451b93" class="">Документы, графы и поиск</h2><p id="abd919d4-5081-4e69-9eac-c9cb4af8828e" class="">Поддерживаются частичные индексы и индексы по выражениям, как в «больших» СУБД. Можно даже строить индексы на виртуальных столбцах.</p><p id="93acb9d2-771c-4422-a3e7-3668ffc4b631" class="">Так SQLite можно превратить хоть в документную БД: хранить сырой json и строить индексы по <code>json_extract()</code> на нужных столбцах:</p><pre id="f773031c-aa55-44d7-8258-0a13098ddce7" class="code code-wrap"><code>create table currency(
+  body text,
+  code text as (json_extract(body, &#x27;$.code&#x27;)),
+  name text as (json_extract(body, &#x27;$.name&#x27;))
+);
+
+create index currency_code_idx on currency(code);
+
+insert into currency
+select value
+from json_each(readfile(&#x27;currency.sample.json&#x27;));</code></pre><pre id="a54ec3d2-5a44-497b-9532-51019f8d8877" class="code code-wrap"><code>explain query plan
+select name from currency where code = &#x27;RUR&#x27;;
+
+QUERY PLAN
+`--SEARCH TABLE currency USING INDEX currency_code_idx (code=?)</code></pre><p id="cee6f54b-0699-458e-8a14-ce6b7873756c" class="">Можно и как графовую базу использовать. Тут уже придется либо злые <code>WITH RECURSIVE</code> использовать, либо добавить щепотку программирования:</p><p id="ff522f8e-c17b-490f-bc8e-34a0329967da" class=""><a href="https://github.com/dpapathanasiou/simple-graph">simple-graph (GitHub)</a></p><p id="56e9c30b-b536-41da-a4da-715155cc6351" class="">Полнотекстовый поиск работает из коробки:</p><pre id="d360436a-26dc-4701-a41e-12834724e9a0" class="code code-wrap"><code>create virtual table books_fts
+using fts5(title, author, publisher);
+
+insert into books_fts
+select title, author, publisher from books;
+
+select
+  author,
+  substr(title, 1, 30) as title,
+  substr(publisher, 1, 10) as publisher
+from books_fts
+where books_fts match &#x27;ann&#x27;
+limit 5;</code></pre><pre id="f7d91321-83e7-4063-9af5-4ee5297705ef" class="code code-wrap"><code>┌─────────────────────┬────────────────────────────────┬────────────┐
+│       author        │             title              │ publisher  │
+├─────────────────────┼────────────────────────────────┼────────────┤
+│ Ruby Ann Boxcar     │ Ruby Ann&#x27;s Down Home Trailer P │ Citadel    │
+│ Ruby Ann Boxcar     │ Ruby Ann&#x27;s Down Home Trailer P │ Citadel    │
+│ Lynne Ann DeSpelder │ The Last Dance: Encountering D │ McGraw-Hil │
+│ Daniel Defoe        │ Robinson Crusoe                │ Ann Arbor  │
+│ Ann Thwaite         │ Waiting for the Party: The Lif │ David R. G │
+└─────────────────────┴────────────────────────────────┴────────────┘</code></pre><p id="175d3bed-c0ae-404c-9e93-3f6bda3c9514" class="">А хотите in-memory базу для промежуточных вычислений? Одна строчка кода на питоне:</p><pre id="87e9d6a7-632d-4764-96a7-23d5ad1dd9e6" class="code code-wrap"><code>db = sqlite3.connect(&quot;:memory:&quot;)</code></pre><p id="7424bf6b-e132-43a3-8115-9e059a6b93bd" class="">Можно даже обращаться к ней из нескольких соединений:</p><pre id="82f8d710-8aad-4694-8857-a1f75eb40ecd" class="code code-wrap"><code>db = sqlite3.connect(&quot;file::memory:?cache=shared&quot;)</code></pre><h2 id="c72e8b4b-e2b1-4069-a060-951668c4c612" class="">И еще много всего</h2><p id="e3d4e29a-8be7-4b43-aace-d79b2be81e93" class="">Есть навороченные оконные функции (в точности как в PostgreSQL). <code>UPSERT</code>, <code>UPDATE FROM</code> и <code>generate_series()</code>. R-Tree индексы. Регекспы, fuzzy-поиск и гео. По фичам SQLite посоперничает с любой «взрослой» СУБД.</p><p id="8084053e-0b2f-411c-ba47-d05e8d73bfe9" class="">Надеюсь, эта статья вдохновит вас применить SQLite в своих задачах. Спасибо, что прочитали!</p><p id="702f2b11-de26-4a81-9793-16b0727de20a" class=""><em>Если интересно, как использовать SQLite на полную — подписывайтесь на канал </em><a href="https://t.me/sqliter"><em>@sqliter</em></a></p></div></article></body></html>

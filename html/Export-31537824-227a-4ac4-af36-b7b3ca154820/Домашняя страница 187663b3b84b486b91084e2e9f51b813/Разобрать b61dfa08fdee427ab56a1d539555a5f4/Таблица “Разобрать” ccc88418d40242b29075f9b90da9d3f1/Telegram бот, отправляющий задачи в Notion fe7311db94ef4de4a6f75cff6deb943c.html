@@ -1,0 +1,677 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Telegram бот, отправляющий задачи в Notion</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="fe7311db-94ef-4de4-a6f7-5cff6deb943c" class="page sans"><header><h1 class="page-title">Telegram бот, отправляющий задачи в Notion</h1><table class="properties"><tbody><tr class="property-row property-row-url"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesUrl"><path d="M7.69922 10.8945L8.73828 9.84863C7.91797 9.77344 7.34375 9.51367 6.91992 9.08984C5.76465 7.93457 5.76465 6.29395 6.91309 5.14551L9.18262 2.87598C10.3379 1.7207 11.9717 1.7207 13.127 2.87598C14.2891 4.04492 14.2822 5.67188 13.1338 6.82031L11.958 7.99609C12.1768 8.49512 12.2451 9.10352 12.1289 9.62988L14.0908 7.6748C15.7725 6 15.7793 3.62109 14.084 1.92578C12.3887 0.223633 10.0098 0.237305 8.33496 1.91211L5.95605 4.29785C4.28125 5.97266 4.26758 8.35156 5.96289 10.0469C6.36621 10.4434 6.90625 10.7441 7.69922 10.8945ZM8.30078 5.13184L7.26855 6.17773C8.08203 6.25293 8.66309 6.51953 9.08008 6.93652C10.2422 8.09863 10.2422 9.73242 9.08691 10.8809L6.81738 13.1504C5.66211 14.3057 4.03516 14.3057 2.87305 13.1504C1.71094 11.9883 1.71777 10.3545 2.87305 9.20605L4.04199 8.03027C3.83008 7.53125 3.75488 6.92969 3.87109 6.39648L1.91602 8.35156C0.234375 10.0264 0.227539 12.4121 1.92285 14.1074C3.61816 15.8027 5.99707 15.7891 7.67188 14.1143L10.0439 11.7354C11.7256 10.0537 11.7324 7.6748 10.0371 5.98633C9.64062 5.58301 9.10059 5.28223 8.30078 5.13184Z"></path></svg></span>Ссылка</th><td><a href="https://amorev.ru/telegram-notion-integration/" class="url-value">https://amorev.ru/telegram-notion-integration/</a></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Темы</th><td><a href="../%D0%A2%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0%20%E2%80%9C%D0%A2%D0%B5%D0%BC%D1%8B%E2%80%9D%205261d8ac365a4baa890082f78175e751/Python%2056ea1d4987c94572bc191d10854812ef.html"><img class="icon" src="https://www.notion.so/icons/code_gray.svg"/>Python</a></td></tr><tr class="property-row property-row-select"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM7.62402 10.6348C7.79492 10.915 8.20508 10.9287 8.37598 10.6348L10.666 6.73145C10.8574 6.41016 10.7002 6.04102 10.3652 6.04102H5.62793C5.29297 6.04102 5.14941 6.43066 5.32031 6.73145L7.62402 10.6348Z"></path></svg></span>Категория</th><td></td></tr><tr class="property-row property-row-formula"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesFormula"><path d="M5.04688 14.3604H11.2744C11.7324 14.3604 12.0537 14.0801 12.0537 13.6494C12.0537 13.2119 11.7324 12.9248 11.2744 12.9248H5.81934V12.8564L9.30566 8.82324C9.54492 8.57031 9.6748 8.29688 9.6748 8.0166C9.6748 7.73633 9.54492 7.45605 9.29883 7.20996L5.81934 3.2793V3.21094H11.2812C11.7393 3.21094 12.0537 2.92383 12.0537 2.48633C12.0537 2.05566 11.7393 1.77539 11.2812 1.77539H5.05371C4.34277 1.77539 3.95312 2.26758 3.95312 2.81445C3.95312 3.12207 4.07617 3.44336 4.33594 3.69629L8.15039 7.96875V8.05078L4.3291 12.4395C4.06934 12.6924 3.94629 13.0137 3.94629 13.3213C3.94629 13.8682 4.33594 14.3604 5.04688 14.3604Z"></path></svg></span>Добавлено</th><td>09.11.2022</td></tr><tr class="property-row property-row-checkbox"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCheckbox"><path d="M3.85742 14.4561H12.1357C13.6123 14.4561 14.3779 13.6904 14.3779 12.2344V3.91504C14.3779 2.45215 13.6123 1.69336 12.1357 1.69336H3.85742C2.38086 1.69336 1.61523 2.45215 1.61523 3.91504V12.2344C1.61523 13.6973 2.38086 14.4561 3.85742 14.4561ZM3.93945 13.1162C3.30371 13.1162 2.95508 12.7812 2.95508 12.1182V4.02441C2.95508 3.36133 3.30371 3.0332 3.93945 3.0332H12.0537C12.6826 3.0332 13.0381 3.36133 13.0381 4.02441V12.1182C13.0381 12.7812 12.6826 13.1162 12.0537 13.1162H3.93945ZM7.26855 11.3115C7.51465 11.3115 7.72656 11.1885 7.87012 10.9697L10.9258 6.19141C11.0146 6.04785 11.0967 5.88379 11.0967 5.72656C11.0967 5.3916 10.7959 5.16602 10.4746 5.16602C10.2695 5.16602 10.085 5.27539 9.94141 5.50781L7.24121 9.8418L5.96973 8.22168C5.80566 8.00977 5.6416 7.93457 5.43652 7.93457C5.10156 7.93457 4.8418 8.20117 4.8418 8.54297C4.8418 8.70703 4.90332 8.85742 5.01953 9.00098L6.63281 10.9697C6.81738 11.209 7.01562 11.3115 7.26855 11.3115Z"></path></svg></span>Разобрано</th><td><div class="checkbox checkbox-off"></div></td></tr><tr class="property-row property-row-formula"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesFormula"><path d="M5.04688 14.3604H11.2744C11.7324 14.3604 12.0537 14.0801 12.0537 13.6494C12.0537 13.2119 11.7324 12.9248 11.2744 12.9248H5.81934V12.8564L9.30566 8.82324C9.54492 8.57031 9.6748 8.29688 9.6748 8.0166C9.6748 7.73633 9.54492 7.45605 9.29883 7.20996L5.81934 3.2793V3.21094H11.2812C11.7393 3.21094 12.0537 2.92383 12.0537 2.48633C12.0537 2.05566 11.7393 1.77539 11.2812 1.77539H5.05371C4.34277 1.77539 3.95312 2.26758 3.95312 2.81445C3.95312 3.12207 4.07617 3.44336 4.33594 3.69629L8.15039 7.96875V8.05078L4.3291 12.4395C4.06934 12.6924 3.94629 13.0137 3.94629 13.3213C3.94629 13.8682 4.33594 14.3604 5.04688 14.3604Z"></path></svg></span>Без разбора</th><td>109 дней</td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Связь &quot;Разобрать&quot;</th><td></td></tr><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedAt"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM4.54102 8.91211H7.99316C8.30078 8.91211 8.54004 8.67285 8.54004 8.37207V3.8877C8.54004 3.58691 8.30078 3.34766 7.99316 3.34766C7.69238 3.34766 7.45312 3.58691 7.45312 3.8877V7.83203H4.54102C4.2334 7.83203 4.00098 8.06445 4.00098 8.37207C4.00098 8.67285 4.2334 8.91211 4.54102 8.91211Z"></path></svg></span>Date [HIDE]</th><td><time>@November 9, 2022 3:50 PM</time></td></tr></tbody></table></header><div class="page-body"><p id="46ff1f91-a21e-4041-8171-7aa9e7b3d12e" class="">Я уже писал ранее, что Notion выпустили свое API и я написал интеграцию с Telegram (подробнее <a href="https://amorev.ru/notion-beta-api-release/">тут</a>) и я был несказанно рад этой новости! Писал я про это уже 4 месяца назад и я, сразу-же, сделал себе на коленке небольшого бота, который ставит мне задачи и через которого другие люди также могут ставить мне задачи.</p><p id="0fff5c5b-cf60-4d25-9196-5c5d2924a683" class="">У данного поста есть видео версия. Посмотреть можно прямо здесь или перейдя <a href="https://youtu.be/XzhQzuWBAcg">по ссылке</a>.</p><p id="276afe11-3588-4c64-a6f1-c895452c723b" class="">Я очень люблю Notion - я пользуюсь им уже почти год и все больше и больше внедряю его в свои процессы. Вот уже несколько месяцев все свои личные задачи я веду через него. Я стараюсь прийти к тому, что в Notion лежали все задачи, которыми мне нужно заниматься.</p><p id="1a08d5b0-c784-492e-8de3-094604d29120" class="">Но я для себя заметил, что добавление задач отнимает много времени - зайти в notion, открыть нужную доску, дождаться пока загрузится страница, добавить задачу. Разумеется, мой ленивый разум быстро нашел в этом причину чтобы не вести задачи. Но потом появилось API и я быстро накидал себе бота, который добавляет задачу на каждое сообщение в Telegram.</p><p id="b7552a20-3d51-41af-a74a-f2f88cb9678f" class="">В рамках данного поста я поделился своим способом достижения этого результата на Typescript.</p><h2 id="ada3e878-d290-4d6d-a508-764f48800e3e" class="">Первая версия бота</h2><p id="30d46292-e564-46dd-8bac-ad11f8126112" class="">Первое, что я сделал с его появлением - простого Telegram бота, через которого мне можно ставить задачи. Работает он простым образом:</p><ol type="1" id="c49169f2-b473-483f-82e8-880c20417676" class="numbered-list" start="1"><li>Я пишу Telegram боту любой текст</li></ol><ol type="1" id="e1ce101f-691e-48f0-8bd7-ff61e741aab4" class="numbered-list" start="2"><li>В notion, в моем списке задач, создается карточка, в названии которого лежит текст сообщения</li></ol><ol type="1" id="442305c8-21e4-4501-ac57-20fbcd13e714" class="numbered-list" start="3"><li>В ответ бот присылает мне оповещение о том, что задача создана и передает ссылку на карточку</li></ol><ol type="1" id="33592f59-c50c-42fc-9218-8098b4c01315" class="numbered-list" start="4"><li>Также боту может написать человек, которому я дал право ставить мне задачи. Это тоже приводит к созданию карточки задачи с пометкой автора задачи.</li></ol><p id="e4dca306-1573-49c9-9990-310628c06aa4" class="">Дальше этого бота расширять можно сколь угодно много. Но сегодня мы с вами сделаем простую базовую версию.</p><h2 id="25a536a3-a0c9-4c46-a3f6-a6c06be57c57" class="">Подключение к Notion API</h2><p id="bda2aa7b-106c-4e76-9b06-de2f19705d74" class="">Для начала нужно получить token для работы. Сделать это можно по инструкции <a href="https://developers.notion.com/docs/getting-started">здесь</a>. Также опишу этот процесс здесь:</p><ul id="6fe3d747-67c7-4e55-b50e-8f83c915caef" class="bulleted-list"><li style="list-style-type:disc">Придумываем название интеграции</li></ul><ul id="f19d5c7b-9bb9-4a25-ae56-0cca2add3ec3" class="bulleted-list"><li style="list-style-type:disc">Попадаем на страницу с вашим токеном</li></ul><p id="1609c9ef-f021-4a42-9fe4-5dab8f1019e5" class="">Дальше этот токен можно скопировать кнопкой Copy и использовать его в своем приложении.</p><h2 id="f548d7c5-2ed0-49cd-932b-0ef0a4c7ccf5" class="">Создаем базу данных задач</h2><p id="141b8ce3-0a72-45ce-945f-a451edf64b73" class="">Дальше нужно в любом удобном вам месте в Notion создать базу данных с Kan Ban представлением, добавить поля статуса и источника задачи. Или можете просто скопировать мой <a href="https://www.notion.so/95f371ba0f9a4756bd7d580c484e3be4">тестовый список задач</a> и использовать его как шаблон.</p><p id="4690bef2-5bbc-4332-88ec-d900cf2929b9" class="">Кнопка для дублирования в качестве шаблона</p><p id="e5c26ad5-0c0f-4d40-b763-0937f0cf2323" class="">Отлично! Теперь у нас есть база задач, которую вы можете наполнять руками через Notion! Но мы здесь с вами не для этого. Теперь нам необходимо настроить интеграцию между notion и telegram ботом.</p><h2 id="b52e7cf9-462e-4996-9d12-af211da2610d" class="">Заготовка Telegram бота на typescript</h2><p id="0225f402-915f-4993-8035-b940a6133e61" class="">Я подготовил проект, в котором реализовал базовую логику интеграции. Вы можете посмотреть его код <a href="https://github.com/gmoreva/2-notion-tasks">на </a><a href="https://github.com/gmoreva/2-notion-tasks/tree/0.0.1">GitHub</a> (версия 0.0.1). Внутри есть readme.md, в котором описано как запускать бота, а я пройдусь по основным моментам работы интеграции.</p><h3 id="5fb41450-2f3c-4be5-86ee-59e7a8844991" class="">Базовая инициализация бота</h3><pre id="97a2d123-ec8a-43eb-807e-5c7a923a2bb3" class="code code-wrap"><code>const bot = new Telegraf(process.env!.TELEGRAM_BOT_TOKEN)
+const telegramownerid = Number(process.env!.TELEGRAM_OWNER_ID)
+const allowTelegramIds = process.env!.TELEGRAM_ALLOW_IDS.split(&#x27;,&#x27;).map(e =&gt; Number(e))
+console.log({
+    allowTelegramIds,
+    telegramownerid
+})
+bot.start((ctx) =&gt; ctx.reply(&#x27;Welcome&#x27;))
+bot.on(&#x27;message&#x27;, async function (ctx: Context) {</code></pre><p id="9c69f94e-8089-417d-94d8-cc62640094b1" class="">В рамках данной инициализации мы используем следующие переменные:</p><ul id="43f753c4-7289-49bb-91d2-04c5cee47b64" class="bulleted-list"><li style="list-style-type:disc"><strong>TELEGRAM_BOT_TOKEN </strong>токен, который мы получили через <a href="https://t.me/botfather">@BotFather</a></li></ul><ul id="ddc12b7a-d715-4795-b265-2be21bfb103b" class="bulleted-list"><li style="list-style-type:disc"><strong>TELEGRAM_OWNER_ID </strong>Мой личный Telegram Id, чтобы можно было идентифицировать меня, как администратора</li></ul><ul id="36f1eba4-020b-4c0e-aa72-234b5c819a36" class="bulleted-list"><li style="list-style-type:disc"><strong>TELEGRAM_ALLOW_IDS </strong>строка, где, через запятую, перечислены Telegram ID людей, которым доступна постановка мне задач.</li></ul><h3 id="09440edb-be06-4bee-b0e2-95a531fae81d" class="">Обработка входящего сообщения</h3><p id="da1f8458-94ad-41c1-89b1-59778e7ebd90" class="">Сообщение, которое мы отправляем боту, приходит на наш сервер в виде объекта Context, у которого есть поле message с полями:</p><ul id="8a721fcc-99f6-401f-832a-319ee983189e" class="bulleted-list"><li style="list-style-type:disc">id сообщения</li></ul><ul id="30018590-a136-4029-b6e2-048ec329fdc9" class="bulleted-list"><li style="list-style-type:disc">текст сообщения</li></ul><ul id="417558ac-4950-401d-8a45-c3da20dc8917" class="bulleted-list"><li style="list-style-type:disc">информация об отправителе: имя, username и, самое главное, id</li></ul><p id="5e93a3ab-fac8-490d-8192-86c0995f195c" class="">Разумеется есть много чего еще, но нам достаточно этого набора полей.</p><h3 id="3c27aeec-d7ac-4a65-b225-f173992c2b4d" class="">Подготовка объекта на отправку в notion</h3><p id="153b79db-c855-4d40-8330-46c218daefa3" class="">Для отправки задачи в Notion мы создаем объект</p><table id="4e265984-dde8-4f4d-8ce7-d76bb5e6fe76" class="simple-table"><tbody><tr id="c12d2148-fe1e-4150-afa7-9dcef389d3b3"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">{</td></tr><tr id="2eda7e88-b86e-446b-9e9f-d2d6a340be6a"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">parent: {</td></tr><tr id="da358819-b11f-4d3d-baf3-4be85f74a38b"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">database_id: taskDB</td></tr><tr id="df2f1893-70a8-4e8b-b57b-6a189c296566"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">},</td></tr><tr id="a2f2d6c6-bfe6-43bd-b42f-c46d947bb043"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">properties: {</td></tr><tr id="4e5dbcf2-63af-4ec6-aba5-0d069d7813ab"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">Name: {</td></tr><tr id="24439c8b-a0d5-4e4d-a393-c84f419fe805"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">type: &quot;title&quot;,</td></tr><tr id="d45863e4-0338-4e2d-955f-c43c076c3a3b"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">title: [</td></tr><tr id="c9afe173-ddc0-4e0e-9cbe-414257cd6284"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">{</td></tr><tr id="71a6a52d-ee11-48c0-9c24-93a2c03eeca4"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">type: &quot;text&quot;,</td></tr><tr id="ac0839d5-b29b-4a87-a9e4-8a526c2e8e7b"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">text: {</td></tr><tr id="dca6ec75-bddc-42c3-9195-149f138eacd8"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">content: title</td></tr><tr id="60fb69b6-b12f-4dcd-b45c-7ad8f17a9762"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">}</td></tr><tr id="16c2667c-9fef-4ec5-8b7f-9d06b90aec1f"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">}</td></tr><tr id="ec683d8a-bca7-47ec-b502-9a1278faad78"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">]</td></tr><tr id="1d448ffa-90fa-412d-9f95-7ecb8f7d13f5"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">},</td></tr><tr id="1bfa0dd4-3943-487d-ab77-d7618baf3a0a"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">TGAuthor: {</td></tr><tr id="3fa28048-4f9b-4761-bac6-55ea0b4e7e44"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">type: &quot;rich_text&quot;,</td></tr><tr id="08ba2716-ba82-4b21-b03b-926e999164db"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">rich_text: [</td></tr><tr id="d7546d62-8a8b-4f3c-bebb-267a606c3edc"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">{</td></tr><tr id="11d123c5-5ece-40eb-8c1a-02ba17b0b837"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">type: &quot;text&quot;,</td></tr><tr id="ca6c2a2e-b49a-4fac-aa55-6a321fefca7f"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">text: {</td></tr><tr id="f552cca0-a6ce-4cfa-bb2f-8151736407d5"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">content: tgAuthor</td></tr><tr id="361f80be-6ebd-4b81-8df5-ffa195a2289f"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">}</td></tr><tr id="79f8898c-f494-44a5-9895-2368a9d15864"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">}</td></tr><tr id="f985b670-4a4a-4d30-a049-92c6af4b5a46"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">]</td></tr><tr id="62e8c432-1f08-45e6-b46d-70483f980ec5"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">},</td></tr><tr id="d8f81180-6b24-4fb0-8275-9408d54148f4"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">Status: {</td></tr><tr id="f2fda974-a9bd-4ab8-8ab3-b88bcba2d652"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">type: &quot;select&quot;,</td></tr><tr id="92fba77c-9c00-429a-9c62-4da92f73eed7"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">select: {</td></tr><tr id="c5e0f72d-7142-4a93-9a47-aff8459be065"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">name: &#x27;Backlog&#x27;</td></tr><tr id="8a996cbb-65e7-4d3a-89fb-f60a719b5634"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">}</td></tr><tr id="3426efc8-8b3a-45bf-8723-a03dd59b5289"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">},</td></tr><tr id="d8c84aae-87a2-4bbe-ad3b-d49d377fa7c0"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">Source: {</td></tr><tr id="896b2a90-6fb9-4fa9-9e45-65703c35986e"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">type: &quot;select&quot;,</td></tr><tr id="9a7b905e-af69-4b39-bc83-27831cf7ac87"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">select: {</td></tr><tr id="862b11dd-638f-485f-9c92-f50a5f01e3d4"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">name: &#x27;Telegram&#x27;</td></tr><tr id="db9eb886-ca09-4fd9-a00f-bb68d2d5869a"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">}</td></tr><tr id="393f20cc-61d3-4cc2-97e1-99960b420d32"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">}</td></tr><tr id="5047676e-d0b5-4270-9d19-952866b0d359"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">}</td></tr><tr id="94408983-3468-4f12-abfb-6aeab0fbb86e"><td id="}eMG" class=""></td><td id="&lt;U@B" class="">}</td></tr></tbody></table><p id="7fe5c083-3568-46cd-a7ff-862ed98a3a4c" class="">На 3 строчке есть переменная <code>taskDb</code>, туда нам необходимо разместить ID вашей базы данных. Получить её можно из ссылки. Где её взять можете увидеть из скрина ниже.</p><p id="34c47503-074f-4077-b820-163e250c4ed4" class="">Расположение ID базы данных</p><p id="0ea59ab4-fd10-4331-b40d-bfc546bf4e64" class="">На 23 строчке в примере в переменную <code>tgAuthor</code>, в моем примере, подставляется username пользователя, чтобы потом можно было сообразить. Также можно увидеть другие поля в этом объекте:</p><ul id="03e2435c-9442-41ea-b4a4-c18ea5ea0268" class="bulleted-list"><li style="list-style-type:disc">Name - название задачи,</li></ul><ul id="531c5c19-75c4-41ce-aa99-8d6a7d5aabd0" class="bulleted-list"><li style="list-style-type:disc">TGAuthor - автор задачи,</li></ul><ul id="86edfbaf-4075-4725-9aef-7fbd7f0d3e16" class="bulleted-list"><li style="list-style-type:disc">Status - статус, в который мы отправляем задачу. В нашем примере это Backlog,</li></ul><ul id="91ded2b8-7b48-4be8-a886-0cbee1610a27" class="bulleted-list"><li style="list-style-type:disc">Source - источник задачи. Проставляем Telegram.</li></ul><p id="316d3b03-7260-4d1f-a235-3f42c1809c5d" class="">После подготовки объекта мы отправляем POST запрос на метод создания страницы (документация <a href="https://developers.notion.com/reference/post-page">тут</a>). Поскольку мой пример написан на Typescript, я использую NPM пакет <a href="https://www.npmjs.com/package/@notionhq/client">@notionhq/client</a>.</p><p id="440250d5-7571-4ce4-9555-23d0cc27d60a" class="">После отправки запроса, в Notion, создается карточка задачи, с которой уже можно работать как вам угодно.</p><h3 id="9ada0693-915d-4890-af6a-bcbc7fdf0025" class="">Обработка сообщений от других пользователей</h3><p id="8c0208d9-75c5-4e0d-a0f7-6ef2ccfe15bb" class="">В первой же версии я захотел сделать так, чтобы мне могли ставить задачи другие люди. Для решения этой задачи я добавил в env переменные значение <strong>TELEGRAM_ALLOW_IDS</strong>, где, через запятую, перечислил идентификаторы Telegram пользователей, которые могут ставить мне задачи.</p><p id="3a1dd421-a415-45a6-9362-575caefb50c6" class="">Когда они ставят мне задачу бот также создает задачу в Notion и оповещает меня о том, что кто то осчастливил меня новой задачей.</p><h2 id="594d7c78-c5cb-4e78-8ba6-5cb4cb0f1e7f" class="">Вместо заключения</h2><p id="6494115c-6a12-42b9-8974-69c7f893218a" class="">Таким образом я получил себе верного помощника, который позволяет мне забывать меньше задач, а другим быть чуть более уверенным, что я не забуду про то, о чем меня попросили.</p><p id="fa367b40-8707-498e-8f27-6e892be4c937" class="">Бот активно дорабатывается и расширяется. Так что, в ближайшее время, будет еще контент про то, как можно автоматизировать свои рутинные действия.</p><p id="22be8dea-06d9-4210-9dfc-3f76370bad85" class="">Если вам интересны темы интеграции с Notion, то предлагаю прочитать пост про <a href="https://amorev.ru/notion-event-to-calendar/">интеграцию Notion с Google Calendar</a></p><p id="80dcfafe-b971-4ae3-81c2-b55c7b1813a0" class="">До связи!</p></div></article></body></html>
