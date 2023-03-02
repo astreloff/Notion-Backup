@@ -1,0 +1,3 @@
+# Obsidian
+
+Ссылка: obsidian.md

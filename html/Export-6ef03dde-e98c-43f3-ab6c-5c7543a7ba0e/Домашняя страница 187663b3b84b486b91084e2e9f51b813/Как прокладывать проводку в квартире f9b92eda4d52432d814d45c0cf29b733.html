@@ -1,0 +1,669 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Как прокладывать проводку в квартире?</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="f9b92eda-4d52-432d-814d-45c0cf29b733" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🔌</span></div><h1 class="page-title">Как прокладывать проводку в квартире?</h1></header><div class="page-body"><nav id="ce488616-aed6-409c-b4cf-31fb81649486" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#ba7bfc3d-fb9a-4dcb-ba50-ca635e302d66">Основные шаги</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3a4c2438-2c88-4bf3-b478-7046a25902aa">Детальная информация</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#f602e2e0-9159-4334-a808-1ab261d2be6f">Стыки/соединения проводов</a></div></nav><h3 id="ba7bfc3d-fb9a-4dcb-ba50-ca635e302d66" class="">Основные шаги</h3><ol type="1" id="274dee80-95e1-4ef9-94e0-6c7ef529658b" class="numbered-list" start="1"><li>Для прокладки проводки в квартире необходимо сначала определить маршрут проводки. Вы должны рассмотреть возможные маршруты проводки и выбрать наиболее простой и удобный. Далее необходимо определить местоположение всех точек и приобрести необходимые материалы для прокладки проводки. Необходимо приобрести провода, разъемы, изоляторы и другие принадлежности для проводки. Они различаются в зависимости от того, для чего предназначена проводка.</li></ol><ol type="1" id="b3615844-4be8-4f32-b35d-4637fefa4e49" class="numbered-list" start="2"><li>Следующим шагом для прокладки проводки в квартире является прокладка проводов. Для этого необходимо вырезать отверстия в стенах и потолках, и прокладывать провода через них. Осторожно перемещайте провода по маршруту, чтобы не повредить их. Для защиты проводов от повреждения и влаги используйте изоляторы.</li></ol><ol type="1" id="dd1175e9-a3ca-4978-b1d5-c52c87455077" class="numbered-list" start="3"><li>Последним шагом прокладки проводки в квартире является подключение проводов к разъемам. Для этого необходимо правильно присоединить провода к разъемам и проверить их правильность. После этого можно подключить устройства и проверить их правильность работы. Затем можно скрыть провода в стенах или потолках.</li></ol><ol type="1" id="5906c30e-560c-4931-b35a-bbbcb6881e09" class="numbered-list" start="4"><li>Вышеописанные шаги помогут вам правильно и безопасно прокладывать проводку в квартире. При прокладке проводки необходимо помнить о безопасности и правильности процесса.</li></ol><h3 id="3a4c2438-2c88-4bf3-b478-7046a25902aa" class="">Детальная информация</h3><figure id="a6865f2d-8f0c-4239-8be4-6cde0d6a98ba"><a href="http://etp-perm.ru/el/pue" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">ПУЭ: правила устройства электроустановок</div><div class="bookmark-description">Раздел 1. ОБЩИЕ ПРАВИЛА Раздел 2. КАНАЛИЗАЦИЯ ЭЛЕКТРОЭНЕРГИИ Раздел 3. ЗАЩИТА И АВТОМАТИКА Раздел 4. РАСПРЕДЕЛИТЕЛЬНЫЕ УСТРОЙСТВА И ПОДСТАНЦИИ Раздел 5. ЭЛЕКТРОСИЛОВЫЕ УСТАНОВКИ Раздел 6. ЭЛЕКТРИЧЕСКОЕ ОСВЕЩЕНИЕ Раздел 7. ЭЛЕКТРООБОРУДОВАНИЕ СПЕЦИАЛЬНЫХ УСТАНОВОК Приложения Предисловие Правила устройства электроустановок (ПУЭ) седьмого издания в связи с длительным сроком переработки (не менее двух лет) будет выпускаться и вводиться в действие отдельными разделами и главами по мере завершения работ по их пересмотру, согласованию и утверждению.</div></div><div class="bookmark-href"><img src="https://etp-perm.ru/img/favicon_etp.ico" class="icon bookmark-icon"/>http://etp-perm.ru/el/pue</div></div></a></figure><p id="afa4f78c-bc41-44d6-a050-98b0e92eac35" class="">Вся линия подключается через автоматический выключатель и таким образом защищается. И если ты правильно подобрал сечение кабеля и номинал автомата (стандарт на розетки: кабель медь 2.5 мм, автомат 16А) и качественно выполнил стыки, чтобы они не грелись), то всё будет окей.</p><p id="582475c3-a2f4-4a17-bf3f-387dd77067f1" class="">Ведь, как известно, от перемены мест слагаемых сумма не меняется. Что ты подключишь к одной розетке слишком большую нагрузку, хоть ты раскидаешь нагрузку на разные розетки, но чтобы суммарно она была той же самой - один фиг в автомат штатно отрубит линию и пожара не произойдёт.</p><p id="72fd64e2-9f81-4606-b547-d1d81b703c6f" class="">А 16А это 230 вольт * 16А = 3680 ватт, что обычно достаточно для бытовых приборов в разных комбинациях.</p><p id="f19794b7-cfe0-41af-aecf-5db782df43fd" class="">Проблемы могут возникнуть, если нужно на линию подключить много мощных приборов, работающий длительное время: три микроволновки импортных, три нагревателя воздуха отечественных, майнинг-фермы.. три. Тогда да, линия не потянет, нужно будет к каждой розетке, к которой ты собрался подключать нагрузку, исчепывающую потенциал кабеля и автомата, тянуть отдельный провод из щитка, защищённый отдельным автоматом.</p><p id="a6223c6f-f76c-445f-9af5-5902109991ca" class="">Так что в целом теоретически можно даже одной линией обнести всю квартиру (кроме электроплиты и духовки ессно, к ним тянутся отдельные линии) и в большинстве случаев этого хватит. Но конечно так делать нежелательно хотя бы с точки зрения удобства - один коротнувший прибор отключает всю квартиру. Да и автоматы сейчас дёшевы. Так что 1 автомат на комнату это золотая середина.</p><h3 id="f602e2e0-9159-4334-a808-1ab261d2be6f" class="">Стыки/соединения проводов</h3><figure id="c93b83ca-966d-429b-afbf-40abb8f93762"><a href="https://habr.com/ru/post/656923/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Скрутки, клеммники и WAGO под лёгкой перегрузкой</div><div class="bookmark-description">В позапрошлом году я начал испытания различных способов соединения проводов, во избежание ситуации описанной в посте. Сейчас пришло время посмотреть как соединения стареют со временем и ведут себя при перегрузках. Здесь рассматриваются наиболее доступные способы соединить наиболее типичный для квартирной проводки медный однопроволочный провод сечением 2,5 кв.мм.</div></div><div class="bookmark-href"><img src="https://assets.habr.com/habr-web/img/favicons/favicon-32.png" class="icon bookmark-icon"/>https://habr.com/ru/post/656923/</div></div><img src="https://habr.com/share/publication/656923/64442ab7140ea317236ece3149144cdd/" class="bookmark-image"/></a></figure><p id="00828493-61b8-4599-a293-b6bb6f4dd481" class="">Можно наблюдать полную плеяду мнений от &quot;старая добрая скрутка лучшего, на ней весь СССР держался&quot; до &quot;современные технологии и ваговские клеммники рулят&quot;.</p><p id="6d8f3858-364c-4894-837a-f33988b08674" class="">В целом, согласно ПУЭ (Правилам Установки Электрооборудования)</p><blockquote id="f33b4efa-3ebe-4112-8e03-451e376815d8" class="">2.1.21. Соединение, ответвление и оконцевание жил проводов и кабелей должны производиться при помощи опрессовки, сварки, пайки или сжимов (винтовых, болтовых и т. п.) в соответствии с действующими инструкциями, утвержденными в установленном порядке.</blockquote><p id="a9398c34-3652-4cba-8566-f8a634cb2561" class="">Опрессовка (фото 1) - надёжно, не требует электричества, правда требует специальных обжимных клещей, соединение через толстые гильзы требует физической силы, для очень толстых используются гидравлические клещи, нет риска замарать/сжечь окружающие предметы при выполнении работы. Соединение получается неразъёмным, переподключение ведёт к укорачиванию проводов.</p><p id="988cc66c-aa06-4083-bcf0-9e4b914c4a30" class="">Сварка (фото 2) - надёжно, требует электричества и спец. прибора для сварки, есть риск повреждения окружающих предметов. Соединение также неразъёмно.</p><p id="7c14f599-0bfe-41aa-b1b9-a15f92029f1d" class="">Пайка (фото 3) - надёжно, требует электричества и паяльника, можно капнуть оловом не туда. Выполняется дольше (хотя видел используют ванночку с оловом, подогретуе на аппарате для пайки полипропиленовых труб, и просто окунают скрутку туда). Соединение при необходимости теоретически можно распаять без укорачивания проводов.</p><p id="41b9277d-acdb-43d2-9e2c-3413dfdf0d17" class="">Зажимы с помощью болта (фото 4) - не требует электричества, легко рассоединить при необходимости, позволяет соединять провода из разных металлов (аллюминий и медь). Но не так надёжно, так как требует периодической протяжки, иначе есть риск возникновения плохого контакта и нагрева. И занимает очень много места.</p><p id="38fe0fd9-8a66-4e65-be5b-0709b0c52a42" class="">WAGOвские клеммники (фото 5). Их часто критикуют сторонники &quot;старых добрых методов&quot;, а также кто обжёгся (в буквальном смысле) на подделках, коих на нашем рынке много, и теперь зря катит бочку на неплохую в общем продукцию. Официальные клеммники надёжны и выполняют заявленные функции. Есть разные - самозажимные (вставляешь провод в отверстие и всё), есть с рычажком, которые легко размыкать, есть с пастой (для аллюминиевых проводов, предотвращает окисление). В целом удобны и практически идеальны - легко и быстро соединять и разъединять, достаточно надёжны (хотя мб и поменьше чем первые три метода), не требуют дополнительной электроизоляции (термоусадка, изолента) как вышеперечисленные методы. Но занимают много места и их сложно разместить, например, в узком пространстве за коробкой розетки или в маленькой распаечной коробке. Хотя модель на фото 5 - с рычажками и при этом достаточно компактная. Намного слабее держут провода, чем перечисленные выше методы, поэтому при запихивании проводов, соединённых клеммниками, в маленькое пространство, есть риск что провода просто выскочат из клеммников. Если места мало и приходится буквально запихивать - лучше рассмотрите вышеозначенные методы.</p><p id="1f06cc82-1a03-4a0b-8733-c0ae39cdcea8" class="">Вышеуказанные соединения можно выполнять либо за розеткой, поставив специальный углублённый подрозетник. Либо ухитриться засунуть в обычный подрозетник, но это неудобно.</p><p id="fa94ccd9-3a5c-4a0c-974b-d2fcf9c46817" class="">Либо в распаечных коробках, которые ставят обычно на потолок (при разводке кабелей по потолку).</p><p id="1158e268-61c9-4c6f-b75c-d4f9bd816972" class="">Либо в некоторых розетках есть 2 пары контактов. В одну подключаем входящие провода, в другую - исходящие и идущие на другую розетку. Тоже возможно, хотя желательно регулярно открывать розетку и протягивать винты.</p><p id="0de3d0d0-3d84-4244-b604-41ed0afc602d" class="">Но ради бога, ни в коем случае не используйте дешёвые полиэтиленовые винтовые колодки (фото 7) на розетки - максимум на свет (хотя там лучше уж поставьте нормальные ваго). Они не предназначены для нагрузки 16А, плавятся и горят, как и любое винтовое соединение, требуют регулярной протяжки, что ессно не выполняется. Хотя по причине их доступности (любой хозмаг) и дешевизны их, к сожалению, используют очень часто.</p><figure id="14d6f2c4-503d-45b0-9d93-949df034dd58" class="image"><a href="%D0%9A%D0%B0%D0%BA%20%D0%BF%D1%80%D0%BE%D0%BA%D0%BB%D0%B0%D0%B4%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4%D0%BA%D1%83%20%D0%B2%20%D0%BA%D0%B2%D0%B0%D1%80%D1%82%D0%B8%D1%80%D0%B5%20f9b92eda4d52432d814d45c0cf29b733/Untitled.png"><img style="width:398px" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D1%80%D0%BE%D0%BA%D0%BB%D0%B0%D0%B4%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4%D0%BA%D1%83%20%D0%B2%20%D0%BA%D0%B2%D0%B0%D1%80%D1%82%D0%B8%D1%80%D0%B5%20f9b92eda4d52432d814d45c0cf29b733/Untitled.png"/></a></figure><figure id="7e596d3c-2fe1-49c1-b42d-e42069595be9" class="image"><a href="%D0%9A%D0%B0%D0%BA%20%D0%BF%D1%80%D0%BE%D0%BA%D0%BB%D0%B0%D0%B4%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4%D0%BA%D1%83%20%D0%B2%20%D0%BA%D0%B2%D0%B0%D1%80%D1%82%D0%B8%D1%80%D0%B5%20f9b92eda4d52432d814d45c0cf29b733/Untitled%201.png"><img style="width:700px" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D1%80%D0%BE%D0%BA%D0%BB%D0%B0%D0%B4%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4%D0%BA%D1%83%20%D0%B2%20%D0%BA%D0%B2%D0%B0%D1%80%D1%82%D0%B8%D1%80%D0%B5%20f9b92eda4d52432d814d45c0cf29b733/Untitled%201.png"/></a></figure><figure id="ac8c8131-1729-4ef8-9f15-0b2698314458" class="image"><a href="%D0%9A%D0%B0%D0%BA%20%D0%BF%D1%80%D0%BE%D0%BA%D0%BB%D0%B0%D0%B4%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4%D0%BA%D1%83%20%D0%B2%20%D0%BA%D0%B2%D0%B0%D1%80%D1%82%D0%B8%D1%80%D0%B5%20f9b92eda4d52432d814d45c0cf29b733/Untitled%202.png"><img style="width:501px" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D1%80%D0%BE%D0%BA%D0%BB%D0%B0%D0%B4%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4%D0%BA%D1%83%20%D0%B2%20%D0%BA%D0%B2%D0%B0%D1%80%D1%82%D0%B8%D1%80%D0%B5%20f9b92eda4d52432d814d45c0cf29b733/Untitled%202.png"/></a></figure><figure id="8438e257-0745-4cc0-b724-fde8b900760f" class="image"><a href="%D0%9A%D0%B0%D0%BA%20%D0%BF%D1%80%D0%BE%D0%BA%D0%BB%D0%B0%D0%B4%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4%D0%BA%D1%83%20%D0%B2%20%D0%BA%D0%B2%D0%B0%D1%80%D1%82%D0%B8%D1%80%D0%B5%20f9b92eda4d52432d814d45c0cf29b733/Untitled%203.png"><img style="width:300px" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D1%80%D0%BE%D0%BA%D0%BB%D0%B0%D0%B4%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4%D0%BA%D1%83%20%D0%B2%20%D0%BA%D0%B2%D0%B0%D1%80%D1%82%D0%B8%D1%80%D0%B5%20f9b92eda4d52432d814d45c0cf29b733/Untitled%203.png"/></a></figure><figure id="66ad90f7-87df-4088-b340-6bf335c31ef2" class="image"><a href="%D0%9A%D0%B0%D0%BA%20%D0%BF%D1%80%D0%BE%D0%BA%D0%BB%D0%B0%D0%B4%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4%D0%BA%D1%83%20%D0%B2%20%D0%BA%D0%B2%D0%B0%D1%80%D1%82%D0%B8%D1%80%D0%B5%20f9b92eda4d52432d814d45c0cf29b733/Untitled%204.png"><img style="width:796px" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D1%80%D0%BE%D0%BA%D0%BB%D0%B0%D0%B4%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4%D0%BA%D1%83%20%D0%B2%20%D0%BA%D0%B2%D0%B0%D1%80%D1%82%D0%B8%D1%80%D0%B5%20f9b92eda4d52432d814d45c0cf29b733/Untitled%204.png"/></a></figure><figure id="d984b37a-da64-4e72-8a85-4cb3ec44ae56" class="image"><a href="%D0%9A%D0%B0%D0%BA%20%D0%BF%D1%80%D0%BE%D0%BA%D0%BB%D0%B0%D0%B4%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4%D0%BA%D1%83%20%D0%B2%20%D0%BA%D0%B2%D0%B0%D1%80%D1%82%D0%B8%D1%80%D0%B5%20f9b92eda4d52432d814d45c0cf29b733/Untitled%205.png"><img style="width:700px" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D1%80%D0%BE%D0%BA%D0%BB%D0%B0%D0%B4%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4%D0%BA%D1%83%20%D0%B2%20%D0%BA%D0%B2%D0%B0%D1%80%D1%82%D0%B8%D1%80%D0%B5%20f9b92eda4d52432d814d45c0cf29b733/Untitled%205.png"/></a></figure><figure id="ad366e77-3c00-4c5f-92c9-a1bcd1531c09" class="image"><a href="%D0%9A%D0%B0%D0%BA%20%D0%BF%D1%80%D0%BE%D0%BA%D0%BB%D0%B0%D0%B4%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4%D0%BA%D1%83%20%D0%B2%20%D0%BA%D0%B2%D0%B0%D1%80%D1%82%D0%B8%D1%80%D0%B5%20f9b92eda4d52432d814d45c0cf29b733/Untitled%206.png"><img style="width:276px" src="%D0%9A%D0%B0%D0%BA%20%D0%BF%D1%80%D0%BE%D0%BA%D0%BB%D0%B0%D0%B4%D1%8B%D0%B2%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%D0%B2%D0%BE%D0%B4%D0%BA%D1%83%20%D0%B2%20%D0%BA%D0%B2%D0%B0%D1%80%D1%82%D0%B8%D1%80%D0%B5%20f9b92eda4d52432d814d45c0cf29b733/Untitled%206.png"/></a></figure></div></article></body></html>
