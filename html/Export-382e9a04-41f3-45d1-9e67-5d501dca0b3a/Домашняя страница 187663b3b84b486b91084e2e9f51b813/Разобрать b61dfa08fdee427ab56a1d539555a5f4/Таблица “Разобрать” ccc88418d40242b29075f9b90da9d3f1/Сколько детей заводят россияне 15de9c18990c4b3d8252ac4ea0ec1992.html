@@ -1,0 +1,669 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Сколько детей заводят россияне</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="15de9c18-990c-4b3d-8252-ac4ea0ec1992" class="page sans"><header><h1 class="page-title">Сколько детей заводят россияне</h1><table class="properties"><tbody><tr class="property-row property-row-url"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesUrl"><path d="M7.69922 10.8945L8.73828 9.84863C7.91797 9.77344 7.34375 9.51367 6.91992 9.08984C5.76465 7.93457 5.76465 6.29395 6.91309 5.14551L9.18262 2.87598C10.3379 1.7207 11.9717 1.7207 13.127 2.87598C14.2891 4.04492 14.2822 5.67188 13.1338 6.82031L11.958 7.99609C12.1768 8.49512 12.2451 9.10352 12.1289 9.62988L14.0908 7.6748C15.7725 6 15.7793 3.62109 14.084 1.92578C12.3887 0.223633 10.0098 0.237305 8.33496 1.91211L5.95605 4.29785C4.28125 5.97266 4.26758 8.35156 5.96289 10.0469C6.36621 10.4434 6.90625 10.7441 7.69922 10.8945ZM8.30078 5.13184L7.26855 6.17773C8.08203 6.25293 8.66309 6.51953 9.08008 6.93652C10.2422 8.09863 10.2422 9.73242 9.08691 10.8809L6.81738 13.1504C5.66211 14.3057 4.03516 14.3057 2.87305 13.1504C1.71094 11.9883 1.71777 10.3545 2.87305 9.20605L4.04199 8.03027C3.83008 7.53125 3.75488 6.92969 3.87109 6.39648L1.91602 8.35156C0.234375 10.0264 0.227539 12.4121 1.92285 14.1074C3.61816 15.8027 5.99707 15.7891 7.67188 14.1143L10.0439 11.7354C11.7256 10.0537 11.7324 7.6748 10.0371 5.98633C9.64062 5.58301 9.10059 5.28223 8.30078 5.13184Z"></path></svg></span>Ссылка</th><td><a href="https://journal.tinkoff.ru/one-two-three-stat/" class="url-value">https://journal.tinkoff.ru/one-two-three-stat/</a></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Темы</th><td></td></tr><tr class="property-row property-row-select"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM7.62402 10.6348C7.79492 10.915 8.20508 10.9287 8.37598 10.6348L10.666 6.73145C10.8574 6.41016 10.7002 6.04102 10.3652 6.04102H5.62793C5.29297 6.04102 5.14941 6.43066 5.32031 6.73145L7.62402 10.6348Z"></path></svg></span>Категория</th><td></td></tr><tr class="property-row property-row-formula"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesFormula"><path d="M5.04688 14.3604H11.2744C11.7324 14.3604 12.0537 14.0801 12.0537 13.6494C12.0537 13.2119 11.7324 12.9248 11.2744 12.9248H5.81934V12.8564L9.30566 8.82324C9.54492 8.57031 9.6748 8.29688 9.6748 8.0166C9.6748 7.73633 9.54492 7.45605 9.29883 7.20996L5.81934 3.2793V3.21094H11.2812C11.7393 3.21094 12.0537 2.92383 12.0537 2.48633C12.0537 2.05566 11.7393 1.77539 11.2812 1.77539H5.05371C4.34277 1.77539 3.95312 2.26758 3.95312 2.81445C3.95312 3.12207 4.07617 3.44336 4.33594 3.69629L8.15039 7.96875V8.05078L4.3291 12.4395C4.06934 12.6924 3.94629 13.0137 3.94629 13.3213C3.94629 13.8682 4.33594 14.3604 5.04688 14.3604Z"></path></svg></span>Добавлено</th><td>02.10.2022</td></tr><tr class="property-row property-row-checkbox"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCheckbox"><path d="M3.85742 14.4561H12.1357C13.6123 14.4561 14.3779 13.6904 14.3779 12.2344V3.91504C14.3779 2.45215 13.6123 1.69336 12.1357 1.69336H3.85742C2.38086 1.69336 1.61523 2.45215 1.61523 3.91504V12.2344C1.61523 13.6973 2.38086 14.4561 3.85742 14.4561ZM3.93945 13.1162C3.30371 13.1162 2.95508 12.7812 2.95508 12.1182V4.02441C2.95508 3.36133 3.30371 3.0332 3.93945 3.0332H12.0537C12.6826 3.0332 13.0381 3.36133 13.0381 4.02441V12.1182C13.0381 12.7812 12.6826 13.1162 12.0537 13.1162H3.93945ZM7.26855 11.3115C7.51465 11.3115 7.72656 11.1885 7.87012 10.9697L10.9258 6.19141C11.0146 6.04785 11.0967 5.88379 11.0967 5.72656C11.0967 5.3916 10.7959 5.16602 10.4746 5.16602C10.2695 5.16602 10.085 5.27539 9.94141 5.50781L7.24121 9.8418L5.96973 8.22168C5.80566 8.00977 5.6416 7.93457 5.43652 7.93457C5.10156 7.93457 4.8418 8.20117 4.8418 8.54297C4.8418 8.70703 4.90332 8.85742 5.01953 9.00098L6.63281 10.9697C6.81738 11.209 7.01562 11.3115 7.26855 11.3115Z"></path></svg></span>Разобрано</th><td><div class="checkbox checkbox-off"></div></td></tr><tr class="property-row property-row-formula"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesFormula"><path d="M5.04688 14.3604H11.2744C11.7324 14.3604 12.0537 14.0801 12.0537 13.6494C12.0537 13.2119 11.7324 12.9248 11.2744 12.9248H5.81934V12.8564L9.30566 8.82324C9.54492 8.57031 9.6748 8.29688 9.6748 8.0166C9.6748 7.73633 9.54492 7.45605 9.29883 7.20996L5.81934 3.2793V3.21094H11.2812C11.7393 3.21094 12.0537 2.92383 12.0537 2.48633C12.0537 2.05566 11.7393 1.77539 11.2812 1.77539H5.05371C4.34277 1.77539 3.95312 2.26758 3.95312 2.81445C3.95312 3.12207 4.07617 3.44336 4.33594 3.69629L8.15039 7.96875V8.05078L4.3291 12.4395C4.06934 12.6924 3.94629 13.0137 3.94629 13.3213C3.94629 13.8682 4.33594 14.3604 5.04688 14.3604Z"></path></svg></span>Без разбора</th><td>151 дней</td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Связь &quot;Разобрать&quot;</th><td></td></tr><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedAt"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM4.54102 8.91211H7.99316C8.30078 8.91211 8.54004 8.67285 8.54004 8.37207V3.8877C8.54004 3.58691 8.30078 3.34766 7.99316 3.34766C7.69238 3.34766 7.45312 3.58691 7.45312 3.8877V7.83203H4.54102C4.2334 7.83203 4.00098 8.06445 4.00098 8.37207C4.00098 8.67285 4.2334 8.91211 4.54102 8.91211Z"></path></svg></span>Date [HIDE]</th><td><time>@October 2, 2022 8:09 AM</time></td></tr></tbody></table></header><div class="page-body"><h3 id="e3797c2f-e592-4d69-ae3a-c6c82d317024" class="">И как на рождаемость влияет материнский капитал</h3><p id="1e325bf4-6218-41d8-bd12-6c25f372809d" class="">Две трети российских семей, в которых есть дети, — это семьи с одним ребенком.</p><p id="9231c67a-3848-48f3-8a7d-e35803945dd8" class="">Причем в последние годы этот показатель <a href="https://www.strana2020.ru/mediaoffice/pochemu-stalo-menshe-semey-s-detmi-i-bolshe-ottsov-odinochek-/">практически не меняется:</a> согласно переписи 2002 года один ребенок воспитывался в 65,2% семей, где есть дети; переписи 2010 года — в 65,5%. Сами же россияне, если судить по соцопросам, говорят, что планируют иметь больше одного ребенка. Мы посмотрели на статистику и узнали, почему желания не всегда совпадают с действительностью.</p><figure id="909911cf-d594-4c26-8b14-0216b9a4bb04" class="image"><a href="%D0%A1%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%B4%D0%B5%D1%82%D0%B5%D0%B8%CC%86%20%D0%B7%D0%B0%D0%B2%D0%BE%D0%B4%D1%8F%D1%82%20%D1%80%D0%BE%D1%81%D1%81%D0%B8%D1%8F%D0%BD%D0%B5%2015de9c18990c4b3d8252ac4ea0ec1992/MWphcDMucG5n"><img style="width:412px" src="%D0%A1%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%B4%D0%B5%D1%82%D0%B5%D0%B8%CC%86%20%D0%B7%D0%B0%D0%B2%D0%BE%D0%B4%D1%8F%D1%82%20%D1%80%D0%BE%D1%81%D1%81%D0%B8%D1%8F%D0%BD%D0%B5%2015de9c18990c4b3d8252ac4ea0ec1992/MWphcDMucG5n"/></a></figure><p id="7a74b8f9-7eff-4587-a0a8-fd48506b73d2" class=""><a href="https://journal.tinkoff.ru/spec-tinkoff-black/?internal_source=tj_spec_tb_spec-tinkoff-black-bannerinread1">Хочу знать</a></p><h2 id="73b3df92-8016-447a-befc-5f2aad1b479e" class="">Сколько детей хотят иметь россияне</h2><p id="d773df9e-340b-4775-96ab-97450ba452ac" class="">Раз в пять лет Росстат проводит <a href="https://gks.ru/free_doc/new_site/RPN17/index.html">масштабный опрос 15 тысяч семей.</a> Респондентов спрашивают, сколько детей они хотели бы завести и сколько планируют на самом деле.</p><p id="9d7bb168-66df-445e-b4cc-69d6ea77a4ec" class="">Если верить этому исследованию, 70% россиянок в возрасте 18—44 лет хотят иметь двух-трех детей. Но при ответе на вопрос «Как вы думаете, сколько детей у вас будет?» доля тех, кто отвечает, что будет один ребенок, вырастает в полтора раза — с 17 до 25%.</p><figure id="4847d0a7-2912-44cc-8818-61469fa260dc" class="image"><a href="%D0%A1%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%B4%D0%B5%D1%82%D0%B5%D0%B8%CC%86%20%D0%B7%D0%B0%D0%B2%D0%BE%D0%B4%D1%8F%D1%82%20%D1%80%D0%BE%D1%81%D1%81%D0%B8%D1%8F%D0%BD%D0%B5%2015de9c18990c4b3d8252ac4ea0ec1992/cHg0bXgucG5n"><img style="width:433px" src="%D0%A1%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%B4%D0%B5%D1%82%D0%B5%D0%B8%CC%86%20%D0%B7%D0%B0%D0%B2%D0%BE%D0%B4%D1%8F%D1%82%20%D1%80%D0%BE%D1%81%D1%81%D0%B8%D1%8F%D0%BD%D0%B5%2015de9c18990c4b3d8252ac4ea0ec1992/cHg0bXgucG5n"/></a></figure><p id="c6715432-01f0-4d92-862d-b3332064e6f0" class="">         Источник: Выборочное наблюдение репродуктивных планов населения — 2017</p><figure id="2d13fd24-7822-4be9-a095-e1f071251c2d" class="image"><a href="%D0%A1%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%B4%D0%B5%D1%82%D0%B5%D0%B8%CC%86%20%D0%B7%D0%B0%D0%B2%D0%BE%D0%B4%D1%8F%D1%82%20%D1%80%D0%BE%D1%81%D1%81%D0%B8%D1%8F%D0%BD%D0%B5%2015de9c18990c4b3d8252ac4ea0ec1992/LjgxbW1kZS5wbmc"><img style="width:700px" src="%D0%A1%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%B4%D0%B5%D1%82%D0%B5%D0%B8%CC%86%20%D0%B7%D0%B0%D0%B2%D0%BE%D0%B4%D1%8F%D1%82%20%D1%80%D0%BE%D1%81%D1%81%D0%B8%D1%8F%D0%BD%D0%B5%2015de9c18990c4b3d8252ac4ea0ec1992/LjgxbW1kZS5wbmc"/></a></figure><h2 id="770108d9-d0f9-43ad-8d1c-753c5b6c36e0" class="">Сколько детей заводят россияне</h2><p id="d3975cee-6775-4740-88e5-f93eaf0f39be" class="">Точные данные о количестве детей в российских семьях появляются только по итогам переписи населения. Последняя состоялась в 2021 году, а ее окончательные итоги появятся в лучшем случае в 2023. Но если посмотреть на результаты переписей 2002 и 2010 годов, можно увидеть, что распределение семей по количеству детей <a href="https://www.strana2020.ru/mediaoffice/pochemu-stalo-menshe-semey-s-detmi-i-bolshe-ottsov-odinochek-/">практически не меняется.</a></p><table id="1e3380e9-6a2b-4750-8513-6d93f75da893" class="simple-table"><tbody><tr id="eb2866f2-abe0-4e00-84b1-0895eb8686e6"><td id="a?UX" class=""></td><td id="}mpn" class="">Перепись 2002 года</td><td id="\g^i" class="">Перепись 2010 года</td></tr><tr id="f1c3c285-1268-4512-a017-4a9db46622d3"><td id="a?UX" class="">Семьи с одним ребенком</td><td id="}mpn" class="">65,24%</td><td id="\g^i" class="">65,5%</td></tr><tr id="0fdb08e9-db4e-4784-9c7f-51a2fda28f6e"><td id="a?UX" class="">Семьи с двумя детьми</td><td id="}mpn" class="">28,17%</td><td id="\g^i" class="">27,53%</td></tr><tr id="cfa93105-012d-4a6f-8bde-0db5fbab473a"><td id="a?UX" class="">Семьи как минимум с тремя детьми</td><td id="}mpn" class="">6,55%</td><td id="\g^i" class="">6,99%</td></tr></tbody></table><p id="a7abb96d-ba08-4342-9f90-55f2097effeb" class="">Можно предположить, что по итогам переписи 2021 года это соотношение останется примерно таким же. Абсолютные значения тоже, судя по всему, изменились не сильно. Об этом говорят косвенные подсчеты. Во время переписи 2010 года в России насчитали 42 млн семей, из них почти 24 млн — с детьми. На тот момент многодетных семей было 7% — это 1,7 млн. В 2021 году, по данным комитета Госдумы по охране здоровья, <a href="https://www.pnp.ru/social/v-gosdumu-vnesli-zakonoproekt-o-merakh-gospodderzhki-selskikh-mnogodetnykh-semey.html">в стране было 1,6 млн многодетных семей.</a></p><h2 id="f7648e20-c260-4c62-a4ab-7bd1b7746b74" class="">Почему рожают меньше детей, чем хотелось бы</h2><p id="8b8cab60-4564-4627-a58b-e1eec3c827e8" class="">В 2020 году ВЦИОМ спросил у россиян, почему они откладывают рождение ребенка. Главная причина, по которой детей не заводят те, у кого их нет, — отсутствие денег. Об этом сказали 39% опрошенных.</p><h3 id="cf6c4594-7599-43e1-a6bb-737157200a3f" class="">Барьеры к рождению детей: опрос бездетных</h3><table id="a40ca577-2340-4d51-9a4f-b766aba89050" class="simple-table"><tbody><tr id="c837b869-0182-46de-a610-556a0fbdce66"><td id="mEo;" class="">💲 — финансовые барьеры</td><td id="CBbU" class=""></td></tr><tr id="6fa106c1-441a-4a56-9a49-b36403d8311b"><td id="mEo;" class="">💲 Материальные возможности не позволяют</td><td id="CBbU" class="">39%</td></tr><tr id="26fd99a9-00cc-48b4-a263-136fb9a46773"><td id="mEo;" class="">💲 Жилищные трудности</td><td id="CBbU" class="">30%</td></tr><tr id="5d6289b8-1efc-4024-b2ad-e5d1097b443f"><td id="mEo;" class="">Отсутствие партнера/партнерши</td><td id="CBbU" class="">29%</td></tr><tr id="8f20ebf7-96b2-454a-9051-12dc66ecb840"><td id="mEo;" class="">Мало лет для рождения ребенка</td><td id="CBbU" class="">15%</td></tr><tr id="599790ab-a117-4910-b269-b255ff97da02"><td id="mEo;" class="">💲 Нет условий для ухода за ребенком</td><td id="CBbU" class="">14%</td></tr><tr id="96e7342d-b9ca-4fcd-a7f1-f84a6db904b5"><td id="mEo;" class="">Еще не задумывались над этим</td><td id="CBbU" class="">14%</td></tr><tr id="a2469c91-00ca-49a8-a0f4-b5a175a02d1c"><td id="mEo;" class="">💲 Не хочу оставлять работу</td><td id="CBbU" class="">11%</td></tr><tr id="ab6bbb5a-a569-4d27-b47c-3761ea92a734"><td id="mEo;" class="">Хочется жить для себя</td><td id="CBbU" class="">10%</td></tr><tr id="fba27e53-e717-45c5-803d-40b5d7f484a5"><td id="mEo;" class="">💲 Трудно устроить ребенка в детсад</td><td id="CBbU" class="">5%</td></tr><tr id="42153877-6515-409f-b421-f6d7bc45ba29"><td id="mEo;" class="">Не позволяет здоровье</td><td id="CBbU" class="">4%</td></tr><tr id="d2210db3-c36a-4b1e-981e-01accf3b4196"><td id="mEo;" class="">💲 Трудно совмещать работу и уход за ребенком</td><td id="CBbU" class="">4%</td></tr><tr id="88fe425a-4d70-48d1-ba3a-5015f0b90706"><td id="mEo;" class="">Не уверены в прочности брака/партнерства</td><td id="CBbU" class="">4%</td></tr><tr id="60207c77-a39d-4e41-a541-b7c1c8fef9ef"><td id="mEo;" class="">Нет надежды на помощь родственников</td><td id="CBbU" class="">3%</td></tr><tr id="acd2411b-8c1b-4c8a-a924-ca007879906f"><td id="mEo;" class="">Я не люблю детей</td><td id="CBbU" class="">2%</td></tr><tr id="fb188da5-01de-4906-8d1d-6acee5b68298"><td id="mEo;" class="">Партнер/партнерша не хочет ребенка</td><td id="CBbU" class="">1%</td></tr><tr id="d588e323-4e0b-4e84-bb71-8d53d3c2991c"><td id="mEo;" class="">Отказ от ответа</td><td id="CBbU" class="">1%</td></tr><tr id="cbc5bcbb-a324-43d9-a147-9024cc3946ae"><td id="mEo;" class="">Другое</td><td id="CBbU" class="">14%</td></tr></tbody></table><p id="b86b90a3-13e4-4a34-a460-be18871b4c70" class="">У тех, кто уже имеет ребенка, причины завести следующего с финансами связаны мало. <a href="https://gks.ru/free_doc/new_site/RPN17/index.html">По данным Росстата</a>, главный мотив завести второго ребенка у женщин — чтобы первый не чувствовал себя одиноким. Основная причина родить третьего — чтобы старшие дети научились заботиться о младших.</p><p id="76c77f22-ae6d-40fc-b05c-3f93d2372350" class="">О мотивации семей, где больше трех детей, к сожалению, ничего не известно.</p><h3 id="9214c2b3-23a4-4358-b62e-b8fb25f09a17" class="">Мотивы женщин для рождения второго ребенка</h3><table id="c9ca9765-c03a-49b7-bf5b-34599f7a784d" class="simple-table"><tbody><tr id="0bd9ef40-c15a-43f2-9acd-2393c441e8f9"><td id="{_e&gt;" class="">💲 — финансовые стимулы</td><td id="mhu@" class=""></td></tr><tr id="cca99367-5ab7-407b-95eb-59fde7aa0638"><td id="{_e&gt;" class="">Чтобы имеющийся ребенок не чувствовал себя одиноким</td><td id="mhu@" class="">63%</td></tr><tr id="946079c4-0854-4651-8568-f49495860169"><td id="{_e&gt;" class="">Желание супруга/партнера иметь второго ребенка</td><td id="mhu@" class="">62%</td></tr><tr id="1624458c-4c7b-4486-aa92-4dc3bb37521b"><td id="{_e&gt;" class="">Хотелось, чтобы старший ребенок научился заботиться о младших</td><td id="mhu@" class="">51%</td></tr><tr id="6e33eeb8-008c-4ca6-baa1-c92a36df37d1"><td id="{_e&gt;" class="">Желание укрепить семью</td><td id="mhu@" class="">50%</td></tr><tr id="33e92795-f864-424e-9c74-f1d6ec859415"><td id="{_e&gt;" class="">С двумя детьми больше гарантий, что в старости не останешься одиноким</td><td id="mhu@" class="">48%</td></tr><tr id="d85f1cd9-56de-4b35-9bf3-04713e39de23"><td id="{_e&gt;" class="">Первый ребенок очень хотел брата или сестру</td><td id="mhu@" class="">38%</td></tr><tr id="606ee837-e586-48a1-ba80-96c25166fbe5"><td id="{_e&gt;" class="">Хотелось снова иметь в семье маленького ребенка</td><td id="mhu@" class="">37%</td></tr><tr id="3d192e86-9692-4a85-b460-70e1bc0691b3"><td id="{_e&gt;" class="">У родителей или у родителей супруга было трое или более детей</td><td id="mhu@" class="">37%</td></tr><tr id="44b8339d-8107-4889-a1f1-5830837ea5b0"><td id="{_e&gt;" class="">💲 Желание решить жилищные проблемы, используя государственную поддержку</td><td id="mhu@" class="">36%</td></tr><tr id="a30b3614-30e0-40c3-b85f-5a64b2bb796b"><td id="{_e&gt;" class="">Повышение уровня жизни семьи</td><td id="mhu@" class="">33%</td></tr><tr id="dccc7967-bcb6-434a-a5b1-6b25d4942d2d"><td id="{_e&gt;" class="">Двое детей повышают авторитет человека в обществе</td><td id="mhu@" class="">28%</td></tr><tr id="653fb5f1-b1f6-49d9-a680-a2e0e562db6f"><td id="{_e&gt;" class="">Детей должно быть столько, сколько Бог даст</td><td id="mhu@" class="">22%</td></tr><tr id="3fb7318b-85d0-4e59-a957-d48fb0147a3e"><td id="{_e&gt;" class="">Случилась беременность и решили не делать аборт</td><td id="mhu@" class="">22%</td></tr><tr id="c927a3f0-b076-4f0a-93d3-d3702b2f2ac2"><td id="{_e&gt;" class="">У многих друзей, знакомых трое детей, не хотелось от них отставать</td><td id="mhu@" class="">18%</td></tr></tbody></table><h3 id="333f76b3-e548-4f1b-a577-4665361e21fd" class="">Мотивы рождения третьего ребенка</h3><table id="bc4541fe-fdd1-4a4b-80bb-e5c78208e02f" class="simple-table"><tbody><tr id="8c9b8742-ab67-4e98-b6eb-fc04b0682173"><td id="RjQ:" class="">💲 — финансовые стимулы</td><td id="q=G@" class=""></td></tr><tr id="91955a71-4501-4e93-953d-d490be845fbd"><td id="RjQ:" class="">Чтобы старшие дети научились заботиться о младших</td><td id="q=G@" class="">54%</td></tr><tr id="73aa16ea-0619-4622-947b-b23abf4bc394"><td id="RjQ:" class="">Больше гарантий, что в старости не останешься одиноким</td><td id="q=G@" class="">50%</td></tr><tr id="0fa8eb8c-7b40-42f8-894c-26dcfa553ea1"><td id="RjQ:" class="">Желание супруга/партнера иметь третьего ребенка</td><td id="q=G@" class="">48%</td></tr><tr id="3656fc9b-05f8-4fcc-8b55-898834ff8f19"><td id="RjQ:" class="">Хотелось снова иметь в семье маленького ребенка</td><td id="q=G@" class="">47%</td></tr><tr id="86206923-1616-47c0-9e6e-4a0574b253b2"><td id="RjQ:" class="">Желание иметь ребенка другого пола, если первые двое — одного пола</td><td id="q=G@" class="">47%</td></tr><tr id="a95e2e38-77e9-4e5b-b24f-3bf2806561bd"><td id="RjQ:" class="">Желание укрепить семью</td><td id="q=G@" class="">47%</td></tr><tr id="9d06981d-8dea-4fcb-acf8-3df28f49f5a6"><td id="RjQ:" class="">💲 Желание решить жилищные проблемы, используя государственную поддержку</td><td id="q=G@" class="">44%</td></tr><tr id="9980cde1-e394-4be9-8e4e-8a6b7adbb101"><td id="RjQ:" class="">💲 Материальная помощь от государства</td><td id="q=G@" class="">41%</td></tr><tr id="ebcd8fbb-996e-4b93-8ab4-888356353ed3"><td id="RjQ:" class="">💲 Ежемесячная выплата до возраста трех лет</td><td id="q=G@" class="">40%</td></tr><tr id="4cf3e849-711c-48d1-b699-f3abdc031b77"><td id="RjQ:" class="">Трое детей в будущем смогут больше помогать по дому</td><td id="q=G@" class="">40%</td></tr><tr id="58c54815-ba9f-4cc9-9da5-964b588cda75"><td id="RjQ:" class="">Повышение уровня жизни семьи</td><td id="q=G@" class="">36%</td></tr><tr id="30cb34b3-b0ca-4953-b75e-32d2a251378b"><td id="RjQ:" class="">Детей должно быть столько, сколько Бог даст</td><td id="q=G@" class="">28%</td></tr><tr id="8c528ef0-3a0b-46c1-85f9-8d64eb242742"><td id="RjQ:" class="">Трое детей повышают авторитет человека в обществе</td><td id="q=G@" class="">25%</td></tr><tr id="851dad2b-09eb-4cb4-a2e6-2c6b947cd3b3"><td id="RjQ:" class="">Случилась беременность и решили не делать аборт</td><td id="q=G@" class="">25%</td></tr><tr id="5ea138e3-dafc-4b8d-b1b4-121a77dc200a"><td id="RjQ:" class="">У родителей или у родителей супруга было трое или более детей</td><td id="q=G@" class="">24%</td></tr><tr id="bce9ad2e-fae0-4a94-a0a5-23d599afb99f"><td id="RjQ:" class="">У многих друзей, знакомых трое детей, не хотелось от них отставать</td><td id="q=G@" class="">13%</td></tr></tbody></table><h2 id="0d7cffad-b810-4d52-a9f1-bf9a5207f9cd" class="">Как на рождаемость повлиял маткапитал</h2><p id="4ce4064c-89aa-43dc-a0f7-965722ca6589" class="">Тем не менее около 45% женщин отмечают, что материнский капитал помог им принять решение о рождении второго или третьего ребенка. Программу маткапитала на вторых и последующих детей ввели в 2007 году. С этого момента рождаемость вторых детей начала расти — вплоть до 2016 года.</p><p id="38d31461-6219-40ed-8612-60c09f8d7c79" class="">Демограф Алексей Ракша считает, что изменение ситуации в 2016 году <a href="https://www.ng.ru/economics/2021-06-24/4_8182_economics.html">тоже связано с маткапиталом:</a> «Разворот на снижение рождаемости пришелся на 2016 год, с сентября, ровно через девять месяцев после объявления о первом продлении программы материнского капитала, ведь в 2015 году была неясность с продлением программы и многие поспешили обзавестись вторыми детьми».</p><p id="f251b3c9-9310-44df-83c7-94e642c9c141" class="">Получается, в 2007—2015 годах среднестатистическая семья спешила завести второго или третьего ребенка, так как было неясно, сколько будет длиться программа материнского капитала. Рождаемость росла. Потом программу продлили — сейчас известно, что она будет действовать минимум до 2026 года. Но размер материнского капитала почти перестал расти: за пять лет, с 2015 по 2019 год, сумма была проиндексирована только на 3%, тогда как инфляция за этот период составила 31%. Россияне перестали торопиться заводить детей.</p><p id="6f29d091-2740-452a-88d9-22b43638ad0b" class="">В 2020 году программу материнского капитала распространили и на первых детей. Возможно, это связано с резким снижением рождаемости первенцев, которое наблюдается с 2017 года. Почему это происходит — непонятно. Как выплаты на первого ребенка повлияли на рождаемость, тоже пока неизвестно: точные демографические данные за 2021 год появятся только во второй половине 2022.</p><p id="002ed8eb-c61f-40fa-85d6-16f19d563fdf" class="">         Источники: «Консультант-плюс», Российская база данных по рождаемости и смертности</p><figure id="b5ee74f8-03ed-4f70-a498-36bec44356d4" class="image"><a href="%D0%A1%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%B4%D0%B5%D1%82%D0%B5%D0%B8%CC%86%20%D0%B7%D0%B0%D0%B2%D0%BE%D0%B4%D1%8F%D1%82%20%D1%80%D0%BE%D1%81%D1%81%D0%B8%D1%8F%D0%BD%D0%B5%2015de9c18990c4b3d8252ac4ea0ec1992/LjAyOXNucy5wbmc"><img style="width:700px" src="%D0%A1%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%B4%D0%B5%D1%82%D0%B5%D0%B8%CC%86%20%D0%B7%D0%B0%D0%B2%D0%BE%D0%B4%D1%8F%D1%82%20%D1%80%D0%BE%D1%81%D1%81%D0%B8%D1%8F%D0%BD%D0%B5%2015de9c18990c4b3d8252ac4ea0ec1992/LjAyOXNucy5wbmc"/></a></figure></div></article></body></html>
