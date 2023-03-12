@@ -1,0 +1,671 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>How to Learn JavaScript Faster – Tips and Resources to Get Started Coding JS</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1453e8d1-cda1-4701-8f71-6008a8d931d9" class="page sans"><header><h1 class="page-title">How to Learn JavaScript Faster – Tips and Resources to Get Started Coding JS</h1><table class="properties"><tbody><tr class="property-row property-row-url"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesUrl"><path d="M7.69922 10.8945L8.73828 9.84863C7.91797 9.77344 7.34375 9.51367 6.91992 9.08984C5.76465 7.93457 5.76465 6.29395 6.91309 5.14551L9.18262 2.87598C10.3379 1.7207 11.9717 1.7207 13.127 2.87598C14.2891 4.04492 14.2822 5.67188 13.1338 6.82031L11.958 7.99609C12.1768 8.49512 12.2451 9.10352 12.1289 9.62988L14.0908 7.6748C15.7725 6 15.7793 3.62109 14.084 1.92578C12.3887 0.223633 10.0098 0.237305 8.33496 1.91211L5.95605 4.29785C4.28125 5.97266 4.26758 8.35156 5.96289 10.0469C6.36621 10.4434 6.90625 10.7441 7.69922 10.8945ZM8.30078 5.13184L7.26855 6.17773C8.08203 6.25293 8.66309 6.51953 9.08008 6.93652C10.2422 8.09863 10.2422 9.73242 9.08691 10.8809L6.81738 13.1504C5.66211 14.3057 4.03516 14.3057 2.87305 13.1504C1.71094 11.9883 1.71777 10.3545 2.87305 9.20605L4.04199 8.03027C3.83008 7.53125 3.75488 6.92969 3.87109 6.39648L1.91602 8.35156C0.234375 10.0264 0.227539 12.4121 1.92285 14.1074C3.61816 15.8027 5.99707 15.7891 7.67188 14.1143L10.0439 11.7354C11.7256 10.0537 11.7324 7.6748 10.0371 5.98633C9.64062 5.58301 9.10059 5.28223 8.30078 5.13184Z"></path></svg></span>Ссылка</th><td><a href="https://www.freecodecamp.org/news/how-to-learn-javascript-faster" class="url-value">https://www.freecodecamp.org/news/how-to-learn-javascript-faster</a></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Темы</th><td></td></tr><tr class="property-row property-row-select"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM7.62402 10.6348C7.79492 10.915 8.20508 10.9287 8.37598 10.6348L10.666 6.73145C10.8574 6.41016 10.7002 6.04102 10.3652 6.04102H5.62793C5.29297 6.04102 5.14941 6.43066 5.32031 6.73145L7.62402 10.6348Z"></path></svg></span>Категория</th><td></td></tr><tr class="property-row property-row-formula"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesFormula"><path d="M5.04688 14.3604H11.2744C11.7324 14.3604 12.0537 14.0801 12.0537 13.6494C12.0537 13.2119 11.7324 12.9248 11.2744 12.9248H5.81934V12.8564L9.30566 8.82324C9.54492 8.57031 9.6748 8.29688 9.6748 8.0166C9.6748 7.73633 9.54492 7.45605 9.29883 7.20996L5.81934 3.2793V3.21094H11.2812C11.7393 3.21094 12.0537 2.92383 12.0537 2.48633C12.0537 2.05566 11.7393 1.77539 11.2812 1.77539H5.05371C4.34277 1.77539 3.95312 2.26758 3.95312 2.81445C3.95312 3.12207 4.07617 3.44336 4.33594 3.69629L8.15039 7.96875V8.05078L4.3291 12.4395C4.06934 12.6924 3.94629 13.0137 3.94629 13.3213C3.94629 13.8682 4.33594 14.3604 5.04688 14.3604Z"></path></svg></span>Добавлено</th><td>02.10.2022</td></tr><tr class="property-row property-row-checkbox"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCheckbox"><path d="M3.85742 14.4561H12.1357C13.6123 14.4561 14.3779 13.6904 14.3779 12.2344V3.91504C14.3779 2.45215 13.6123 1.69336 12.1357 1.69336H3.85742C2.38086 1.69336 1.61523 2.45215 1.61523 3.91504V12.2344C1.61523 13.6973 2.38086 14.4561 3.85742 14.4561ZM3.93945 13.1162C3.30371 13.1162 2.95508 12.7812 2.95508 12.1182V4.02441C2.95508 3.36133 3.30371 3.0332 3.93945 3.0332H12.0537C12.6826 3.0332 13.0381 3.36133 13.0381 4.02441V12.1182C13.0381 12.7812 12.6826 13.1162 12.0537 13.1162H3.93945ZM7.26855 11.3115C7.51465 11.3115 7.72656 11.1885 7.87012 10.9697L10.9258 6.19141C11.0146 6.04785 11.0967 5.88379 11.0967 5.72656C11.0967 5.3916 10.7959 5.16602 10.4746 5.16602C10.2695 5.16602 10.085 5.27539 9.94141 5.50781L7.24121 9.8418L5.96973 8.22168C5.80566 8.00977 5.6416 7.93457 5.43652 7.93457C5.10156 7.93457 4.8418 8.20117 4.8418 8.54297C4.8418 8.70703 4.90332 8.85742 5.01953 9.00098L6.63281 10.9697C6.81738 11.209 7.01562 11.3115 7.26855 11.3115Z"></path></svg></span>Разобрано</th><td><div class="checkbox checkbox-off"></div></td></tr><tr class="property-row property-row-formula"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesFormula"><path d="M5.04688 14.3604H11.2744C11.7324 14.3604 12.0537 14.0801 12.0537 13.6494C12.0537 13.2119 11.7324 12.9248 11.2744 12.9248H5.81934V12.8564L9.30566 8.82324C9.54492 8.57031 9.6748 8.29688 9.6748 8.0166C9.6748 7.73633 9.54492 7.45605 9.29883 7.20996L5.81934 3.2793V3.21094H11.2812C11.7393 3.21094 12.0537 2.92383 12.0537 2.48633C12.0537 2.05566 11.7393 1.77539 11.2812 1.77539H5.05371C4.34277 1.77539 3.95312 2.26758 3.95312 2.81445C3.95312 3.12207 4.07617 3.44336 4.33594 3.69629L8.15039 7.96875V8.05078L4.3291 12.4395C4.06934 12.6924 3.94629 13.0137 3.94629 13.3213C3.94629 13.8682 4.33594 14.3604 5.04688 14.3604Z"></path></svg></span>Без разбора</th><td>160 дней</td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Связь &quot;Разобрать&quot;</th><td></td></tr><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedAt"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM4.54102 8.91211H7.99316C8.30078 8.91211 8.54004 8.67285 8.54004 8.37207V3.8877C8.54004 3.58691 8.30078 3.34766 7.99316 3.34766C7.69238 3.34766 7.45312 3.58691 7.45312 3.8877V7.83203H4.54102C4.2334 7.83203 4.00098 8.06445 4.00098 8.37207C4.00098 8.67285 4.2334 8.91211 4.54102 8.91211Z"></path></svg></span>Date [HIDE]</th><td><time>@October 2, 2022 8:10 AM</time></td></tr></tbody></table></header><div class="page-body"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="ca8d831e-0d8f-413a-be35-5444e32a3959"><div style="font-size:1.5em"><span class="icon">ℹ️</span></div><div style="width:100%"><strong>Ссылки на ресурсы в конце</strong></div></figure><p id="4873714e-5867-4f48-8a48-7044f77508be" class="">Как учить программирование:
+documentation, tutorials, coding (mostly), and reading other people&#x27;s code.</p><p id="77e7dd07-bb5e-41d2-99a8-5f5b0d1f36b9" class="">There are a lot of tools you can use to browse documentation. Some of these include Zeal, DevDocs, and Devbook</p><hr id="842cb19f-d749-4fa2-8c75-cf89552f9962"/><p id="5350100c-4291-4650-a736-da92cafca03e" class="">JavaScript is a programming language commonly used for web development, among many other things. It works in conjunction with HTML and CSS to add dynamic functionality to websites.</p><p id="f9ab123a-fca3-45c3-b867-73e67b901f38" class="">About 97% of the websites in the world use JavaScript – so you can see that it&#x27;s a popular and widely-used language.</p><p id="9379c6c6-8260-48a8-b53d-bec053284efe" class="">JavaScript is the sauce of the web. It is what makes things dance. JavaScript enables web pages to do things like display updated content, show maps that you can interact with, and many other things.</p><p id="cd22292f-4fe7-4fa7-820b-e222e3ad0c79" class="">Today we are going to learn how to learn JavaScript faster so that you can command JavaScript as you please and use it effectively in your projects.</p><h2 id="d1fc7aef-ea8d-4116-b318-90bef9ec889e" class="">What We&#x27;ll Cover in this Article</h2><ul id="15aab1c3-a4d9-456f-871b-602b690a852b" class="bulleted-list"><li style="list-style-type:disc">How to learn JavaScript faster – an overview</li></ul><ul id="e1647ba0-ff56-4bc0-a052-956646ab96bf" class="bulleted-list"><li style="list-style-type:disc">How to practice coding in JavaScript</li></ul><ul id="1152beb7-52b3-4748-ad73-028149c63094" class="bulleted-list"><li style="list-style-type:disc">Why you should read the documentation</li></ul><ul id="11fe69a0-97a9-4248-807e-5554976eaef7" class="bulleted-list"><li style="list-style-type:disc">Some best practices you can adopt from reading documentation</li></ul><ul id="84bf3712-cb98-42a1-8e1f-723292375f5f" class="bulleted-list"><li style="list-style-type:disc">How to contribute to open source projects</li></ul><ul id="ba5093ab-e01a-4385-af7b-bc86d6694aab" class="bulleted-list"><li style="list-style-type:disc">How to find projects to contribute to</li></ul><ul id="4f708190-45d0-4c54-be86-bc1812e7acc4" class="bulleted-list"><li style="list-style-type:disc">Why you should build lots of projects</li></ul><ul id="4e64c951-75e0-4e1f-b492-305b7cef7a60" class="bulleted-list"><li style="list-style-type:disc">Resources that might inspire you to build projects</li></ul><h2 id="68ba5eaf-cb3c-4799-875e-13ae43cde0d4" class="">How to Practice Coding in JavaScript</h2><p id="c66c3d17-8379-4edb-888f-2777ce7f5157" class="">Practicing is what makes you progress. Whether it&#x27;s in music, dancing, singing, playing basketball – or coding.</p><p id="1e719a62-6fa1-41c0-8ef5-27e38ec3972a" class="">Practicing is really repetitive and can be tiring, but it is what helps us and sets us apart in the long run. It is through the action of practicing and repetition that we are able to be good at all these activities. Coding is not different.</p><h3 id="3a2dbdb4-dcca-4741-9932-42080ea4d76c" class="">Work through Courses and Tutorials</h3><p id="aff4cb2c-8def-45ff-b231-35199bfb677c" class="">Courses and tutorials are a good way to learn. You can find various learning materials from a lot of places on the web. If you would like to take a course on a particular programming language, you can find them on sites like LinkedIn, Codecademy, and Udemy.</p><p id="4dc56a54-3b6c-40cc-9f1e-f67536ceb2d6" class="">If you like videos, there are many great channels on YouTube that post coding tutorials for free. My favorite one-stop-shop is <a href="https://www.youtube.com/c/Freecodecamp/videos">freeCodeCamp&#x27;s channel</a>.</p><figure id="94bf8a7d-83ee-471c-8df6-e8a3487dcff7" class="image"><a href="How%20to%20Learn%20JavaScript%20Faster%20%E2%80%93%20Tips%20and%20Resource%201453e8d1cda147018f716008a8d931d9/Screenshot--125-.png"><img style="width:700px" src="How%20to%20Learn%20JavaScript%20Faster%20%E2%80%93%20Tips%20and%20Resource%201453e8d1cda147018f716008a8d931d9/Screenshot--125-.png"/></a></figure><p id="52fc9fcf-2f27-4233-89a2-76d4b2c1afdf" class="">freeCodeCamp&#x27;s channel on YouTube</p><p id="f0ab4f8f-d79d-407b-9210-a4267af70285" class="">These channels might focus on JavaScript or include videos on other programming languages as well.</p><p id="fc18736b-c046-4e5c-9842-b8bf29fe0449" class="">A good rule that I use on YouTube is to check the number of views a tutorial has. This will help you know if it is a good one to follow along with.</p><p id="7bb704d7-0cc8-4aa3-8332-7855103d0d7a" class="">Also the length of the tutorial matters a lot. Longer tutorials cover the basics well if you&#x27;re just beginning to program in JavaScript.</p><h3 id="cba3161d-428d-4c1a-a416-bc9c6ed4e7d7" class="">Try the Free JavaScript Curriculum on freeCodeCamp</h3><figure id="f21091fe-1861-419c-b198-528bc476cf1a" class="image"><a href="How%20to%20Learn%20JavaScript%20Faster%20%E2%80%93%20Tips%20and%20Resource%201453e8d1cda147018f716008a8d931d9/Screenshot--126-.png"><img style="width:700px" src="How%20to%20Learn%20JavaScript%20Faster%20%E2%80%93%20Tips%20and%20Resource%201453e8d1cda147018f716008a8d931d9/Screenshot--126-.png"/></a></figure><p id="e1d138f1-3874-4dd8-97d2-0b9894aed373" class="">freeCodeCamp&#x27;s curriculum</p><p id="2567762b-b284-41d5-9ade-e1457a07de00" class="">FreeCodeCamp&#x27;s curriculum is a perfect way to practice coding. It offers small challenges that you can practice and, once your tests pass, proceed to the next step. It almost works like a game without the gaming part.</p><p id="522ee347-f50d-4d81-a0ec-234cc46a9dc0" class="">You can understand how the language works by doing the challenges the curriculum offers. This is really nice for people who like playing games.</p><h3 id="a113600e-bcb9-47a3-a3ba-7d0b6f3129a2" class="">Here is an example of what to expect:</h3><p id="a04bbae8-ba4e-45a7-a260-5bf32165feaf" class="">First, you will need to Sign in when you are accessing freeCodeCamp. This allows you to save your score/points.</p><figure id="a53ac92a-ab26-4756-9f68-67663416f968" class="image"><a href="How%20to%20Learn%20JavaScript%20Faster%20%E2%80%93%20Tips%20and%20Resource%201453e8d1cda147018f716008a8d931d9/image-187.png"><img style="width:700px" src="How%20to%20Learn%20JavaScript%20Faster%20%E2%80%93%20Tips%20and%20Resource%201453e8d1cda147018f716008a8d931d9/image-187.png"/></a></figure><p id="69536994-972c-4031-b4b1-ed6bd6232615" class="">sign in to freeCodeCamp</p><p id="05373e88-dbe9-4dda-b050-25af1d472fe5" class="">Here you can select from a variety of free courses. In our case, we only need the JavaScript course, so we select that one:</p><figure id="ccc96895-8dfc-4f7f-9dd4-c29f8239ad40" class="image"><a href="How%20to%20Learn%20JavaScript%20Faster%20%E2%80%93%20Tips%20and%20Resource%201453e8d1cda147018f716008a8d931d9/image-188.png"><img style="width:700px" src="How%20to%20Learn%20JavaScript%20Faster%20%E2%80%93%20Tips%20and%20Resource%201453e8d1cda147018f716008a8d931d9/image-188.png"/></a></figure><p id="68f51ec4-e12a-4854-ab64-d58be48c04f4" class="">freeCodeCamp courses</p><p id="8cf36fe5-89c3-45d5-8b07-c896904f5ae3" class="">I have already done all the challenges in this course, but if you were to begin, you start from the first one, <code>Comment Your JavaScript Code</code>.</p><figure id="2cba9904-85ff-4b7a-bec7-6a4ad1a85bbe" class="image"><a href="How%20to%20Learn%20JavaScript%20Faster%20%E2%80%93%20Tips%20and%20Resource%201453e8d1cda147018f716008a8d931d9/image-189.png"><img style="width:700px" src="How%20to%20Learn%20JavaScript%20Faster%20%E2%80%93%20Tips%20and%20Resource%201453e8d1cda147018f716008a8d931d9/image-189.png"/></a></figure><p id="b304a3fe-7f91-44d6-a877-430a135edaf2" class="">Comment Your JavaScript Code challenge</p><p id="55db186a-7dc5-4c0f-8b14-fd08f4ce9e36" class="">Now, you will be able to learn as you code. You will also be able to run your tests which are at the bottom left of your screen.</p><p id="4c588054-2488-42fd-b728-8c84546eca07" class="">On the right side, you can see that I have completed the challenge.</p><figure id="b16c901b-a091-4849-9408-bb6d3fa80a69" class="image"><a href="How%20to%20Learn%20JavaScript%20Faster%20%E2%80%93%20Tips%20and%20Resource%201453e8d1cda147018f716008a8d931d9/image-190.png"><img style="width:700px" src="How%20to%20Learn%20JavaScript%20Faster%20%E2%80%93%20Tips%20and%20Resource%201453e8d1cda147018f716008a8d931d9/image-190.png"/></a></figure><p id="c339c3f2-b6d7-4e35-8bf9-9b15ea47ef68" class="">Attempt of the challenge</p><p id="669400f4-3f20-4f31-aa5b-59c4b1908a2e" class="">When you click <code>Run the Tests(Ctrl + Enter)</code>, you get your points if you get it right. Since I have already done these challenges, my score will still remain at 100%.</p><figure id="c755488f-4188-4f23-843d-c213c2f43e3b" class="image"><a href="How%20to%20Learn%20JavaScript%20Faster%20%E2%80%93%20Tips%20and%20Resource%201453e8d1cda147018f716008a8d931d9/image-193.png"><img style="width:700px" src="How%20to%20Learn%20JavaScript%20Faster%20%E2%80%93%20Tips%20and%20Resource%201453e8d1cda147018f716008a8d931d9/image-193.png"/></a></figure><p id="7b651850-888a-4ca1-9787-d8fc2ada4ba9" class="">Completed the challenge</p><p id="af8366c3-99b1-4487-8d2c-dcf603c8aae8" class="">Keep doing the challenges until you feel comfortable.</p><h3 id="56f716f4-e019-499b-9547-7ae8f0942338" class="">How to approach courses/tutorials to avoid tutorial hell</h3><p id="1f479aac-afbb-4ccc-b7a3-053c7cd35a53" class="">It is easy to fall into the trap of watching tutorial after tutorial – and not really retaining any information. Sometimes these tutorials come one after another like the episodes on a Netflix series.</p><p id="f0d7a9b4-eba6-4e58-af5a-ec432c3c7c02" class="">I&#x27;ve been there. It happened when I was learning React for the first time. I followed through an online course. There was a hackathon coming up for which I needed to know React, and I deep dived into the course.</p><p id="b6705d95-d5e3-454c-b3c8-03b6d9655109" class="">How I enjoyed it. The instructor was great! &quot;How easy is React?,&quot; I said. I went to the hackathon and joined a team. With my new knowledge of React, I told them to leave the front end to me which required React. It was during the implementation that reality hit me. I couldn&#x27;t write anything in React.</p><h3 id="b463da2e-cdf6-4471-81e3-fe7c9f063a1b" class="">How I escaped tutorial hell</h3><p id="edd240ad-f4df-41ba-a89b-5efa59bafba4" class="">So I found myself watching tutorials a lot. And the defining moment for me was when I started implementing what I learned by coding along while watching the tutorial. I was able to create a project after watching a tutorial. I then created another one then another one and another one.</p><p id="4f2bdaa3-a91d-4c51-8efa-2be81d86803b" class="">I was now ready to try out the projects on my own. Using the projects I created, I would borrow concepts from them like the navigation bar or the footer, and I would implement it in my new project. At the end, I was able to create a new project on my own without the help of tutorials.</p><h3 id="dca06d21-86a5-4f6b-8b32-f1d4c2ecd703" class="">Read the Documentation</h3><p id="f63492b4-0d39-4675-b778-ed9d4c0574bf" class="">The ability to read documentation is an underrated but important skill. Reading the documentation can give you a better understanding of the language.</p><p id="b63619d7-0702-4289-b3ef-876873e9a7d2" class="">Most tutorials will only teach you the basic things so you can get started programming in JavaScript. But if you fully understand the language and how it works, this can increase your skills ten-fold.</p><p id="34462700-5aa2-4061-9ec8-e85b7e90e61b" class="">This reminds me of when I was learning how trains work. Well, a story for another day. :)</p><p id="fad5dc4d-bb65-4b10-8ad1-6d0c96fabc15" class="">Also, reading documentation helps you understand the best practices of JavaScript. A lot of the time, without knowing best practices, you might fall into the trap of writing bad code that isn&#x27;t efficient. This leads you down the rabbit hole of never ending inefficient code.</p><p id="aa15dc46-538e-4d31-8108-f3ce80ee3702" class="">There are a lot of tools you can use to browse documentation. Some of these include Zeal, DevDocs, and Devbook, which are all free. If you feel that you want to understand your functions better, you can use their search functionality inside the app, and read more about it without having to Google. (Source: Bruno Edoh)</p><h3 id="2077ca3d-4492-410c-ac6e-4766476985c7" class="">What you will learn from reading the documentation</h3><p id="5358ae38-d6e5-4d59-ba16-af2688f1f3a1" class="">Sometimes learning through a tutorial leaves you with more questions than you had answered. This is where documentation comes in.</p><p id="09fb46f2-09e0-4a4c-bd64-44d4983d025f" class="">A concept might get introduced by the course instructor that leaves you hanging. Fortunately, you can often learn more about that concept by going to the documentation.</p><p id="c8e2d234-c941-4a56-9dc5-bca10824b094" class="">For example, in this beginners course on learning JavaScript by Beau Carnes:</p><p id="efe089b7-dd5f-4d08-98c3-3d85b8ababbd" class="">Beginners course to learn JavaScript by Beau Carnes</p><p id="4b598bbd-e597-4727-a0ff-1f9ddd45a6e9" class="">Beau has really brought out the concepts well! But if you feel that you would like to explore <code>variables</code> more, for example, you could go and google &quot;variables in JavaScript&quot;.</p><p id="a8cf67d5-958e-4f20-ac00-cb09afbf26f6" class="">Alternatively you can Google using this special method: the Search keyword will search the query within the website that you want. Let&#x27;s use the MDN Web Docs as an example: &quot;developer.mozilla.org variables&quot;:</p><p id="10083ec1-5ed5-46eb-a170-1b072d2f60ae" class="">Google search of variables on Mozilla website.</p><p id="01e0eeea-ae95-4ed0-91fe-3023535fe874" class="">When I follow the link, it takes me to the documentation about variables.
+Here in the documentation, you can learn what variables are. When I follow the link &quot;Declaring variables in JavaScript&quot;:</p><p id="c1cb109b-eb98-44f8-a9ba-2be588ce8f77" class="">And there I can learn a lot more about JavaScript variables.</p><p id="62cfd019-d63b-430b-9790-4d659d3d8c02" class="">Var, Let, Const on the MDN web docs.</p><p id="f216af98-9484-43e4-8e7e-1e70e8fedce6" class="">When I scroll down a bit, I am able to learn more about Data types. Here you can explore more by following their individual links.</p><p id="ec7d7f26-92aa-4a78-b882-bf009cdc2729" class="">Data types in JavaScript</p><h3 id="855376c6-8dad-4006-a49a-c297c897f231" class="">Some best practices you can adopt from reading documentation</h3><p id="d48c9ba5-69f3-4598-969e-91a278a527c6" class="">The best thing about documentation is that you get answers to questions that you have not asked yet.</p><p id="cc43e7d3-5a2f-4ea9-b9ad-731327bf1efb" class="">You can find all the functions that you are ever going in the documentation. If you skim through it, you might get an idea or two that can be very helpful in your future projects.</p><p id="cc152e10-802d-409a-914c-1f692ca024a1" class="">Another advantage is that it&#x27;ll help you write efficient code. Reading documentation introduces you to better ways of writing your code. This helps you avoid hours of searching on Stack overflow and Google as to why your code doesn&#x27;t work.</p><h3 id="a4b34126-6493-4586-9505-46ccdc20a19b" class="">Contribute to Open Source Projects</h3><p id="c89c2016-5a19-460f-abbd-0e65b96ca799" class="">Another great way to learn is to contribute to open-source projects.</p><p id="2c1131b9-fcd9-4801-a1ea-7e0e13c8a501" class="">There are a lot of open-source projects you can learn from and contribute to on GitHub. Some of these projects include:</p><h3 id="52bf980a-018b-4681-9a7f-acb033978a16" class="">You-Dont-Know-JS.</h3><p id="c127f3ff-a736-4ffd-82ff-ff94bbe2796d" class="">This repository will help you learn more about JS at a deeper level.</p><p id="a428fc7c-7052-4754-b803-25218810af17" class="">You Don&#x27;t Know JS repository.</p><p id="70043341-9397-4bbe-8e29-0c8b54d0fbb8" class="">You will be able to learn as you contribute. Contributions to open-source can be as small as a typo fix. You can go through the README (which you can find on the repository&#x27;s main page at the bottom) to get a better understanding of the project.</p><p id="93b280d2-0def-4a75-a8cc-2036e7c5817c" class="">Some other contributions you can make include sharing suggestions in issues, helping to write blogs, and also coding.</p><p id="cf12a524-d6c4-48eb-a98a-0ef8c56e02a7" class="">If you are unfamiliar with the repository, or as a first time user, you can start with the issues labeled as <code>good-first-issues</code> on the issues tab.</p><p id="81cd85c5-ed56-4143-a989-2fc14ee40199" class="">Issues tab on GitHub for a repository.</p><p id="4e318992-e951-4822-bc8d-f0d491919d26" class="">Here is the link to the repository: www.github.com/getify/You-Dont-Know-JS</p><p id="48255707-87e9-47ba-9e4a-995018fe31fc" class="">Make sure you have a GitHub account if you want to clone the repository or you have changes that you have made and you want to make a Pull Request to the repository.</p><p id="0fa9c1a1-66d5-484a-a081-78b3a06b6246" class="">Other projects you can contribute to and with an inclusive community are:</p><ol type="1" id="14c37b12-16ef-4802-b4d7-b478d1caf179" class="numbered-list" start="1"><li>Clean-Code-JavaScript. (github.com/ryanmcdermott/clean-code-javascript).</li></ol><ol type="1" id="6f8e06cf-572c-4705-b0fe-f763635ec144" class="numbered-list" start="2"><li>wtfjs. (github.com/denysdovhan/wtfjs).</li></ol><ol type="1" id="cfdc1560-e1dd-41c9-ae66-198eb2a358b3" class="numbered-list" start="3"><li>ES6-for-humans. (github.com/metagrover/ES6-for-humans).</li></ol><p id="408f71a9-ab37-465f-859f-413693f9694b" class="">Read through the code of these projects and learn how they structure their code. You can also study the languages and frameworks they use which will help you practice and cement your learning in JavaScript.</p><p id="d4f7c7e2-19c7-4d03-841c-726c7e1bcd7e" class="">The open-source community is also generally very welcoming. If you find a project that you like, give it a try!</p><h3 id="5d5b1f64-f177-4a91-a84f-182e819ae072" class="">How to contribute to open source</h3><p id="57bac937-ad85-46c3-b7f7-638587fad194" class="">To be able to contribute to open source, you only need three things:</p><ul id="2d1c62f2-2aff-4557-afcf-a50af18b2ebc" class="bulleted-list"><li style="list-style-type:disc">A computer</li></ul><ul id="8fef30c1-4363-456d-9b78-d0a606b4369a" class="bulleted-list"><li style="list-style-type:disc">A GitHub account</li></ul><ul id="abb3fd02-2568-4fa6-bf21-7b798a3a2688" class="bulleted-list"><li style="list-style-type:disc">A desire to contribute</li></ul><p id="ac188702-530f-40c4-a908-8e2bacc987e7" class="">To create a GitHub account, go to <a href="https://github.com/">GitHub&#x27;s website</a>.</p><p id="2130503e-a74b-4e99-8d7e-1fd60dc7b294" class="">GitHub&#x27;s sign up page.</p><p id="99bde411-31d3-455f-b1ed-1e2730e3aa50" class="">Here, you can sign up for a GitHub account. After signing up, you sign in with your new credentials.</p><p id="bf14f8a4-2344-487a-aad7-a7c7c2dc5d9b" class="">Sign in page of GitHub.</p><p id="fa612eda-1c96-471a-8ea1-8e89861f7480" class="">After signing in, you can now begin your journey into open-source development!</p><p id="9dbe76e4-8f5d-4f8b-ba5f-150d76f3b45d" class="">A good place to start is to search for any project that you would like to contribute to. We will use an example of a JavaScript project, hosted on GitHub.</p><h3 id="0b20d179-f244-4b3c-aad3-f7d5e323a202" class="">How to find projects to contribute to</h3><p id="234a0e04-2373-42a4-b4c8-e16343019663" class="">In the search bar, I type &quot;JavaScript&quot;.</p><p id="dc857cfe-bd4c-4bf6-aac1-320904a605c1" class="">I&#x27;ll then select &quot;All GitHub&quot; in my search to search the whole of GitHub. It&#x27;s the one currently highlighted in blue.</p><p id="dfeeb08c-543e-445a-ac51-fc1fa40af87d" class="">When I search, it will bring me to this page.</p><p id="b416b992-d3c7-4ecb-a575-a4ab402c9041" class="">It returns may repositories that I can contribute to, or I can just view their codebase.</p><p id="800b2370-2417-4b9a-8d0a-d68828c1a73e" class="">There are more than one million repositories on JavaScript. In my case, I&#x27;ll select the &quot;Airbnb&#x27;s JavaScript Style Guide&quot;.</p><p id="db246cca-adf7-4291-9dda-283887bd7797" class="">airbnb&#x27;s style guide.</p><p id="303e5736-f0b4-4fbc-9823-638189eb35cd" class="">By selecting this style guide, it takes me to their repository.</p><p id="26a3ad8e-09d8-4760-a36f-613cda7ed3fb" class="">AirBnB&#x27;s JavaScript style guide.</p><p id="81f3c4b2-1be1-4857-808c-934072a3fad3" class="">A good thing to note, as well, is that this repository is a good place to learn JavaScript. It will teach you the right way of writing JavaScript and also show you the bad way.</p><p id="6d7b68b4-6573-4dfa-9da8-92673f3da04b" class="">Airbnb&#x27;s README example code on GitHub.</p><p id="f1d0d8d4-0330-4e34-a63a-7c0d7d16d9b5" class="">You can also select the &quot;Issues&quot; tab where you can look for an issue which you are comfortable solving.</p><p id="71259176-7c91-430c-90ae-00e0ae6b1018" class="">The issues tab on GitHub&#x27;s AirBnB&#x27;s repository.</p><p id="74a612c0-240e-4998-a5f8-f0411f48d693" class="">When you click on it, it takes you to the current issues that the developers of this repository are trying to solve and would appreciate your help resolving.</p><p id="4a18c729-b670-4d57-ac6e-d5c2b49cdefe" class="">If the repository is not one which you are comfortable contributing to or it is not beginner friendly, you can check out other beginner friendly repositories like <code>Web development resources</code> or the <code>EddieHub community</code> where you can share resources, learn, and be part of a community.</p><p id="e455da07-a829-448c-98c4-4e199701e7cc" class="">Being a part of a community is great!</p><h3 id="22e658eb-5458-48ad-993e-7a92859e0fb1" class="">Web development resources repository</h3><p id="c05b38ec-82d5-4610-a1dd-079afb58b167" class="">Searching on GitHub.</p><p id="513c6b25-ba0c-4539-851e-e3be1e901639" class="">Remember to select <code>All GitHub</code> in the search since we want to search the whole of GitHub. Other options are <code>in this repository</code> to search within this repository and <code>in this organization</code> to search within the organization.</p><p id="de2e05c0-d786-4814-b6f3-01f7acd0a90f" class="">Web Development Resources repository search.</p><h3 id="734a4a0d-b89b-4e58-896e-e728c433ed47" class="">EddieHub Community</h3><p id="34889b39-e6d9-4b2c-967f-db3ce9631d2b" class="">Still in GitHub, you can search for <code>EddieHub</code> where you can find a community of welcoming developers, ready to help new developers contribute to the open source repositories for free. It has great repositories where you can learn and contribute.</p><h3 id="03da1380-b5d6-47ca-bd7f-841dd9949081" class="">Build Lots of Projects</h3><p id="e4794877-9fea-469a-b227-c441cb88af06" class="">Building projects really helps you get a grasp of how software works.</p><p id="7745dad0-b2f4-4985-a2f9-66a58a5f36c4" class="">Ever wondered how, when you click the mouse or keyboard, something happens – and you always wanted to know how? Making projects helps you understand all that.</p><p id="1b9616df-563c-441e-b76b-c3533877ad2f" class="">The more projects you make, the better you will understand a topic. And the more you&#x27;ll satisfy your maybe lifelong desire to uncover how it all works.</p><p id="6e99bdc0-27bc-4a42-86c1-6886d488cfd5" class="">Making projects also toughens you up. You become a person who likes solving problems no matter how small or big they are. The ability to face programming challenges and solve issues that arise sells you as a problem solver. This ability is applicable everywhere in life.</p><blockquote id="721db44e-4aa5-4fe5-885e-6576a97664bb" class="">&quot;The best way to learn cycling is by buying a bicycle and to start cycling.&quot; Karlgusta.</blockquote><p id="9c03d155-e54b-40a9-90c1-c0d2c2dc99b0" class="">To start riding a bike, you don&#x27;t really read about the bicycle. Sometimes you don&#x27;t know the bicycle parts, but you still cycle and learn along the way, if you are curious enough.</p><p id="3a829c2f-a6ca-44de-a335-d5f92fe95664" class="">It&#x27;s also in building projects that creativity meets technical skills. Most industries don&#x27;t have a way where you can use your technical skills and your creativity together. But the software industry does.</p><p id="9d41f3d3-68be-4e08-885e-67d94303f8b7" class="">You will not face the same problems each time you build something, so you will need to be creative to find solutions. The challenges, and the solutions you come up with, are where the fun and satisfaction lies.</p><p id="55916f75-af02-4678-b44d-3e09acb7cda8" class="">It is a fine balance between documentation, tutorials, coding (mostly), and reading other people&#x27;s code. Trust your gut in the process.</p><p id="24119629-437c-48fb-a8fc-7e9d853b5d3f" class="">If you need guidance to boost up your confidence, here are some resources that might be of help.</p><h3 id="9db1c611-b1c7-4c90-959f-1e0c3026273b" class="">Resources that can inspire you to build projects</h3><p id="08c2e898-4fc4-4cb0-8dcd-a18d19f1ef57" class="">Here are some resources that might be helpful in building your first JavaScript project:</p><ol type="1" id="5a684eed-2e24-4a1c-b2fa-e5eaf34a0fd6" class="numbered-list" start="1"><li><strong>JavaScript Programming - Full Course (Free).</strong></li></ol><p id="d0128b70-9dc2-4840-858f-4c2180670982" class="">JavaScript Programming - Full Course.</p><p id="b008fc73-7883-4a00-bf93-238677a68a71" class="">In this video tutorial by Per Harald Borgen, you will learn about creating a passenger counter app using JavaScript. You&#x27;ll learn how to create a variable, add buttons, add event listeners, functions, strings, if else statements, arrays, and much more. All this is in JavaScript and its free.</p><p id="16f7d221-4e23-46fe-9ab7-db591f9942c0" class="">In the same video, there is an even nicer secret gift! Building a chrome extension. Oops! I said it.</p><p id="3154824f-3fc9-48e5-8b7e-50c6cb262550" class="">2. <strong>How to create a counter clock (Free).</strong></p><p id="f10b4b96-9433-4599-a40b-f88196fe8820" class="">In this video tutorial, you will learn how to create a counter clock that resembles a counter clock on an ecommerce site like Amazon.</p><p id="63213bf3-a89c-47d6-830c-3bc8a8d38da5" class=""><strong>3. 40 free JavaScript Projects for Beginners</strong></p><p id="06a03bd9-9330-4b99-8deb-306d11b62c67" class=""><a href="https://www.freecodecamp.org/news/javascript-projects-for-beginners/">In this article</a>, Jessica shares 40 JavaScript projects you can build to practice your skills as you learn.</p><p id="56cf7585-9391-4968-a86d-6ffdae1d4818" class="">You&#x27;ll build a responsive navbar, a countdown clock, a platformer game, and many more.</p><h2 id="1951aa1c-ce37-4bfa-8317-edd28ff42998" class="">Conclusion</h2><p id="64ea7d57-ba65-410c-8361-28e6846ca564" class="">JavaScript is a powerful programming language and it&#x27;s a great one to learn if you want to get started coding.</p><p id="5b4a75f8-840b-4a74-a66c-efe985f5e7e6" class="">Your ability to read documentation will give you a better understanding of the language. It will also help you in understanding JavaScript best practices.</p><p id="e9043c2f-b1af-4b2b-93fc-06f43760e431" class="">Practicing coding through the curriculum, learning through tutorials while coding a project, and contributing to open-source will set you apart from your peers. It will also make you a better programmer.</p><p id="b7c6e5a4-3a56-4d00-ae70-91d499a58ed1" class="">By making projects, you get to understand how JavaScript works and generally how software works. This also helps you unleash your creativity.</p><p id="8a7fc5ef-0d0c-4fec-9557-98e492fe64c9" class="">I hope you enjoyed reading this article. If you have any questions or suggestions, feel free to hit me up on <a href="https://twitter.com/annoh_karlgusta">Twitter</a>.</p><p id="8e894eb7-848c-4d8c-953c-4d60699d1607" class="">See you soon!</p><p id="a1af1b83-ae7f-4512-9c0c-3415954160ab" class="">If you read this far, tweet to the author to show them you care.</p><p id="a68bd911-b307-470b-8d23-74e8754c51a4" class="">Learn to code for free. freeCodeCamp&#x27;s open source curriculum has helped more than 40,000 people get jobs as developers. <a href="https://www.freecodecamp.org/learn/">Get started</a></p></div></article></body></html>
