@@ -1,0 +1,679 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>DevTools для «чайников» / Хабр</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="bb288ba2-2b52-4d40-ae16-2b99390c56a4" class="page sans"><header><h1 class="page-title">DevTools для «чайников» / Хабр</h1><table class="properties"><tbody><tr class="property-row property-row-url"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesUrl"><path d="M7.69922 10.8945L8.73828 9.84863C7.91797 9.77344 7.34375 9.51367 6.91992 9.08984C5.76465 7.93457 5.76465 6.29395 6.91309 5.14551L9.18262 2.87598C10.3379 1.7207 11.9717 1.7207 13.127 2.87598C14.2891 4.04492 14.2822 5.67188 13.1338 6.82031L11.958 7.99609C12.1768 8.49512 12.2451 9.10352 12.1289 9.62988L14.0908 7.6748C15.7725 6 15.7793 3.62109 14.084 1.92578C12.3887 0.223633 10.0098 0.237305 8.33496 1.91211L5.95605 4.29785C4.28125 5.97266 4.26758 8.35156 5.96289 10.0469C6.36621 10.4434 6.90625 10.7441 7.69922 10.8945ZM8.30078 5.13184L7.26855 6.17773C8.08203 6.25293 8.66309 6.51953 9.08008 6.93652C10.2422 8.09863 10.2422 9.73242 9.08691 10.8809L6.81738 13.1504C5.66211 14.3057 4.03516 14.3057 2.87305 13.1504C1.71094 11.9883 1.71777 10.3545 2.87305 9.20605L4.04199 8.03027C3.83008 7.53125 3.75488 6.92969 3.87109 6.39648L1.91602 8.35156C0.234375 10.0264 0.227539 12.4121 1.92285 14.1074C3.61816 15.8027 5.99707 15.7891 7.67188 14.1143L10.0439 11.7354C11.7256 10.0537 11.7324 7.6748 10.0371 5.98633C9.64062 5.58301 9.10059 5.28223 8.30078 5.13184Z"></path></svg></span>Ссылка</th><td><a href="https://habr.com/ru/post/548898/" class="url-value">https://habr.com/ru/post/548898/</a></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Темы</th><td></td></tr><tr class="property-row property-row-select"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM7.62402 10.6348C7.79492 10.915 8.20508 10.9287 8.37598 10.6348L10.666 6.73145C10.8574 6.41016 10.7002 6.04102 10.3652 6.04102H5.62793C5.29297 6.04102 5.14941 6.43066 5.32031 6.73145L7.62402 10.6348Z"></path></svg></span>Категория</th><td><span class="selected-value select-value-color-blue">Программирование</span></td></tr><tr class="property-row property-row-formula"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesFormula"><path d="M5.04688 14.3604H11.2744C11.7324 14.3604 12.0537 14.0801 12.0537 13.6494C12.0537 13.2119 11.7324 12.9248 11.2744 12.9248H5.81934V12.8564L9.30566 8.82324C9.54492 8.57031 9.6748 8.29688 9.6748 8.0166C9.6748 7.73633 9.54492 7.45605 9.29883 7.20996L5.81934 3.2793V3.21094H11.2812C11.7393 3.21094 12.0537 2.92383 12.0537 2.48633C12.0537 2.05566 11.7393 1.77539 11.2812 1.77539H5.05371C4.34277 1.77539 3.95312 2.26758 3.95312 2.81445C3.95312 3.12207 4.07617 3.44336 4.33594 3.69629L8.15039 7.96875V8.05078L4.3291 12.4395C4.06934 12.6924 3.94629 13.0137 3.94629 13.3213C3.94629 13.8682 4.33594 14.3604 5.04688 14.3604Z"></path></svg></span>Добавлено</th><td>15.07.2021</td></tr><tr class="property-row property-row-checkbox"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCheckbox"><path d="M3.85742 14.4561H12.1357C13.6123 14.4561 14.3779 13.6904 14.3779 12.2344V3.91504C14.3779 2.45215 13.6123 1.69336 12.1357 1.69336H3.85742C2.38086 1.69336 1.61523 2.45215 1.61523 3.91504V12.2344C1.61523 13.6973 2.38086 14.4561 3.85742 14.4561ZM3.93945 13.1162C3.30371 13.1162 2.95508 12.7812 2.95508 12.1182V4.02441C2.95508 3.36133 3.30371 3.0332 3.93945 3.0332H12.0537C12.6826 3.0332 13.0381 3.36133 13.0381 4.02441V12.1182C13.0381 12.7812 12.6826 13.1162 12.0537 13.1162H3.93945ZM7.26855 11.3115C7.51465 11.3115 7.72656 11.1885 7.87012 10.9697L10.9258 6.19141C11.0146 6.04785 11.0967 5.88379 11.0967 5.72656C11.0967 5.3916 10.7959 5.16602 10.4746 5.16602C10.2695 5.16602 10.085 5.27539 9.94141 5.50781L7.24121 9.8418L5.96973 8.22168C5.80566 8.00977 5.6416 7.93457 5.43652 7.93457C5.10156 7.93457 4.8418 8.20117 4.8418 8.54297C4.8418 8.70703 4.90332 8.85742 5.01953 9.00098L6.63281 10.9697C6.81738 11.209 7.01562 11.3115 7.26855 11.3115Z"></path></svg></span>Разобрано</th><td><div class="checkbox checkbox-off"></div></td></tr><tr class="property-row property-row-formula"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesFormula"><path d="M5.04688 14.3604H11.2744C11.7324 14.3604 12.0537 14.0801 12.0537 13.6494C12.0537 13.2119 11.7324 12.9248 11.2744 12.9248H5.81934V12.8564L9.30566 8.82324C9.54492 8.57031 9.6748 8.29688 9.6748 8.0166C9.6748 7.73633 9.54492 7.45605 9.29883 7.20996L5.81934 3.2793V3.21094H11.2812C11.7393 3.21094 12.0537 2.92383 12.0537 2.48633C12.0537 2.05566 11.7393 1.77539 11.2812 1.77539H5.05371C4.34277 1.77539 3.95312 2.26758 3.95312 2.81445C3.95312 3.12207 4.07617 3.44336 4.33594 3.69629L8.15039 7.96875V8.05078L4.3291 12.4395C4.06934 12.6924 3.94629 13.0137 3.94629 13.3213C3.94629 13.8682 4.33594 14.3604 5.04688 14.3604Z"></path></svg></span>Без разбора</th><td>605 дней</td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Связь &quot;Разобрать&quot;</th><td></td></tr><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedAt"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM4.54102 8.91211H7.99316C8.30078 8.91211 8.54004 8.67285 8.54004 8.37207V3.8877C8.54004 3.58691 8.30078 3.34766 7.99316 3.34766C7.69238 3.34766 7.45312 3.58691 7.45312 3.8877V7.83203H4.54102C4.2334 7.83203 4.00098 8.06445 4.00098 8.37207C4.00098 8.67285 4.2334 8.91211 4.54102 8.91211Z"></path></svg></span>Date [HIDE]</th><td><time>@July 15, 2021 5:39 AM</time></td></tr></tbody></table></header><div class="page-body"><p id="77de0549-1c7b-42ce-86b7-a87fbde313a7" class=""><a href="https://habr.com/ru/users/efirsova/">  efirsova </a> сегодня в 00:29</p><figure id="7a45723c-9d69-48fd-9b47-01fbfb7b63bb" class="image"><a href="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/wacoyyiukd2jlki80ue-jrrcz_c.png"><img style="width:700px" src="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/wacoyyiukd2jlki80ue-jrrcz_c.png"/></a></figure><p id="fb35e32c-a3e1-4c4e-a601-92e03d09df05" class="">Недавно на базе <a href="https://www.vlsu.ru/index.php?id=1487">Владимирского Института информационных технологий и радиоэлектроники</a> прошла очередная встреча <strong>VLADIMIR TECH TALKS</strong>. Технологический митап, организованный международным IT-разработчиком Altenar в формате открытого и доверительного разговора про насущные проблемы в области разработки ПО, собрал немало участников из числа начинающих и продвинутых программистов. Делимся содержанием наиболее интересных докладов.</p><p id="64629597-c2d1-4d3f-b12e-5341efa533df" class="">Наиболее заметным стало выступление независимого WEB-разработчика <a href="https://habr.com/ru/users/shine/">Антона Грибанова</a>. Он поделился своим опытом использования DevTools. На самом деле, обзорных статей по заявленной тематике для профессионалов немало. С ними легко можно ознакомиться на профильных ресурсах (<a href="https://habr.com/ru/company/otus/blog/520706/">тык</a>, <a href="https://habr.com/ru/company/infopulse/blog/311582/">тык</a>, <a href="https://habr.com/ru/post/489284/">тык</a>, <a href="https://habr.com/ru/company/simbirsoft/blog/336710/">тык</a>).</p><p id="da74dbea-babe-45fa-9c47-e172c18f7c75" class="">Данная статья, прежде всего, обращена к тем, кто еще находится в самом начале своего пути к программистскому Олимпу. Поэтому, если вы матерый разработчик, вас вряд ли заинтересует дальнейшее повествование. Хотя, вы можете поделиться своим богатым жизненным опытом в комментариях к публикации.</p><h3 id="f6f848d4-9fcc-44a0-a04d-ec7aa1f434c2" class="">Говорим по понятиям</h3><p id="1492526a-dfc9-4ef7-a104-de54169bcc3f" class="">Инструменты разработчика (от англ. «development tools» или сокращённо «DevTools») ─ это программы, позволяющие создавать, тестировать и отлаживать (debug) программное обеспечение.</p><p id="95c02562-f45e-400c-a7f1-190a3b530576" class="">Современные браузеры, Safari, Firefox, Microsoft Edge, Chrome, Яндекс и другие, имеют встроенные инструменты разработчика, позволяющие просмотреть исходный код сайта. Отдельно устанавливать их не требуется. С их помощью можно просматривать и отлаживать HTML сайта, его CSS и Javascript. Также можно проверить сетевой трафик, потребляемый сайтом, его быстродействие и много других параметров.</p><figure id="d93895fb-dd2e-43aa-89ac-e191088f47f3" class="image"><a href="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/zcr11ufna7e1y-ecnlwarqqpaqw.png"><img style="width:700px" src="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/zcr11ufna7e1y-ecnlwarqqpaqw.png"/></a></figure><p id="2dc75caf-a803-4279-be09-a8259c85d79f" class="">В правом углу размещенной выше иллюстрации можно увидеть структуру web-страницы и стили, примененные к текущему элементу.</p><p id="085ffcc6-df61-4190-badb-e4b22840dc8c" class="">Типичная веб-страница представляет собой текстовый файл в формате HTML, который определяет структуру и контент страницы, а также может содержать ссылки на файлы в других форматах (текст, графические изображения, видео, аудио, базы данных и др.), а также гиперссылки для быстрого перехода на другие веб-страницы или доступа к ссылочным файлам.</p><p id="dc751016-3134-478b-abca-7168b92246ad" class="">Несколько веб-страниц, объединенных общей темой и дизайном, а также связанных между собой ссылками, образуют — веб-сайт. При этом образующие веб-сайт страницы могут находиться на одном или нескольких веб-серверах, которые могут располагаться в одном дата-центре или удаленно друг от друга, зачастую в разных странах.</p><figure id="92360e37-75aa-4f79-bfcc-f22ef7a44346" class="image"><a href="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/xbtlfqq94_wplpxu9lxdgyb3bji.jpeg"><img style="width:700px" src="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/xbtlfqq94_wplpxu9lxdgyb3bji.jpeg"/></a></figure><p id="ce25363f-6a03-49a1-93d4-1dbbc1e51df5" class=""><strong>HTML</strong> (англ. HyperText Markup Language) ─ это скелет веб-страницы. Для того, чтобы вся эта история начала двигаться и нужен Javascript (календарики, выпадающее меню, всплывающие окна, анимация и прочее, делается с помощью JS). Для придания странице божеского вида вам понадобится CSS (каскадные таблицы стилей).</p><p id="aeefa2b7-c3b8-4d6a-bb78-045062beb21a" class="">Представим HTML-документ в простейшей форме:</p><figure id="7f242309-3383-4a09-b10a-4f1bf970eb9f" class="image"><a href="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/hhseefpfn6tle_ljs6l6rtrnyco.png"><img style="width:700px" src="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/hhseefpfn6tle_ljs6l6rtrnyco.png"/></a></figure><figure id="a7c27de0-3273-4f37-ab09-d5039228051e" class="image"><a href="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/cucznq4gxwd4bav8dpnxjbrm3hu.png"><img style="width:700px" src="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/cucznq4gxwd4bav8dpnxjbrm3hu.png"/></a></figure><p id="c9d1bc2a-33f0-4321-bc34-1789e8cc75a1" class="">Фактически HTML-документ состоит из элементов (строка с открывающим и закрывающим тегом и, собственно, само содержимое).</p><p id="3bdf2758-7359-4ae9-a5f7-bd386b1035a4" class="">Чтобы расширить возможности отдельных тегов и более гибко управлять содержимым контейнеров применяются атрибуты тегов, они содержат информацию, которую вы не хотите показывать в фактическом контенте.</p><p id="00418dfb-fe81-407b-8ae1-88380ed7bbba" class=""><strong>Атрибут</strong> — используется для определения характеристик html-элемента и помещается внутри открывающего тега элемента. Допустимо использовать некоторые атрибуты у тегов, не присваивая им никакого значения. Смотрите на пример ниже, в нем используется атрибут disabled, у которого явно не задано значение.</p><figure id="75985df5-4268-439f-9e8f-b518ca2f1c22" class="image"><a href="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/ednhva9f2pkg5butpvkatnnikr8.png"><img style="width:700px" src="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/ednhva9f2pkg5butpvkatnnikr8.png"/></a></figure><p id="d9cc6fd4-c7e4-4d40-b05c-a4d82fb5d033" class="">Если внутри какого-либо тега используется еще один или даже несколько других — это называется вложенность тегов html.</p><p id="f2060ebb-05e2-4786-ba99-e85fd8501613" class="">Вот <a href="https://developer.mozilla.org/ru/docs/Learn/Getting_started_with_the_web/HTML_basics">тут</a> еще можно подсмотреть описание HTML. Там доступно и наглядно все показано.</p><h3 id="40735270-850d-4821-859e-2e3491887c36" class="">Используем DevTools на практике</h3><p id="dfa27e8b-987c-4703-a137-85ac4c4ef885" class="">Потрогать изначально скрытые браузером DevTools можно весьма просто, использовав сочетание клавиш или перейдя в раздел «Дополнительные инструменты / Инструменты Разработчика». Также можно ткнуть курсором в любое место страницы, нажать на правую клавишу мыши и выбрать «Просмотреть код».</p><figure id="de1e76ad-baca-4203-a19b-99a82b90a249" class="image"><a href="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/t9wclgd8_dbaphzlp7tkhjexdma.png"><img style="width:700px" src="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/t9wclgd8_dbaphzlp7tkhjexdma.png"/></a></figure><figure id="12b3da3a-b6a7-40d3-98c6-3181f94c5963" class="image"><a href="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/zmxaheifs3ethtudgi89ktyv3l0.png"><img style="width:700px" src="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/zmxaheifs3ethtudgi89ktyv3l0.png"/></a></figure><p id="24421953-f8db-4eb3-ac73-4679268d8464" class="">Рассмотрим несколько вкладок из DevTools. И первый — <strong>режим эмуляции из мобильных устройств</strong>. Несмотря на десктопный браузер, страница у вас будет отображаться так, если бы вы на нее зашли с мобильного устройства. Вторая вкладка — <strong>Elements</strong>. Она демонстрирует структуру html страницы. С ее помощью браузер видит web-страницу после всего того, что с ней сделал Javascript. И <strong>Network</strong> — это сетевые запросы страницы (список web-ресурсов, загружаемых страницей для отображения демонстрируемого контента).</p><figure id="331a446f-476c-498e-9960-581a7373cd94" class="image"><a href="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/ux-22awe-ma8m_3m2xc7cux5dbc.png"><img style="width:700px" src="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/ux-22awe-ma8m_3m2xc7cux5dbc.png"/></a></figure><p id="57bdf492-5d09-4048-8355-769e71bc0fc9" class="">В панели <strong>Elements </strong>располагается дерево элементов. Здесь можно открывать теги, смотреть их содержимое, при этом в документе будет подсвечиваться текущий выбранный тег. Также можно посмотреть различные атрибуты, например, «Класс» или «Размер».</p><figure id="f345bfd4-b0a1-4f75-9fa8-6913c0f036b7" class="image"><a href="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/z-k39lmrcj0jihvz_arvabamsle.png"><img style="width:700px" src="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/z-k39lmrcj0jihvz_arvabamsle.png"/></a></figure><p id="ec8b3430-df62-42a1-b077-b414df29fc9f" class=""><strong>Загружаем картинки в Instagram с компьютера</strong>
+ С десктопа вы абсолютно спокойно можете посмотреть свою ленту в Instagram, полайкать посты, написать комментарии. Но вот загрузить фото или видео браузер вам не даст. Вот тут-то на помощь к вам и приходит режим эмуляции мобильных устройств.</p><figure id="3fc75cf0-4b3c-4cc9-8eb4-8db989ac5968" class="image"><a href="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/2kznoux3spgfjtkzwmom69ak6he.png"><img style="width:700px" src="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/2kznoux3spgfjtkzwmom69ak6he.png"/></a></figure><p id="55492814-371e-4342-9bb3-91cc7d171f9b" class="">Выбираем во вкладке наиболее понравившуюся вам модель телефона и вуаля (только не забудьте обновить страницу). Заблудиться в аскетичном интерфейсе Instagram сложно. Что делать тоже интуитивно понятно.</p><figure id="b98e0d8f-52d2-4c18-a417-f999e36157b2" class="image"><a href="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/eexwgfq5wokvxz_dlxboof9sgve.png"><img style="width:700px" src="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/eexwgfq5wokvxz_dlxboof9sgve.png"/></a></figure><p id="a32895db-a030-4edf-b7e3-95cd86365cc4" class=""><strong>Скачиваем видео из Instagram Stories</strong>
+ С помощью DevTools задача скачать видео из сторис Instagram утрачивает свою сакральность. Все до безобразия элементарно. Переходим на вкладку Network. Для удобства выбираем фильтр Media. Он покажет аудио- и видеофайлы, которые запрашивает страница. А дальше запускаем понравившееся нам видеоизображение, с прямой ссылкой на место его хранения. Ну, а далее открываем его в новом табе и выбираем место его нового хранения (например, на вашем диске).</p><figure id="eec1fb95-e8fa-42bb-96e0-e8e4dfb3758d" class="image"><a href="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/gsb8vwzmf2pkvhcl6o3llfgrc3q.png"><img style="width:700px" src="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/gsb8vwzmf2pkvhcl6o3llfgrc3q.png"/></a></figure><p id="6c928350-f31d-4b0d-b3f4-e197537c2ba9" class=""><strong>Скачиваем аудио с музыкальных сайтов</strong>
+ С помощью DevTools можно также прикоснуться и к музыкальным файлам. Механика аналогичная той, что описана выше.</p><figure id="b3e80205-2aa9-4f61-b3f4-b06d7e1e6c9d" class="image"><a href="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/mdydzsxxzruvnjp4hjuji_xcxf8.png"><img style="width:700px" src="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/mdydzsxxzruvnjp4hjuji_xcxf8.png"/></a></figure><p id="8502b011-0b87-4399-aa34-7233e1cf148c" class=""><strong>Скачиваем фото из Instagram</strong>
+ В принципе ничего не мешает в случае понравившегося изображения сделать скриншот или попытаться «Сохранить изображение как», но качество и результативность этих упражнений устроит далеко не всех. Для пытливых умов опять-таки на помощь приходит инструментарий DevTools. Выбираем «Просмотреть код», находим ссылку на изображение в атрибуте src.</p><figure id="27b7e638-f181-48a5-aa65-783c6423913a" class="image"><a href="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/jw0fl9bafdj9djnv-qsupdeimoq.png"><img style="width:700px" src="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/jw0fl9bafdj9djnv-qsupdeimoq.png"/></a></figure><figure id="86c8a829-378e-4597-9d01-934d165bce22" class="image"><a href="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/hwoug89wn4xg53our6ghqtboq7w.png"><img style="width:700px" src="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/hwoug89wn4xg53our6ghqtboq7w.png"/></a></figure><p id="9946c5d2-1fa2-4e82-8ab2-ed074ffac6b9" class="">Второй способ через вкладку <strong>Network</strong>. Переходим по вкладке, ставим фильтр Img и обновляем страницу. Кстати, изображения можно отсортировать по размеру, контентные картинки, как правило, на странице самые большие по размеру. Точно также, правой клавишей кликаем на файл и «Сохранить как» в наиболее удобном для вас месте.</p><figure id="1f466f83-3e1a-4786-85f4-5954876f27d7" class="image"><a href="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/iee-vamqglzh9lsmsn0gb61urqw.png"><img style="width:700px" src="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/iee-vamqglzh9lsmsn0gb61urqw.png"/></a></figure><p id="431bd19f-39df-4455-8b32-15d75106f5f9" class=""><strong>Удаление блокираторов контента</strong>
+ Бывает так, что хочется посмотреть какой-либо контент, но без регистрации сайт этого сделать не дает. И снова, здравствуйте DevTools. Обычно контент закрывается плашкой или прозрачным слоем. Открываем инструменты разработчика, определяем в коде блок-элемент закрывающий нужный нам участок контента и нажимаем Delete element.</p><figure id="905df86c-0a82-4fbc-9b56-3d964205dc63" class="image"><a href="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/d9xcuzrjvveb22x00gds-spy1yq.png"><img style="width:700px" src="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/d9xcuzrjvveb22x00gds-spy1yq.png"/></a></figure><p id="ca10d0a3-718c-4fe6-ab01-a7a52d850535" class=""><strong>Разблокировка форм ввода</strong>
+ Нередко всевозможные государственные структуры, разрабатывая на Javascript различные свои электронные формы для заполнения, препятствуют нашему любимому Copy/Paste (вставка и выделение текста). В этом случае снова приходится прибегать к помощи DevTools.
+ В инструментах разработчика идем в Настройки. Прокручиваем до поля Debugger и нажимаем галочку Disable JavaScript. Теперь можно вставлять текст.</p><figure id="240c0f63-1a42-4b7f-b071-6df15d5bec6e" class="image"><a href="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/9wdx1lrobp1kmo1p6diu6j4xgko.png"><img style="width:700px" src="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/9wdx1lrobp1kmo1p6diu6j4xgko.png"/></a></figure><p id="6e38b572-219b-48a4-809c-587a99657b81" class="">Второй путь ─ открываем инструменты разработчика, нажимаем заветное сочетание клавиш и выбираем поиск по командам. Там выбираем JavaScript и одним из пунктов будет выключить JavaScript. Выключаем и радуемся жизни. Кстати, после вашего Copy/Paste JavaScript не помешало бы включить обратно, поскольку некоторые формы без него могут и не работать.</p><figure id="2ca6e36b-1c8a-4cd7-bc5c-8568420ab66b" class="image"><a href="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/oujijp0qbpo41tqmmvnzvwf7e9a.png"><img style="width:700px" src="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/oujijp0qbpo41tqmmvnzvwf7e9a.png"/></a></figure><p id="16114126-c805-45b0-b515-52ec5fc7e122" class=""><strong>Версия для печати web-страниц</strong>
+ Надо признать, что сайтов, требующих использования описываемых дальше костылей, становится все меньше и меньше, но они по-прежнему периодически встречаются. Тем не менее, выбираем нужный нам сайт, удаляем во вкладке Elements через инструмент разработчика с помощью Delete elements ненужные элементы и части кода (реклама, контакты, ссылки и прочее). Далее отправляем все на печать и радуемся жизни.</p><figure id="adb0ee00-84a3-493f-8e86-31bf6ee061fd" class="image"><a href="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/jtk_4bppu0v4jykxk3if58bhvpm.png"><img style="width:700px" src="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/jtk_4bppu0v4jykxk3if58bhvpm.png"/></a></figure><p id="00fc6a06-ba3f-4d2b-ab31-83e33fbbb77a" class=""><strong>Узнаем сохраненный пароль</strong>
+ Как узнать сохраненный пароль, если браузер автоматически его подставил в закрытом режиме? Можно через настройки залезть в пароли и отыскать все конца. Но мы не ищем легких путем. Снова на связи DevTools. Выделяем правой клавишей поле с вводом пароля, далее просмотреть код, после чего появляется достаточно типичная картина.</p><figure id="7580bb9f-4f60-4a5c-b1c3-55b30872bd84" class="image"><a href="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/ylnqtqztdczv3roc50rocvk_ija.png"><img style="width:700px" src="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/ylnqtqztdczv3roc50rocvk_ija.png"/></a></figure><p id="4cfc1562-2a0c-4a32-8806-09d81008e603" class="">После этого находим атрибут type, кликаем дважды на значение Password и просто удаляем его. Далее поле ввода становится по умолчанию текстовым, и мы видим сохраненным пароль.</p><figure id="401f8316-be48-45f4-a773-8a11be121741" class="image"><a href="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/lsohzjjrnwikczivbitl3pbgdzi.png"><img style="width:700px" src="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/lsohzjjrnwikczivbitl3pbgdzi.png"/></a></figure><p id="2aeffd76-9e81-49b2-97f2-629d21122ea2" class=""><strong>Скачиваем видео из вКонтакте</strong>
+ Предлагаемый ниже рецепт несколько хитрее, чем был в случае с Instagram stories ранее, но тоже вполне земной. Заходим на мобильную версию ресурса (по сути это два разных в сравнении с десктопной версией сайта). Открываем инструмент разработчика, заходим во вкладку Сеть, в фильтрах выбираем Прочее и включаем воспроизведение видео. Далее в списке появится ссылка на проигрываемое видео, ну а дальше по накатанной: правая клавиша мыши, открываем в новой вкладке и сохраняем в любимое место на компьютере.</p><figure id="ce60d198-8820-4c2d-b843-e46db1ba08ea" class="image"><a href="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/rdriet1e27f3kft4bjswedpn6ag.png"><img style="width:700px" src="DevTools%20%D0%B4%D0%BB%D1%8F%20%C2%AB%D1%87%D0%B0%D0%B8%CC%86%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%C2%BB%20%D0%A5%D0%B0%D0%B1%D1%80%20bb288ba22b524d40ae162b99390c56a4/rdriet1e27f3kft4bjswedpn6ag.png"/></a></figure><h3 id="1a892a89-1e24-4a87-9925-853bd11d725c" class="">Давайте чаще встречаться!</h3><p id="7336ad3f-060a-49ed-9024-49827b16b81a" class="">Следующий <a href="https://altenar.timepad.ru/event/1603015/">митап уже 23 апреля</a>, можно прийти лично, если вы во Владимире, или посмотреть прямую трансляцию (все минувшие видео собраны <a href="https://www.youtube.com/watch?v=oZGFicz3m8Y&amp;list=PLBOwcpfL3HRNT8VRQycy3PA7StRl-uQUe">тут</a>). Кстати, в гостях у нас будет замечательный <a href="https://habr.com/ru/users/sobolevn/posts/?fbclid=IwAR28PofqU9HOcxEuxZbqsTVcyRpp6e5ROteD7T3gjlNPpSSbZzdkRQ7z2Ww">Никита Соболев</a>.</p><p id="d69fb23a-ecec-454c-9692-f5badb667059" class="">Все актуальные события доступны <a href="https://altenar.timepad.ru/events/">в календаре мероприятий</a>.</p></div></article></body></html>

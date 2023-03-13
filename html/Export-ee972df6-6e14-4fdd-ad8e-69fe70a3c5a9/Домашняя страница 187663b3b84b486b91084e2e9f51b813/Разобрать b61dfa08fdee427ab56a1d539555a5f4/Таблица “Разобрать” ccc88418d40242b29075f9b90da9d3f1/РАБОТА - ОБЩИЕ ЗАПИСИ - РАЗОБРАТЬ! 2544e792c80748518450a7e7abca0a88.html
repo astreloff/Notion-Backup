@@ -1,0 +1,703 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>РАБОТА - ОБЩИЕ ЗАПИСИ - РАЗОБРАТЬ!</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="2544e792-c807-4851-8450-a7e7abca0a88" class="page sans"><header><h1 class="page-title">РАБОТА - ОБЩИЕ ЗАПИСИ - РАЗОБРАТЬ!</h1><table class="properties"><tbody><tr class="property-row property-row-url"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesUrl"><path d="M7.69922 10.8945L8.73828 9.84863C7.91797 9.77344 7.34375 9.51367 6.91992 9.08984C5.76465 7.93457 5.76465 6.29395 6.91309 5.14551L9.18262 2.87598C10.3379 1.7207 11.9717 1.7207 13.127 2.87598C14.2891 4.04492 14.2822 5.67188 13.1338 6.82031L11.958 7.99609C12.1768 8.49512 12.2451 9.10352 12.1289 9.62988L14.0908 7.6748C15.7725 6 15.7793 3.62109 14.084 1.92578C12.3887 0.223633 10.0098 0.237305 8.33496 1.91211L5.95605 4.29785C4.28125 5.97266 4.26758 8.35156 5.96289 10.0469C6.36621 10.4434 6.90625 10.7441 7.69922 10.8945ZM8.30078 5.13184L7.26855 6.17773C8.08203 6.25293 8.66309 6.51953 9.08008 6.93652C10.2422 8.09863 10.2422 9.73242 9.08691 10.8809L6.81738 13.1504C5.66211 14.3057 4.03516 14.3057 2.87305 13.1504C1.71094 11.9883 1.71777 10.3545 2.87305 9.20605L4.04199 8.03027C3.83008 7.53125 3.75488 6.92969 3.87109 6.39648L1.91602 8.35156C0.234375 10.0264 0.227539 12.4121 1.92285 14.1074C3.61816 15.8027 5.99707 15.7891 7.67188 14.1143L10.0439 11.7354C11.7256 10.0537 11.7324 7.6748 10.0371 5.98633C9.64062 5.58301 9.10059 5.28223 8.30078 5.13184Z"></path></svg></span>Ссылка</th><td></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Темы</th><td><a href="https://www.notion.so/ae200d94ea88489f8e0a0675bbb363f5"><img class="icon" src="https://www.notion.so/icons/briefcase_gray.svg"/>Системный анализ</a></td></tr><tr class="property-row property-row-select"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM7.62402 10.6348C7.79492 10.915 8.20508 10.9287 8.37598 10.6348L10.666 6.73145C10.8574 6.41016 10.7002 6.04102 10.3652 6.04102H5.62793C5.29297 6.04102 5.14941 6.43066 5.32031 6.73145L7.62402 10.6348Z"></path></svg></span>Категория</th><td></td></tr><tr class="property-row property-row-formula"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesFormula"><path d="M5.04688 14.3604H11.2744C11.7324 14.3604 12.0537 14.0801 12.0537 13.6494C12.0537 13.2119 11.7324 12.9248 11.2744 12.9248H5.81934V12.8564L9.30566 8.82324C9.54492 8.57031 9.6748 8.29688 9.6748 8.0166C9.6748 7.73633 9.54492 7.45605 9.29883 7.20996L5.81934 3.2793V3.21094H11.2812C11.7393 3.21094 12.0537 2.92383 12.0537 2.48633C12.0537 2.05566 11.7393 1.77539 11.2812 1.77539H5.05371C4.34277 1.77539 3.95312 2.26758 3.95312 2.81445C3.95312 3.12207 4.07617 3.44336 4.33594 3.69629L8.15039 7.96875V8.05078L4.3291 12.4395C4.06934 12.6924 3.94629 13.0137 3.94629 13.3213C3.94629 13.8682 4.33594 14.3604 5.04688 14.3604Z"></path></svg></span>Добавлено</th><td>25.09.2022</td></tr><tr class="property-row property-row-checkbox"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCheckbox"><path d="M3.85742 14.4561H12.1357C13.6123 14.4561 14.3779 13.6904 14.3779 12.2344V3.91504C14.3779 2.45215 13.6123 1.69336 12.1357 1.69336H3.85742C2.38086 1.69336 1.61523 2.45215 1.61523 3.91504V12.2344C1.61523 13.6973 2.38086 14.4561 3.85742 14.4561ZM3.93945 13.1162C3.30371 13.1162 2.95508 12.7812 2.95508 12.1182V4.02441C2.95508 3.36133 3.30371 3.0332 3.93945 3.0332H12.0537C12.6826 3.0332 13.0381 3.36133 13.0381 4.02441V12.1182C13.0381 12.7812 12.6826 13.1162 12.0537 13.1162H3.93945ZM7.26855 11.3115C7.51465 11.3115 7.72656 11.1885 7.87012 10.9697L10.9258 6.19141C11.0146 6.04785 11.0967 5.88379 11.0967 5.72656C11.0967 5.3916 10.7959 5.16602 10.4746 5.16602C10.2695 5.16602 10.085 5.27539 9.94141 5.50781L7.24121 9.8418L5.96973 8.22168C5.80566 8.00977 5.6416 7.93457 5.43652 7.93457C5.10156 7.93457 4.8418 8.20117 4.8418 8.54297C4.8418 8.70703 4.90332 8.85742 5.01953 9.00098L6.63281 10.9697C6.81738 11.209 7.01562 11.3115 7.26855 11.3115Z"></path></svg></span>Разобрано</th><td><div class="checkbox checkbox-off"></div></td></tr><tr class="property-row property-row-formula"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesFormula"><path d="M5.04688 14.3604H11.2744C11.7324 14.3604 12.0537 14.0801 12.0537 13.6494C12.0537 13.2119 11.7324 12.9248 11.2744 12.9248H5.81934V12.8564L9.30566 8.82324C9.54492 8.57031 9.6748 8.29688 9.6748 8.0166C9.6748 7.73633 9.54492 7.45605 9.29883 7.20996L5.81934 3.2793V3.21094H11.2812C11.7393 3.21094 12.0537 2.92383 12.0537 2.48633C12.0537 2.05566 11.7393 1.77539 11.2812 1.77539H5.05371C4.34277 1.77539 3.95312 2.26758 3.95312 2.81445C3.95312 3.12207 4.07617 3.44336 4.33594 3.69629L8.15039 7.96875V8.05078L4.3291 12.4395C4.06934 12.6924 3.94629 13.0137 3.94629 13.3213C3.94629 13.8682 4.33594 14.3604 5.04688 14.3604Z"></path></svg></span>Без разбора</th><td>168 дней</td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Связь &quot;Разобрать&quot;</th><td></td></tr><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><svg viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedAt"><path d="M8 15.126C11.8623 15.126 15.0615 11.9336 15.0615 8.06445C15.0615 4.20215 11.8623 1.00293 7.99316 1.00293C4.13086 1.00293 0.938477 4.20215 0.938477 8.06445C0.938477 11.9336 4.1377 15.126 8 15.126ZM8 13.7383C4.85547 13.7383 2.33301 11.209 2.33301 8.06445C2.33301 4.91992 4.84863 2.39746 7.99316 2.39746C11.1377 2.39746 13.6738 4.91992 13.6738 8.06445C13.6738 11.209 11.1445 13.7383 8 13.7383ZM4.54102 8.91211H7.99316C8.30078 8.91211 8.54004 8.67285 8.54004 8.37207V3.8877C8.54004 3.58691 8.30078 3.34766 7.99316 3.34766C7.69238 3.34766 7.45312 3.58691 7.45312 3.8877V7.83203H4.54102C4.2334 7.83203 4.00098 8.06445 4.00098 8.37207C4.00098 8.67285 4.2334 8.91211 4.54102 8.91211Z"></path></svg></span>Date [HIDE]</th><td><time>@September 25, 2022 6:24 AM</time></td></tr></tbody></table></header><div class="page-body"><p id="d9b97bf5-93b2-4174-b4ad-617989352131" class="">Применимость автоматизации тестирования в проекте.</p><p id="80b424f7-ff52-4306-bd86-1960207b72b1" class="">Ермолова Анастасия оценила кейсы от 1 до 3 по сложности, должна обсудить с Маргаритой, что разобрали кейсы и можно приступать.</p><p id="ae23ac18-5bc5-4856-9397-53b151e68021" class="">Разворачивание автотестов, репозиторий в битбакет, туда закинут кейсы, выводить отчёты в Дженкинс. На первых порах, запускать автотесты локально, без репозитория.</p><p id="4b8a9408-563d-4184-87c5-9bbe1ba6c130" class="">Редактирование на первом этапе реализации не трогаем.</p><p id="b0247419-7911-45a7-8fc5-ff1d454a2c30" class="">Актуально = опубликовано в графике (название поменялось).
+Терминалы, Транспортные плечи и маршруты добавляются через интеграцию.</p><p id="a8323a9e-1d0e-4534-883b-8e95cf450e27" class="">Справочник продуктов в Siebel != Справочнику продуктов в Schedule. Запускается автоматическая процедура обновления справочника продуктов Schedule, проверяет в Siebel поля продукта и на основе этой записи создаётся запись продуктов. Сделать запрос к таблице Cx_product_guide и посмотреть, добавился ли продукт.</p><p id="9a404ce9-135e-4837-bc17-9d23b35e77d3" class="">Справочник суда - при изменении передаёт данные в другую систему.</p><p id="e1423d8d-f473-4cea-afec-cc83cb29443f" class="">Дефекты:
+Справочник продуктов, удалось добавить повторный продукт производителю в мвг. Например: МАФ 12:52. (Проверить для ограничений фасовки).</p><hr id="cd15edc9-06ca-4822-9b86-148f39fce97f"/><p id="1b886c12-163d-4b98-b686-eb9a8dbefd0c" class="">Импорт планов производства.</p><ol type="1" id="2a1f00a1-f891-4ba1-bbe7-b73a980b35ac" class="numbered-list" start="1"><li>Взять файл плана производства из E - prod_plan - pha change</li></ol><ol type="1" id="56cf568b-3725-4d2b-aaa2-816f06359f28" class="numbered-list" start="2"><li>Сменить id продукта наверху, сменить даты на необходимый месяц, сменить значения для дат.</li></ol><ol type="1" id="8aaeb8b6-3044-4339-92c5-4cb018454673" class="numbered-list" start="3"><li>Посмотреть id продукта в schedule в ui siebel
+Выбрать строку с продуктом &gt; Справка &gt; Сведения о записи - id поля (названия продукта) (строка №)
+3.Скинуть папку в Pha import, она загрузится и переместится в папку pha_change. Джоб для импорта выполняется каждые 5 минут.</li></ol><p id="54604ce7-284f-426d-8602-ad6e73d49dbe" class="">В таблице хранятся склады производственных площадок и склады терминалов.
+Если нужно посмотреть отчёты, по складам на терминалах
+Graph_id - рабочая версия графика отгрузок.
+Output_id - обобщенный продукт (продукт без фасовки) см. в ui Siebel на графике, в поле &quot;внешний продукт&quot;.
+Нужно storage reminder</p><hr id="975461e4-c29a-49ec-89e1-3a38c35f9082"/><p id="ccab28b2-b2ec-446a-848b-601df5d7865f" class=""><a href="http://khqsrvora28.int.corp.phosagro.ru/">khqsrvora28.int.corp.phosagro.ru</a>
+Пользователь ESedova2
+Пасс GV1NvUd0</p><hr id="199ff3a3-da1d-4b58-83c5-4f16468279a0"/><p id="ece2bbbb-95aa-41f4-9648-4f64a44df570" class="">Вадик сказал, чтобы было 60 лямов, сейчас 41.
+Будет встреча, где будет предложен вариант выполнения второго этапа, длительностью 2 года, с разделением 1 или 3 месяца для выполнения задач.
+Деньги понадобятся при расчёте = сумма с НДС/время разработки.</p><p id="5c793938-7ab7-40a8-8c29-117d31148ed7" class="">Бизнес дал файл с приоритетами.
+Посмотреть на задачи, что будем делать сначала.
+Обсудить с бизнесом, предложить подход по внедрению.</p><p id="fdc9c3ef-b476-42ea-b4d9-74666c3ead7c" class="">Разбить по релизам, релиз 1 - такие задачи, релиз 2 - другие задачи.</p><p id="d9fe7ff0-428c-46f9-8453-b9dbbe28da8c" class="">Какие задачи самые важные.
+Например: домашняя страница логиста, Фосагро регион.</p><p id="ff7e0f59-185d-428c-9d44-e1d292303f9c" class="">Распределить требования по порядку.
+Сделать встречу на завтра.
+Поставить встречу Вадику и Упаковку по подходу.
+Подход AS-IS</p><ol type="1" id="5e20c58b-8f34-44d4-8c5d-7bafae965b24" class="numbered-list" start="1"><li>Waterfall, Agile - хаос</li></ol><ol type="1" id="28278329-ade5-4b03-b2b3-760c3905a49a" class="numbered-list" start="2"><li>Разработка идеи вперелн согласования документов, что приводит к постоянным доработкам и переработкам функционала. / Предложение согласовывает Женя в Джира/ в письме и о она берёт на себя ответственность, но при этом задача согласована и понятна и разработчики приступают, если потом замечания, то это CR.</li></ol><ol type="1" id="b9a9d62f-370a-4cbb-aa8e-a44338df79ee" class="numbered-list" start="3"><li>Согласование задач в JIra</li></ol><ol type="1" id="7230298c-1c02-4e5e-80c2-439bc40998f2" class="numbered-list" start="4"><li>2 раза пишем документы (два конфлюенса)</li></ol><ol type="1" id="47065168-bc1d-47c2-9bb2-ca5f68d8b8c2" class="numbered-list" start="5"><li>Большое количество людей, принимающих решение (должно быть несколько людей принимающих решение о системе)</li></ol><ol type="1" id="1eab3233-4184-4561-af20-be88892616f9" class="numbered-list" start="6"><li>Нет бизнес анализа (бизнес анализирует сам на встрече свои процессы)</li></ol><ol type="1" id="30515e37-f3c8-4d4e-9672-d3bbe72fa769" class="numbered-list" start="7"><li>Дорогие установки.</li></ol><ol type="1" id="c5847657-d048-44ec-a65b-6bff68213c2c" class="numbered-list" start="8"><li>Нет нормальной Jira. (Старая версия джиры у заказчика).</li></ol><p id="294bdc00-221e-4cbf-8703-4782ae2a8579" class="">To-be:</p><ol type="1" id="b182bb85-40b9-4c71-b25a-9c033f5605aa" class="numbered-list" start="1"><li>Agile внутри (Женя выступает в роли продукт овнера (PO). Согласование документов и требований на стороне Жени) или она сама идёт к макальскому, кочегуру. Нужно чтобы они принимала решение и бизнес. Как PO будет выбирать над какими задачами работать и приоритезировать задачи. Женя будет на дейликах.</li></ol><ol type="1" id="4d4ece18-45d3-4a99-ad86-8e742ef64bc9" class="numbered-list" start="2"><li>Релизы по 3 месяца</li></ol><ol type="1" id="079eb47c-6b7a-477b-997f-dd9e618252ad" class="numbered-list" start="3"><li>Спринты по 2 недели.</li></ol><ol type="1" id="0461a5bc-fd98-41a8-90d7-4ca42d05851b" class="numbered-list" start="4"><li>При сдаче релиза должна быть гибкость, когда например мы уделили слишком много времени одной задачи и сделали её хорошо, но не доделали до целевого варианта вторую задачу. При сдаче релиза в этом случае, должны опрерировать MVP, минимально рабочий продукт есть, но например требуется много ручных действий. Если понадобится приоритезировать одну задачу и &quot;забить&quot; на вторую. Чтобы по итогу заказчик актировал и мы прошли ПСИ.</li></ol><ol type="1" id="986a63dd-50a8-4ed3-85be-786f9a989331" class="numbered-list" start="5"><li>При проработке задач добавить шаг бизнес анализа, где совместного с бизнесом выбирается лучшее решение. Получаем инфу по требованию, предложить решение/best-practice с макетом, заказчик решение согласует. Мы продаём им решение.</li></ol><ol type="1" id="1d20e6f3-5031-4c67-b11e-b0707070cf62" class="numbered-list" start="6"><li>Придумать процесс внутри команды, по согласованию документов, чтобы в дальнейшем не было ситуаций по изменению согласованных документов. ВАЖНО ОТМЕТИТЬ: Полная переделка запрещена, но небольшие изменения могут быть реализованы. Если полная переделка, то это CR (change request). Делегировать все согласование документов на PO, чтобы он мог быстро помочь решение и разработчики/аналитики сразу преступили к работе. Либо сама берет ответственность, либо собирает экспертов, либо собирает встречу бизнес+itfb.</li></ol><ol type="1" id="cfed99f0-a06b-4182-9991-6653d896c1e5" class="numbered-list" start="7"><li>Описывать документы сразу в проекте Фосагро (Confluence)</li></ol><ol type="1" id="b5971080-ce8b-4f32-8878-c5b104561d7d" class="numbered-list" start="8"><li>Отправлять документы на согласование в Jira после согласования от Жени. Они говорит, что все ок и после этого отправляем. Чтобы не приходила куча замечаний.</li></ol><ol type="1" id="0403adf5-80ca-4a71-8a2a-6c959f7ba263" class="numbered-list" start="9"><li>Разобраться с контурами. Например сделать ПРЕПРОД как ТЕСТОВЫЙ контур и на нем проверять. В идеале накаты на Препрод (тест) раз в день (если посьаакл нет, писать что поставок нет или чтобы если письмо не пришло, то ничего не ставит) или хотя бы 2 раза в неделю, вторник и четверг. После вторника и четверга тестируют. / Попросить отдать нам ПРЕПРОД, чтобы мы сами ставили туда задачи. Если не дадут, то лайтовую схему установок релизов на Препрод, через их JIra (сейчас огромный алгоритм со статусами, вплоть до продажи).</li></ol><ol type="1" id="102430ed-de5d-49c2-bfda-038b8dd5f935" class="numbered-list" start="10"><li>Вести проект в нашем пространстве.</li></ol><ol type="1" id="b8c55a57-8269-4ede-ac88-94012cf7548f" class="numbered-list" start="11"><li>Возобновить практику проведения демо. Сделать их лайтовыми. Показать что мы делаем, получить некритчинве замечания на раннем этапе. Если критичные, то это CR.</li></ol><ol type="1" id="c64e83a5-3e91-4c71-9213-d8c0128e9424" class="numbered-list" start="12"><li>Баги вести в JIra, никаких Excel.</li></ol><ol type="1" id="0d59fd6f-3e94-400e-a9d7-479d3eda3296" class="numbered-list" start="13"><li>Если вскрывается баг и нужен хотфикс, то предложить лайтовую схему.</li></ol><p id="1f67a8d6-b79c-45c9-8490-1cf379433d3f" class="">—————————————————————————
+Резюме по задачам:</p><ol type="1" id="5e38aff6-0ad4-4ba8-9233-e9c1cfa8c0be" class="numbered-list" start="1"><li>Пройти
+С Женей организовать встречу, по поводу второго этапа. Обсудить as-is, to-be</li></ol><hr id="4ed760c8-10c7-400e-a25b-a2bbd46fc0e1"/><p id="80117736-6c48-4454-9c4f-b87345c1a1c0" class="">Есть несколько связанных задач, которые логически стоит реализовывать вместе:</p><ol type="1" id="1c7fea22-d8ae-471c-93da-f7ff2be99e07" class="numbered-list" start="1"><li>Работа с лотами должна осуществляться на рабочем месте (рабочее место + лоты)</li></ol><ol type="1" id="dbda3c3e-afca-4956-abdb-96755c06aa4b" class="numbered-list" start="2"><li>Обсудить с Вовой задачи по ux графика (выделения ячеек, drag &amp; drop)</li></ol><p id="74b1bd8b-8408-4ec0-8e9d-0bc58eb4ec02" class="">Согласование
+Вариант 1: согласование в Jira заказчика, Кретова + Функц. Архитектор.
+Вариант 2: Согласование в нашей Джира, потом согласование в их Джира</p><p id="dda05c66-59ea-4e3c-975a-578461fda262" class="">При согласовании, Женя не берет ответственность на себя и направляет доки на функциональных специалистов, а они ставят палки в колеса (не читали/не согласовывали).</p><p id="a8b0cea2-52b5-4600-ba46-e9c6b008531d" class="">Запустили повторное согласование, как только перенесли документы в конфлюенс заказчика.</p><p id="4a0af939-6b54-4c2c-992b-ddbe62201fee" class="">Функц специалисты - Кочегура, Макальский.</p><p id="ed077105-388f-4846-9ebc-01a59aae85e8" class="">В случае, если мы договоримся описывать в их Джира, чтобы Кретова взяла на себя роль функц. Специалиста.</p><p id="bcf6bdb7-98e7-475c-8c06-76f8d2ca3fa8" class="">—————————————————————————
+У нас только дев, который создали под проект.
+Другие разрабы, на своем деве.
+В итоге надо мерджиться.</p><p id="4f05833d-069e-4435-af9a-e91621c4f576" class="">ПРЕПРОД (как тест)</p><p id="942730b6-d65c-4334-a58f-311d711aca2d" class="">Eday - сервер, для автоматических установок для пропод. (В идеале должен быть Препрод).</p><p id="60623c21-9c48-4ecc-95bb-9cfe3ea92858" class="">Дев останется, Препрод будет ТЕСТОМ, потом все на  eday (Препрод), после на прод.</p><p id="8ab90e4f-61af-429b-8f78-1bfc5680131b" class="">Дев - тест (Препрод) - Препрод (e-day) - Прод</p><p id="e1b08c63-face-4233-b62e-6be5861c6f29" class="">(В скобках старое название)
+—————————————————————————
+Буду самостоятельно заниматься распределением задач в рамках выделенного бюджета, чтобы была хорошая утилизация ресурсов.</p><p id="2d4a4f2b-754a-49cf-b647-ea9032b4ee0f" class="">Минимальный состав команды:
+1 аналитик
+2 бек разработчика (2 по 80)
+2 фронта
+1 тестировшик
+1 рп/скрам</p><p id="742dabf7-4370-4b5f-99e1-ee54501ac045" class="">ЗАДАЧА 1 - Узнать у Вадика, какой состав команды планируется на второй этап, написать какой состав минимально необходим, Мишу поставить в копию письма)</p><p id="6e596caa-721a-434a-856b-1ec38f8f5ec1" class="">ЗАДАЧА 2 - Нужно набить релиз. Подготовить вариант на 6 лямов и на 9. Создать встречу, обсудить. Понимать загрузку и как наливать спринты. Продумать вариант с аналитиком, чтобы он делал следующий пул задач, у аналитика будет больше задач.</p><p id="963109ec-81be-438c-800d-28f4a23677a2" class="">ЗАДАЧА 3 - Вникать в транспортных сети</p><p id="bfe8c1af-e11d-4f80-ae77-2198d691685f" class="">Если будут сомнения в задачах. Максимально добавиться внимания, даже если очень загружены.</p><p id="f68ce045-e2f1-484f-9e80-4410f49b9904" class="">Проверить исходя из ресурсов, сколько занимает дней анализа.</p><p id="6abe4ee6-b51f-44da-8d4a-b527f01fd8cc" class="">26 лямов / 4 месяца = x ч/д.
+Учитывать часы анализа и т.п.</p><hr id="4277c875-bb9d-42fd-baba-87b76550d0f1"/><p id="355e555f-54c1-47ad-b133-1ba854b7a3c5" class="">Если задача выполнена, но есть дефекты, то нужно смотреть. Если дефект минорный, то его кидаем в бэклог и потом с бизнесом решаем, когда их брать в работу. Если дефект серьезный, то срок задачи сдвигается, с учётом исправлений багов и выносом на прод.</p><hr id="4ff2694b-d9ec-4a02-afa8-5354c8035e7f"/><p id="d79c2066-05c3-400d-a128-6b94f5c78495" class="">
+</p></div></article></body></html>
